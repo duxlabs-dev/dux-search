@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/AvengeMedia/dankgo/log"
-	"github.com/AvengeMedia/danksearch/internal/config"
-	"github.com/AvengeMedia/danksearch/internal/errdefs"
+	"github.com/duxlabs-dev/dux-search/internal/config"
+	"github.com/duxlabs-dev/dux-search/internal/errdefs"
 	"github.com/fsnotify/fsnotify"
 )
 

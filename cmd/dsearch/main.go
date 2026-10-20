@@ -13,12 +13,12 @@ import (
 
 	"github.com/AvengeMedia/dankgo/app"
 	"github.com/AvengeMedia/dankgo/log"
-	"github.com/AvengeMedia/danksearch/internal/client"
-	"github.com/AvengeMedia/danksearch/internal/config"
-	"github.com/AvengeMedia/danksearch/internal/indexer"
-	"github.com/AvengeMedia/danksearch/internal/metastore"
-	"github.com/AvengeMedia/danksearch/internal/server"
-	"github.com/AvengeMedia/danksearch/internal/watcher"
+	"github.com/duxlabs-dev/dux-search/internal/client"
+	"github.com/duxlabs-dev/dux-search/internal/config"
+	"github.com/duxlabs-dev/dux-search/internal/indexer"
+	"github.com/duxlabs-dev/dux-search/internal/metastore"
+	"github.com/duxlabs-dev/dux-search/internal/server"
+	"github.com/duxlabs-dev/dux-search/internal/watcher"
 	"github.com/spf13/cobra"
 )
 
@@ -181,7 +181,7 @@ var versionCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.PersistentFlags().StringVarP(&configFile, "config", "c", "", "config file path (default: ~/.config/danksearch/config.toml)")
+	rootCmd.PersistentFlags().StringVarP(&configFile, "config", "c", "", "config file path (default: ~/.config/dsearch/config.toml)")
 
 	serveCmd.Flags().StringVar(&rootDir, "root", "", "directory to index")
 	serveCmd.Flags().StringVar(&indexPath, "index", "", "index storage path")
@@ -844,6 +844,9 @@ func main() {
 	log.SetEnvPrefix("DANKSEARCH")
 	if os.Getenv("DANKSEARCH_DEBUG") != "" {
 		log.SetLevel("debug")
+	}
+	if err := config.MigrateLegacyDirs(); err != nil {
+		log.Warnf("dsearch dir migration: %v", err)
 	}
 	if err := rootCmd.Execute(); err != nil {
 		log.Fatalf("%v", err)

@@ -13,7 +13,7 @@ let
 in
 {
   options.programs.dsearch = {
-    enable = mkEnableOption "danksearch";
+    enable = mkEnableOption "Dux Search";
     package = mkPackageOption self.packages.${pkgs.stdenv.hostPlatform.system} "dsearch" { };
 
     config = mkOption {
@@ -31,7 +31,7 @@ in
     systemd.user.services.dsearch = {
       Unit = {
         Description = "dsearch - Fast filesystem search service";
-        Documentation = "https://github.com/AvengeMedia/dsearch";
+        Documentation = "https://github.com/duxlabs-dev/dux-search";
         After = [ "network.target" ];
       };
 
@@ -52,7 +52,7 @@ in
       };
     };
 
-    xdg.configFile."danksearch/config.toml" = mkIf (cfg.config != null) {
+    xdg.configFile."dsearch/config.toml" = mkIf (cfg.config != null) {
       source = tomlFormat.generate "dsearch.config.toml" cfg.config;
     };
   };

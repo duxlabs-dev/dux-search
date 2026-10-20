@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/AvengeMedia/danksearch/internal/config"
 	"github.com/blevesearch/bleve/v2/index/scorch"
+	"github.com/duxlabs-dev/dux-search/internal/config"
 	"github.com/stretchr/testify/suite"
 )
 

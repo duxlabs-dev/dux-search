@@ -144,8 +144,8 @@ func (c *Config) Save(path string) error {
 	}
 	defer f.Close()
 
-	f.WriteString("# DankSearch Configuration\n")
-	f.WriteString("# See https://github.com/AvengeMedia/danksearch for documentation\n\n")
+	f.WriteString("# Dux Search Configuration\n")
+	f.WriteString("# See https://github.com/duxlabs-dev/dux-search for documentation\n\n")
 
 	return toml.NewEncoder(f).Encode(c)
 }
@@ -240,38 +240,76 @@ func (ip *IndexPath) resolvedExcludeDirs() []string {
 	return merged
 }
 
-func getDefaultIndexPath() string {
-	var base string
+const (
+	appDirName       = "dsearch"
+	legacyAppDirName = "danksearch"
+)
+
+func cacheBase() string {
 	if runtime.GOOS == "windows" {
-		base = os.Getenv("LOCALAPPDATA")
-		if base == "" {
-			base = filepath.Join(os.Getenv("USERPROFILE"), "AppData", "Local")
+		if base := os.Getenv("LOCALAPPDATA"); base != "" {
+			return base
 		}
-	} else {
-		base = os.Getenv("XDG_CACHE_HOME")
-		if base == "" {
-			home, _ := os.UserHomeDir()
-			base = filepath.Join(home, ".cache")
-		}
+		return filepath.Join(os.Getenv("USERPROFILE"), "AppData", "Local")
 	}
-	return filepath.Join(base, "danksearch", "index")
+	if base := os.Getenv("XDG_CACHE_HOME"); base != "" {
+		return base
+	}
+	home, _ := os.UserHomeDir()
+	return filepath.Join(home, ".cache")
+}
+
+func configBase() string {
+	if runtime.GOOS == "windows" {
+		if base := os.Getenv("APPDATA"); base != "" {
+			return base
+		}
+		return filepath.Join(os.Getenv("USERPROFILE"), "AppData", "Roaming")
+	}
+	if base := os.Getenv("XDG_CONFIG_HOME"); base != "" {
+		return base
+	}
+	home, _ := os.UserHomeDir()
+	return filepath.Join(home, ".config")
+}
+
+func getDefaultIndexPath() string {
+	return filepath.Join(cacheBase(), appDirName, "index")
 }
 
 func GetDefaultConfigPath() string {
-	var base string
-	if runtime.GOOS == "windows" {
-		base = os.Getenv("APPDATA")
-		if base == "" {
-			base = filepath.Join(os.Getenv("USERPROFILE"), "AppData", "Roaming")
-		}
-	} else {
-		base = os.Getenv("XDG_CONFIG_HOME")
-		if base == "" {
-			home, _ := os.UserHomeDir()
-			base = filepath.Join(home, ".config")
+	return filepath.Join(configBase(), appDirName, "config.toml")
+}
+
+// MigrateLegacyDirs moves the danksearch config and cache dirs to dsearch and
+// leaves a symlink behind, since configs store absolute index paths.
+func MigrateLegacyDirs() error {
+	for _, base := range []string{configBase(), cacheBase()} {
+		if err := migrateLegacyDir(filepath.Join(base, legacyAppDirName), filepath.Join(base, appDirName)); err != nil {
+			return err
 		}
 	}
-	return filepath.Join(base, "danksearch", "config.toml")
+	return nil
+}
+
+func migrateLegacyDir(oldDir, newDir string) error {
+	oldInfo, err := os.Lstat(oldDir)
+	if err != nil {
+		return nil
+	}
+	if _, err := os.Lstat(newDir); err == nil {
+		return nil
+	}
+	if oldInfo.Mode()&os.ModeSymlink != 0 {
+		return os.Symlink(legacyAppDirName, newDir)
+	}
+	if !oldInfo.IsDir() {
+		return nil
+	}
+	if err := os.Rename(oldDir, newDir); err != nil {
+		return os.Symlink(legacyAppDirName, newDir)
+	}
+	return os.Symlink(appDirName, oldDir)
 }
 
 func (c *Config) findIndexPath(path string) *IndexPath {

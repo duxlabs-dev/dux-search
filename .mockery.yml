@@ -6,21 +6,21 @@ template: testify
 template-data:
   unroll-variadic: true
 packages:
-  github.com/AvengeMedia/danksearch/internal/api:
+  github.com/duxlabs-dev/dux-search/internal/api:
     config:
       dir: internal/mocks/api
       pkgname: mocks_api
     interfaces:
       IndexerInterface: {}
       WatcherInterface: {}
-  github.com/AvengeMedia/danksearch/internal/server:
+  github.com/duxlabs-dev/dux-search/internal/server:
     config:
       dir: internal/mocks/server
       pkgname: mocks_server
     interfaces:
       IndexerInterface: {}
       WatcherInterface: {}
-  github.com/AvengeMedia/danksearch/internal/watcher:
+  github.com/duxlabs-dev/dux-search/internal/watcher:
     config:
       dir: internal/mocks/watcher
       pkgname: mocks_watcher

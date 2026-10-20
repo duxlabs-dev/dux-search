@@ -65,7 +65,7 @@
 
             meta = {
               description = "Indexed filesystem search in GO";
-              homepage = "https://github.com/AvengeMedia/danksearch";
+              homepage = "https://github.com/duxlabs-dev/dux-search";
               mainProgram = "dsearch";
               license = lib.licenses.mit;
               platforms = lib.platforms.unix;

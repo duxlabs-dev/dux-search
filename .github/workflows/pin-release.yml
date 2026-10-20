@@ -1,6 +1,6 @@
 name: Pin release
 
-# Pins this repo to a DankMaterialShell release version. Dispatched by the DMS
+# Pins this repo to a Dux Shell release version. Dispatched by the DMS
 # Release workflow; the tag push that lands here runs Create Release.
 # X.Y.0 tags master and cuts stable-X.Y there; X.Y.Z tags stable-X.Y.
 

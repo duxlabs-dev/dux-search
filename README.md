@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://danklinux.com">
+  <a href="https://duxlabs.dev">
     <img src="assets/danklogo.svg" alt="dsearch" width="200">
   </a>
 
@@ -7,11 +7,11 @@
 
   ### Fast, configurable filesystem search with fuzzy matching
 
-[![Documentation](https://img.shields.io/badge/docs-danklinux.com-9ccbfb?style=for-the-badge&labelColor=101418)](https://danklinux.com/docs/danksearch)
-[![GitHub stars](https://img.shields.io/github/stars/AvengeMedia/danksearch?style=for-the-badge&labelColor=101418&color=ffd700)](https://github.com/AvengeMedia/danksearch/stargazers)
-[![GitHub release](https://img.shields.io/github/v/release/AvengeMedia/danksearch?style=for-the-badge&labelColor=101418&color=9ccbfb)](https://github.com/AvengeMedia/danksearch/releases)
+[![Documentation](https://img.shields.io/badge/docs-duxlabs.dev-9ccbfb?style=for-the-badge&labelColor=101418)](https://duxlabs.dev/docs/dsearch)
+[![GitHub stars](https://img.shields.io/github/stars/duxlabs-dev/dux-search?style=for-the-badge&labelColor=101418&color=ffd700)](https://github.com/duxlabs-dev/dux-search/stargazers)
+[![GitHub release](https://img.shields.io/github/v/release/duxlabs-dev/dux-search?style=for-the-badge&labelColor=101418&color=9ccbfb)](https://github.com/duxlabs-dev/dux-search/releases)
 [![AUR version (git)](https://img.shields.io/aur/version/dsearch-git?style=for-the-badge&labelColor=101418&color=9ccbfb&label=AUR%20(git))](https://aur.archlinux.org/packages/dsearch-git)
-[![GitHub License](https://img.shields.io/github/license/AvengeMedia/danksearch?style=for-the-badge&labelColor=101418&color=b9c8da)](https://github.com/AvengeMedia/danksearch/blob/master/LICENSE)
+[![GitHub License](https://img.shields.io/github/license/duxlabs-dev/dux-search?style=for-the-badge&labelColor=101418&color=b9c8da)](https://github.com/duxlabs-dev/dux-search/blob/master/LICENSE)
 
 </div>
 
@@ -19,7 +19,7 @@
 
 A configurable filesystem search service powered by [bleve](https://github.com/blevesearch/bleve) for Unix-based operating systems.
 
-**[Full documentation →](https://danklinux.com/docs/danksearch)**
+**[Full documentation →](https://duxlabs.dev/docs/dsearch)**
 
 ---
 
@@ -56,7 +56,7 @@ it as a flake input in your `flake.nix`:
     # ...
 
     dsearch = {
-      url = "github:AvengeMedia/danksearch";
+      url = "github:duxlabs-dev/dux-search";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

@@ -8,11 +8,11 @@ import (
 	"time"
 
 	"github.com/AvengeMedia/dankgo/ipc"
-	"github.com/AvengeMedia/danksearch/internal/config"
-	"github.com/AvengeMedia/danksearch/internal/indexer"
-	mocks_net "github.com/AvengeMedia/danksearch/internal/mocks/net"
-	mocks_server "github.com/AvengeMedia/danksearch/internal/mocks/server"
 	bleve "github.com/blevesearch/bleve/v2"
+	"github.com/duxlabs-dev/dux-search/internal/config"
+	"github.com/duxlabs-dev/dux-search/internal/indexer"
+	mocks_net "github.com/duxlabs-dev/dux-search/internal/mocks/net"
+	mocks_server "github.com/duxlabs-dev/dux-search/internal/mocks/server"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
 )

@@ -1,4 +1,4 @@
-module github.com/AvengeMedia/danksearch
+module github.com/duxlabs-dev/dux-search
 
 go 1.26.0
 

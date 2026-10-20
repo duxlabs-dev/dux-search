@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/AvengeMedia/dankgo/log"
-	"github.com/AvengeMedia/danksearch/internal/metastore"
+	"github.com/duxlabs-dev/dux-search/internal/metastore"
 )
 
 const (

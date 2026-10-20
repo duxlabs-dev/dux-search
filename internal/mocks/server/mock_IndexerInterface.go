@@ -5,9 +5,9 @@
 package mocks_server
 
 import (
-	"github.com/AvengeMedia/danksearch/internal/config"
-	"github.com/AvengeMedia/danksearch/internal/indexer"
 	"github.com/blevesearch/bleve/v2"
+	"github.com/duxlabs-dev/dux-search/internal/config"
+	"github.com/duxlabs-dev/dux-search/internal/indexer"
 	mock "github.com/stretchr/testify/mock"
 )
 

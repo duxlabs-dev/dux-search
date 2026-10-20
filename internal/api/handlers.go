@@ -4,10 +4,10 @@ import (
 	"context"
 
 	"github.com/AvengeMedia/dankgo/log"
-	"github.com/AvengeMedia/danksearch/internal/config"
-	"github.com/AvengeMedia/danksearch/internal/indexer"
 	bleve "github.com/blevesearch/bleve/v2"
 	"github.com/danielgtaylor/huma/v2"
+	"github.com/duxlabs-dev/dux-search/internal/config"
+	"github.com/duxlabs-dev/dux-search/internal/indexer"
 )
 
 type IndexerInterface interface {

@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/AvengeMedia/dankgo/httpapi"
-	"github.com/AvengeMedia/danksearch/internal/api"
 	"github.com/danielgtaylor/huma/v2/adapters/humachi"
+	"github.com/duxlabs-dev/dux-search/internal/api"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 )
@@ -29,12 +29,12 @@ func newHTTPHandler(indexer api.IndexerInterface, watcher api.WatcherInterface) 
 		r.Use(middleware.Recoverer)
 		r.Use(middleware.Timeout(30 * time.Second))
 
-		config := httpapi.NewHumaConfig("DankSearch API", "1.0.0",
+		config := httpapi.NewHumaConfig("Dux Search API", "1.0.0",
 			httpapi.WithDescription("Desktop filesystem search service with Bleve indexing"))
 		config.DocsPath = ""
 		humaAPI := humachi.New(r, config)
 
-		r.Get("/docs", httpapi.DocsHandler("DankSearch API Reference"))
+		r.Get("/docs", httpapi.DocsHandler("Dux Search API Reference"))
 
 		srv := &api.Server{
 			Indexer: indexer,

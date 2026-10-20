@@ -11,7 +11,7 @@ const (
 
 func NewUnix(router *Router) *ipc.Server {
 	return ipc.NewServer(ipc.Config{
-		AppName:     "danksearch",
+		AppName:     "dsearch",
 		APIVersion:  APIVersion,
 		MaxLineSize: maxLineSize,
 	}, router.Handle)

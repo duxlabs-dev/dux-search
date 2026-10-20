@@ -7,10 +7,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/AvengeMedia/danksearch/internal/config"
-	"github.com/AvengeMedia/danksearch/internal/indexer"
-	mocks_api "github.com/AvengeMedia/danksearch/internal/mocks/api"
 	bleve "github.com/blevesearch/bleve/v2"
+	"github.com/duxlabs-dev/dux-search/internal/config"
+	"github.com/duxlabs-dev/dux-search/internal/indexer"
+	mocks_api "github.com/duxlabs-dev/dux-search/internal/mocks/api"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
 )

@@ -6,9 +6,9 @@ import (
 	"time"
 
 	"github.com/AvengeMedia/dankgo/ipc"
-	"github.com/AvengeMedia/danksearch/internal/config"
 	bleve "github.com/blevesearch/bleve/v2"
 	"github.com/blevesearch/bleve/v2/search"
+	"github.com/duxlabs-dev/dux-search/internal/config"
 )
 
 const (
@@ -26,9 +26,10 @@ type SearchResult struct {
 func findRunningSocket() (string, error) {
 	deadline := time.Now().Add(socketWaitTime)
 	for {
-		socketPath, err := ipc.FindRunningSocket("danksearch")
-		if err == nil {
-			return socketPath, nil
+		for _, name := range []string{"dsearch", "danksearch"} {
+			if socketPath, err := ipc.FindRunningSocket(name); err == nil {
+				return socketPath, nil
+			}
 		}
 		if time.Now().After(deadline) {
 			return "", ErrServiceNotRunning

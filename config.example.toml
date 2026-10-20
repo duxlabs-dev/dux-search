@@ -1,9 +1,9 @@
-# DankSearch Configuration File
-# Default location: ~/.config/danksearch/config.toml
+# Dux Search Configuration File
+# Default location: ~/.config/dsearch/config.toml
 # Override with: dsearch -c /path/to/config.toml
 
-# Index storage path (defaults to $XDG_CACHE_HOME/danksearch/index or ~/.cache/danksearch/index)
-index_path = "/home/brandon/.cache/danksearch/index"
+# Index storage path (defaults to $XDG_CACHE_HOME/dsearch/index or ~/.cache/dsearch/index)
+index_path = "~/.cache/dsearch/index"
 
 # HTTP server listen address
 listen_addr = "127.0.0.1:43654"

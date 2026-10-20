@@ -1,4 +1,4 @@
-name: DankSearch Copr Release
+name: Dux Search Copr Release
 
 on:
   workflow_run:
@@ -32,7 +32,7 @@ jobs:
           fi
 
           echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "✅ Building DankSearch version: $VERSION"
+          echo "✅ Building Dux Search version: $VERSION"
 
       - name: Setup build environment
         run: |
@@ -121,7 +121,7 @@ jobs:
       - name: Build summary
         if: always()
         run: |
-          echo "### 🎉 DankSearch Copr Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "### 🎉 Dux Search Copr Build Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- **Version:** ${{ steps.version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
           echo "- **SRPM:** ${{ steps.build.outputs.srpm_name }}" >> $GITHUB_STEP_SUMMARY

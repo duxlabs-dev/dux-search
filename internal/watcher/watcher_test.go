@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/AvengeMedia/danksearch/internal/config"
-	mocks_watcher "github.com/AvengeMedia/danksearch/internal/mocks/watcher"
+	"github.com/duxlabs-dev/dux-search/internal/config"
+	mocks_watcher "github.com/duxlabs-dev/dux-search/internal/mocks/watcher"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
 )

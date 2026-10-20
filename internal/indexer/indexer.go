@@ -19,9 +19,6 @@ import (
 	"time"
 
 	"github.com/AvengeMedia/dankgo/log"
-	"github.com/AvengeMedia/danksearch/internal/config"
-	"github.com/AvengeMedia/danksearch/internal/errdefs"
-	"github.com/AvengeMedia/danksearch/internal/metastore"
 	bleve "github.com/blevesearch/bleve/v2"
 	_ "github.com/blevesearch/bleve/v2/analysis/analyzer/custom"
 	_ "github.com/blevesearch/bleve/v2/analysis/token/edgengram"
@@ -33,6 +30,9 @@ import (
 	"github.com/blevesearch/bleve/v2/mapping"
 	"github.com/blevesearch/bleve/v2/search"
 	query "github.com/blevesearch/bleve/v2/search/query"
+	"github.com/duxlabs-dev/dux-search/internal/config"
+	"github.com/duxlabs-dev/dux-search/internal/errdefs"
+	"github.com/duxlabs-dev/dux-search/internal/metastore"
 	"github.com/pkg/xattr"
 	"github.com/rwcarlsen/goexif/exif"
 )
