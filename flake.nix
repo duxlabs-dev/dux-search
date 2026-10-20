@@ -45,7 +45,7 @@
         pkgs: system:
         let
           inherit (pkgs) lib;
-          dsearchVersion = "1.6.0";
+          dsearchVersion = "2.0.0";
         in
         {
           dsearch = (pkgs.buildGoModule.override { go = goForPkgs pkgs; }) {
