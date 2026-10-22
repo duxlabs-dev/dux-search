@@ -63,7 +63,9 @@ jobs:
           ref: refs/pull/${{ github.event.issue.number }}/head
           fetch-depth: 0
 
-      - uses: anthropics/claude-code-action@v1
+      - uses: anthropics/claude-code-action@9ca9355b36297178e28d37c799d1c9c8a28e6507
+        env:
+          CLAUDE_CODE_DISABLE_BACKGROUND_TASKS: "1"
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           prompt: |
@@ -87,7 +89,7 @@ jobs:
                ## Claude review
                <one line verdict>
                - <finding, file:line> per inline comment posted this run
-               Checked: <one line>. Model: claude-opus-5.
+               Checked: <one line>. Model: claude-opus-5-5.
 
                No findings: "No issues found." plus what was checked.
 
@@ -101,7 +103,7 @@ jobs:
 
             Review only. Never edit files, commit, push, approve or request changes. Post each finding once. Keep comments short.
           claude_args: |
-            --model claude-opus-5
+            --model claude-opus-5-5
             --max-turns 80
             --allowedTools "Read,Grep,Glob,LS,Task,mcp__github_inline_comment__create_inline_comment,Bash(gh pr view:*),Bash(gh pr diff:*),Bash(gh pr comment:*),Bash(gh api repos/${{ github.repository }}/pulls/${{ github.event.issue.number }}/comments:*),Bash(git diff:*),Bash(git log:*),Bash(git show:*),Bash(git blame:*)"
             --disallowedTools "Edit,Write,MultiEdit,NotebookEdit,WebFetch,WebSearch"
