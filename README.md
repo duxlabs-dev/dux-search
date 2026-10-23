@@ -10,7 +10,7 @@
 [![Documentation](https://img.shields.io/badge/docs-duxlabs.dev-9ccbfb?style=for-the-badge&labelColor=101418)](https://duxlabs.dev/docs/dsearch)
 [![GitHub stars](https://img.shields.io/github/stars/duxlabs-dev/dux-search?style=for-the-badge&labelColor=101418&color=ffd700)](https://github.com/duxlabs-dev/dux-search/stargazers)
 [![GitHub release](https://img.shields.io/github/v/release/duxlabs-dev/dux-search?style=for-the-badge&labelColor=101418&color=9ccbfb)](https://github.com/duxlabs-dev/dux-search/releases)
-[![AUR version (git)](https://img.shields.io/aur/version/dsearch-git?style=for-the-badge&labelColor=101418&color=9ccbfb&label=AUR%20(git))](https://aur.archlinux.org/packages/dsearch-git)
+[![AUR version (git)](https://img.shields.io/aur/version/dux-search-git?style=for-the-badge&labelColor=101418&color=9ccbfb&label=AUR%20(git))](https://aur.archlinux.org/packages/dux-search-git)
 [![GitHub License](https://img.shields.io/github/license/duxlabs-dev/dux-search?style=for-the-badge&labelColor=101418&color=b9c8da)](https://github.com/duxlabs-dev/dux-search/blob/master/LICENSE)
 
 </div>
