@@ -29,6 +29,7 @@ type IndexPath struct {
 type Config struct {
 	IndexPath      string      `toml:"index_path"`
 	ListenAddr     string      `toml:"listen_addr"`
+	HTTPEnabled    bool        `toml:"http_enabled"`
 	MaxFileBytes   int64       `toml:"max_file_bytes"`
 	WorkerCount    int         `toml:"worker_count"`
 	IndexPaths     []IndexPath `toml:"index_paths"`

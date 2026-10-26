@@ -140,7 +140,7 @@ For all options:
 dsearch search --help
 ```
 
-Or visit [http://localhost:43654/docs](http://localhost:43654/docs) for rest API documentation.
+The REST API is off by default. Start the service with `dsearch serve --http` or set `http_enabled = true` in the config, then visit [http://localhost:43654/docs](http://localhost:43654/docs) for the API documentation. The API has no authentication, so every local account can reach it once enabled.
 
 ## Configuration
 

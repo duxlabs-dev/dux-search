@@ -36,7 +36,7 @@ var (
 	maxDepth      int
 	excludeHidden bool
 	noWatch       bool
-	httpOnly      bool
+	enableHTTP    bool
 	socketOnly    bool
 
 	searchLimit    int
@@ -185,14 +185,14 @@ func init() {
 
 	serveCmd.Flags().StringVar(&rootDir, "root", "", "directory to index")
 	serveCmd.Flags().StringVar(&indexPath, "index", "", "index storage path")
-	serveCmd.Flags().StringVar(&listenAddr, "listen", "", "HTTP listen address")
+	serveCmd.Flags().StringVar(&listenAddr, "listen", "", "HTTP listen address (implies --http)")
 	serveCmd.Flags().Int64Var(&maxFileBytes, "max-bytes", 0, "max file size to index")
 	serveCmd.Flags().IntVar(&workerCount, "workers", 0, "number of indexing workers")
 	serveCmd.Flags().IntVar(&maxDepth, "max-depth", -1, "maximum directory depth to traverse (0 = unlimited)")
 	serveCmd.Flags().BoolVar(&excludeHidden, "exclude-hidden", false, "exclude hidden files and directories")
 	serveCmd.Flags().BoolVar(&noWatch, "no-watch", false, "disable automatic file watching")
-	serveCmd.Flags().BoolVar(&httpOnly, "http", false, "run HTTP server only (no unix socket)")
-	serveCmd.Flags().BoolVar(&socketOnly, "socket", false, "run unix socket server only (no HTTP)")
+	serveCmd.Flags().BoolVar(&enableHTTP, "http", false, "also serve the unauthenticated HTTP API on the listen address")
+	serveCmd.Flags().BoolVar(&socketOnly, "socket", false, "unix socket only, overrides http_enabled from config")
 
 	searchCmd.Flags().IntVarP(&searchLimit, "limit", "n", 10, "maximum number of results (0 for all)")
 	searchCmd.Flags().StringVarP(&searchField, "field", "f", "", "search specific field (filename, body, title)")
@@ -335,8 +335,11 @@ func runServe(cmd *cobra.Command, args []string) error {
 		}
 	}
 
-	if httpOnly && socketOnly {
+	if enableHTTP && socketOnly {
 		return fmt.Errorf("cannot specify both --http and --socket flags")
+	}
+	if listenAddr != "" && socketOnly {
+		return fmt.Errorf("cannot specify both --listen and --socket flags")
 	}
 
 	runners := []app.Runner{app.RunnerFunc(func(ctx context.Context) error {
@@ -348,17 +351,15 @@ func runServe(cmd *cobra.Command, args []string) error {
 		}
 	})}
 
-	if !socketOnly {
+	if httpRequested(cfg) {
 		runners = append(runners, server.NewHTTP(cfg.ListenAddr, idx, w))
 	}
 
-	if !httpOnly {
-		unixServer := server.NewUnix(server.NewRouter(idx, w, cfg))
-		if err := unixServer.Listen(); err != nil {
-			return err
-		}
-		runners = append(runners, unixServer)
+	unixServer := server.NewUnix(server.NewRouter(idx, w, cfg))
+	if err := unixServer.Listen(); err != nil {
+		return err
 	}
+	runners = append(runners, unixServer)
 
 	serveErr := app.Serve(context.Background(), runners...)
 
@@ -369,6 +370,13 @@ func runServe(cmd *cobra.Command, args []string) error {
 	}
 
 	return serveErr
+}
+
+func httpRequested(cfg *config.Config) bool {
+	if socketOnly {
+		return false
+	}
+	return cfg.HTTPEnabled || enableHTTP || listenAddr != ""
 }
 
 const indexCloseTimeout = 15 * time.Second
