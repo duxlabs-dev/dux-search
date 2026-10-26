@@ -237,3 +237,23 @@ func (s *IndexerSuite) TestReadDocument() {
 	s.Equal(content, doc.Body)
 	s.NotEmpty(doc.Hash)
 }
+
+func (s *IndexerSuite) TestWalkSkipsSymlinkToAncestor() {
+	root := filepath.Join(s.tmpDir, "root")
+	s.Require().NoError(os.MkdirAll(filepath.Join(root, "sub"), 0755))
+	s.Require().NoError(os.MkdirAll(filepath.Join(s.tmpDir, "outside"), 0755))
+	s.Require().NoError(os.WriteFile(filepath.Join(root, "a.txt"), []byte("a"), 0644))
+	s.Require().NoError(os.WriteFile(filepath.Join(s.tmpDir, "outside", "b.txt"), []byte("b"), 0644))
+	s.Require().NoError(os.Symlink(s.tmpDir, filepath.Join(root, "sub", "up")))
+	s.Require().NoError(os.Symlink(filepath.Join(root, "sub"), filepath.Join(root, "sub", "self")))
+
+	var seen []string
+	walkFollowSymlinks(root, func(path string, info os.FileInfo, err error) error {
+		s.NoError(err)
+		rel, _ := filepath.Rel(root, path)
+		seen = append(seen, rel)
+		return nil
+	})
+
+	s.ElementsMatch([]string{".", "a.txt", "sub"}, seen)
+}
