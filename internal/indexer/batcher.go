@@ -9,7 +9,9 @@ import (
 
 const (
 	defaultBatchSize     = 500
+	defaultBatchBytes    = 16 << 20
 	defaultBatchInterval = 2 * time.Second
+	batchQueueDepth      = 64
 )
 
 type batchJob struct {
@@ -23,15 +25,17 @@ type batcher struct {
 	in       chan batchJob
 	done     chan struct{}
 	size     int
+	maxBytes int
 	interval time.Duration
 }
 
-func newBatcher(idx *Indexer, size int, interval time.Duration) *batcher {
+func newBatcher(idx *Indexer, size, maxBytes int, interval time.Duration) *batcher {
 	b := &batcher{
 		idx:      idx,
-		in:       make(chan batchJob, size*2),
+		in:       make(chan batchJob, batchQueueDepth),
 		done:     make(chan struct{}),
 		size:     size,
+		maxBytes: maxBytes,
 		interval: interval,
 	}
 	go b.run()
@@ -53,6 +57,7 @@ func (b *batcher) run() {
 	idx := b.idx.currentIndex()
 	batch := idx.NewBatch()
 	pending := make([]batchJob, 0, b.size)
+	pendingBytes := 0
 
 	ticker := time.NewTicker(b.interval)
 	defer ticker.Stop()
@@ -76,6 +81,7 @@ func (b *batcher) run() {
 		}
 		batch = idx.NewBatch()
 		pending = pending[:0]
+		pendingBytes = 0
 	}
 
 	for {
@@ -90,7 +96,8 @@ func (b *batcher) run() {
 				continue
 			}
 			pending = append(pending, job)
-			if len(pending) >= b.size {
+			pendingBytes += len(job.doc.Body)
+			if len(pending) >= b.size || pendingBytes >= b.maxBytes {
 				flush()
 			}
 		case <-ticker.C:
