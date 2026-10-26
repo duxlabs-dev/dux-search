@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
+	"time"
 
 	"github.com/duxlabs-dev/dux-search/internal/config"
 	"github.com/stretchr/testify/suite"
@@ -256,4 +258,24 @@ func (s *IndexerSuite) TestWalkSkipsSymlinkToAncestor() {
 	})
 
 	s.ElementsMatch([]string{".", "a.txt", "sub"}, seen)
+}
+
+func (s *IndexerSuite) TestBatcherFlushesOnBodyBytes() {
+	idx := s.newIndexer()
+	bat := newBatcher(idx, 500, 1<<20, time.Hour)
+
+	for n := range 3 {
+		path := filepath.Join(s.tmpDir, fmt.Sprintf("big%d.txt", n))
+		bat.submit(batchJob{path: path, doc: &Document{Path: path, Body: strings.Repeat("x ", 300*1024)}})
+	}
+
+	s.Eventually(func() bool {
+		count, err := idx.GetDocCount()
+		return err == nil && count >= 2
+	}, 3*time.Second, 50*time.Millisecond, "batch should flush once pending bodies exceed the byte budget")
+
+	bat.close()
+	count, err := idx.GetDocCount()
+	s.Require().NoError(err)
+	s.Equal(uint64(3), count)
 }

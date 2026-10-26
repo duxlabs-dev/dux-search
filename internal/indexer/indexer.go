@@ -1035,7 +1035,7 @@ func (i *Indexer) ReindexAll() error {
 		return err
 	}
 
-	bat := newBatcher(i, defaultBatchSize, defaultBatchInterval)
+	bat := newBatcher(i, defaultBatchSize, defaultBatchBytes, defaultBatchInterval)
 	stats := i.walkIndexPaths(bat, func(string, os.FileInfo) bool { return true })
 	bat.close()
 
@@ -1103,7 +1103,7 @@ func (i *Indexer) SyncIncremental() error {
 	}
 
 	var added, updated, unchanged int64
-	bat := newBatcher(i, defaultBatchSize, defaultBatchInterval)
+	bat := newBatcher(i, defaultBatchSize, defaultBatchBytes, defaultBatchInterval)
 	stats := i.walkIndexPaths(bat, func(path string, info os.FileInfo) bool {
 		existing, exists := indexedPaths[path]
 		delete(indexedPaths, path)
