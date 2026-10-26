@@ -5,7 +5,12 @@
 # Index storage path (defaults to $XDG_CACHE_HOME/dsearch/index or ~/.cache/dsearch/index)
 index_path = "~/.cache/dsearch/index"
 
-# HTTP server listen address
+# HTTP REST API, off by default. The unix socket in $XDG_RUNTIME_DIR is always
+# served and is what the CLI uses. The HTTP API has no authentication, so any
+# local account (or a web page you visit) can reach it once enabled.
+http_enabled = false
+
+# HTTP server listen address, used when http_enabled = true or `serve --http`
 listen_addr = "127.0.0.1:43654"
 
 # Maximum file size to index (in bytes)
