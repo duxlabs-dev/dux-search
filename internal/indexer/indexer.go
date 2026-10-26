@@ -1303,10 +1303,10 @@ func walkFollowSymlinks(root string, fn filepath.WalkFunc) {
 		log.Warnf("skipping inaccessible root %s: %v", root, err)
 		return
 	}
-	symWalk(root, info, fn, make(map[string]bool))
+	symWalk(root, info, fn, "", make(map[string]bool))
 }
 
-func symWalk(path string, info os.FileInfo, fn filepath.WalkFunc, visited map[string]bool) {
+func symWalk(path string, info os.FileInfo, fn filepath.WalkFunc, parentResolved string, visited map[string]bool) {
 	if !info.IsDir() {
 		_ = fn(path, info, nil)
 		return
@@ -1318,7 +1318,7 @@ func symWalk(path string, info os.FileInfo, fn filepath.WalkFunc, visited map[st
 		return
 	}
 
-	if visited[resolved] {
+	if visited[resolved] || containsDir(resolved, parentResolved) {
 		return
 	}
 	visited[resolved] = true
@@ -1340,6 +1340,17 @@ func symWalk(path string, info os.FileInfo, fn filepath.WalkFunc, visited map[st
 			log.Debugf("skipping inaccessible path %s: %v", child, err)
 			continue
 		}
-		symWalk(child, childInfo, fn, visited)
+		symWalk(child, childInfo, fn, resolved, visited)
 	}
+}
+
+func containsDir(ancestor, path string) bool {
+	if ancestor == "" || path == "" {
+		return false
+	}
+	rel, err := filepath.Rel(ancestor, path)
+	if err != nil {
+		return false
+	}
+	return rel != ".." && !strings.HasPrefix(rel, ".."+string(filepath.Separator))
 }
