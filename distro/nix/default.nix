@@ -10,11 +10,33 @@ let
   tomlFormat = pkgs.formats.toml { };
 
   cfg = config.programs.dsearch;
+
+  # Semantic search loads the system ONNX Runtime at run time. When the user
+  # enables it, point the config at the Nix store copy unless they chose a path.
+  semanticEnabled = cfg.config != null && (cfg.config.semantic.enabled or false);
+  finalConfig =
+    if semanticEnabled then
+      recursiveUpdate {
+        semantic.onnxruntime_lib = "${cfg.onnxruntimePackage}/lib/libonnxruntime.so";
+      } cfg.config
+    else
+      cfg.config;
 in
 {
   options.programs.dsearch = {
     enable = mkEnableOption "Dux Search";
     package = mkPackageOption self.packages.${pkgs.stdenv.hostPlatform.system} "dsearch" { };
+
+    onnxruntimePackage = mkOption {
+      type = types.package;
+      default = pkgs.onnxruntime;
+      defaultText = literalExpression "pkgs.onnxruntime";
+      description = ''
+        ONNX Runtime (1.22 or newer) used by semantic search. Only referenced
+        when `semantic.enabled = true` is set in `config`; the model files are
+        downloaded at run time with `dsearch model download`.
+      '';
+    };
 
     config = mkOption {
       type = types.nullOr tomlFormat.type;
@@ -53,7 +75,7 @@ in
     };
 
     xdg.configFile."dsearch/config.toml" = mkIf (cfg.config != null) {
-      source = tomlFormat.generate "dsearch.config.toml" cfg.config;
+      source = tomlFormat.generate "dsearch.config.toml" finalConfig;
     };
   };
 }

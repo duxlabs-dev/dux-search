@@ -1,0 +1,2159 @@
+{
+ "model": "embeddinggemma-2 int8 ONNX text tower (model_quantized.onnx)",
+ "dim": 768,
+ "queries": [
+  {
+   "kind": "action",
+   "text": "karanlık",
+   "expect": "dark"
+  },
+  {
+   "kind": "action",
+   "text": "gözlerim yoruldu",
+   "expect": "nightlight"
+  },
+  {
+   "kind": "action",
+   "text": "kablosuz kulaklık",
+   "expect": "bt"
+  },
+  {
+   "kind": "action",
+   "text": "fener",
+   "expect": "lamp"
+  },
+  {
+   "kind": "action",
+   "text": "sesi kıs",
+   "expect": "vol"
+  },
+  {
+   "kind": "action",
+   "text": "parlaklığı %40 yap",
+   "expect": "bright"
+  },
+  {
+   "kind": "action",
+   "text": "bildirimleri sustur",
+   "expect": "dnd"
+  },
+  {
+   "kind": "action",
+   "text": "pil tasarrufu",
+   "expect": "perf"
+  },
+  {
+   "kind": "action",
+   "text": "ekranı kaydet",
+   "expect": "rec"
+  },
+  {
+   "kind": "action",
+   "text": "15 dakika zamanlayıcı kur",
+   "expect": "timer"
+  },
+  {
+   "kind": "action",
+   "text": "oda ışığını aç",
+   "expect": "lamp"
+  },
+  {
+   "kind": "action",
+   "text": "internet kapat",
+   "expect": "wifi"
+  },
+  {
+   "kind": "action",
+   "text": "bilgisayarı uyut",
+   "expect": "sleep"
+  },
+  {
+   "kind": "action",
+   "text": "pencereyi kapat",
+   "expect": "close"
+  },
+  {
+   "kind": "action",
+   "text": "mikrofonu kapat",
+   "expect": "mic"
+  },
+  {
+   "kind": "file",
+   "text": "regular expression matching",
+   "expect": "regexp"
+  },
+  {
+   "kind": "file",
+   "text": "düzenli ifadelerle metin eşleştirme",
+   "expect": "regexp"
+  },
+  {
+   "kind": "file",
+   "text": "write an HTTP server and client",
+   "expect": "net/http"
+  },
+  {
+   "kind": "file",
+   "text": "HTTP sunucusu yazmak",
+   "expect": "net/http"
+  },
+  {
+   "kind": "file",
+   "text": "encode and decode JSON",
+   "expect": "encoding/json"
+  },
+  {
+   "kind": "file",
+   "text": "JSON verisini yapıya çevirmek",
+   "expect": "encoding/json"
+  },
+  {
+   "kind": "file",
+   "text": "text templates with actions and pipelines",
+   "expect": "text/template"
+  },
+  {
+   "kind": "file",
+   "text": "şablon dosyalarıyla metin üretmek",
+   "expect": "text/template"
+  },
+  {
+   "kind": "file",
+   "text": "compress data with gzip",
+   "expect": "compress/gzip"
+  },
+  {
+   "kind": "file",
+   "text": "zip arşivi okumak ve yazmak",
+   "expect": "archive/zip"
+  },
+  {
+   "kind": "file",
+   "text": "parse and manipulate URLs",
+   "expect": "net/url"
+  },
+  {
+   "kind": "file",
+   "text": "big integer arithmetic",
+   "expect": "math/big"
+  },
+  {
+   "kind": "file",
+   "text": "çok büyük tam sayılarla hesaplama",
+   "expect": "math/big"
+  },
+  {
+   "kind": "file",
+   "text": "structured logging with levels and attributes",
+   "expect": "log/slog"
+  },
+  {
+   "kind": "file",
+   "text": "yapılandırılmış günlük kaydı",
+   "expect": "log/slog"
+  },
+  {
+   "kind": "file",
+   "text": "formatted I/O with printing verbs",
+   "expect": "fmt"
+  },
+  {
+   "kind": "file",
+   "text": "command line flag parsing",
+   "expect": "flag"
+  },
+  {
+   "kind": "file",
+   "text": "komut satırı bayraklarını okumak",
+   "expect": "flag"
+  },
+  {
+   "kind": "file",
+   "text": "run external commands",
+   "expect": "os/exec"
+  },
+  {
+   "kind": "file",
+   "text": "harici komut çalıştırmak",
+   "expect": "os/exec"
+  },
+  {
+   "kind": "file",
+   "text": "cancellation and deadlines across API boundaries",
+   "expect": "context"
+  },
+  {
+   "kind": "file",
+   "text": "zaman aşımı ve iptal sinyali",
+   "expect": "context"
+  },
+  {
+   "kind": "file",
+   "text": "reading and writing CSV records",
+   "expect": "encoding/csv"
+  },
+  {
+   "kind": "file",
+   "text": "XML encoding",
+   "expect": "encoding/xml"
+  },
+  {
+   "kind": "file",
+   "text": "SQL database access",
+   "expect": "database/sql"
+  },
+  {
+   "kind": "file",
+   "text": "TLS secure connections",
+   "expect": "crypto/tls"
+  },
+  {
+   "kind": "file",
+   "text": "sorting slices and collections",
+   "expect": "sort"
+  },
+  {
+   "kind": "file",
+   "text": "mutual exclusion locks and wait groups",
+   "expect": "sync"
+  },
+  {
+   "kind": "file",
+   "text": "kilitler ve eşzamanlılık ilkelleri",
+   "expect": "sync"
+  },
+  {
+   "kind": "file",
+   "text": "date and time formatting",
+   "expect": "time"
+  },
+  {
+   "kind": "file",
+   "text": "tarih ve saat biçimlendirme",
+   "expect": "time"
+  },
+  {
+   "kind": "file",
+   "text": "write unit tests and benchmarks",
+   "expect": "testing"
+  },
+  {
+   "kind": "file",
+   "text": "birim testi ve karşılaştırma ölçümü yazmak",
+   "expect": "testing"
+  },
+  {
+   "kind": "file",
+   "text": "manipulating file paths",
+   "expect": "path/filepath"
+  },
+  {
+   "kind": "file",
+   "text": "dosya yolu işlemleri",
+   "expect": "path/filepath"
+  },
+  {
+   "kind": "file",
+   "text": "decode images",
+   "expect": "image"
+  },
+  {
+   "kind": "file",
+   "text": "unicode text handling",
+   "expect": "unicode"
+  }
+ ],
+ "docs": [
+  {
+   "kind": "action",
+   "id": "dark",
+   "title": "dark",
+   "text": "Dark theme. Switch the desktop color scheme between dark mode and light mode; night theme, black interface."
+  },
+  {
+   "kind": "action",
+   "id": "nightlight",
+   "title": "nightlight",
+   "text": "Night Light. Warm, yellowish screen colors that reduce blue light and eye strain; tired eyes, reading at night."
+  },
+  {
+   "kind": "action",
+   "id": "dnd",
+   "title": "dnd",
+   "text": "Do Not Disturb. Silence and hide notifications and alerts."
+  },
+  {
+   "kind": "action",
+   "id": "vol",
+   "title": "vol",
+   "text": "Volume. Turn the speaker sound up or down, louder or quieter, mute audio output."
+  },
+  {
+   "kind": "action",
+   "id": "mic",
+   "title": "mic",
+   "text": "Microphone mute. Mute or unmute the microphone input for calls."
+  },
+  {
+   "kind": "action",
+   "id": "bright",
+   "title": "bright",
+   "text": "Display brightness. Make the screen brighter or dimmer."
+  },
+  {
+   "kind": "action",
+   "id": "kbd",
+   "title": "kbd",
+   "text": "Keyboard backlight. Turn keyboard illumination on or off."
+  },
+  {
+   "kind": "action",
+   "id": "wifi",
+   "title": "wifi",
+   "text": "Wi-Fi. Turn the wireless network and internet connection on or off, join a network."
+  },
+  {
+   "kind": "action",
+   "id": "bt",
+   "title": "bt",
+   "text": "Bluetooth. Turn Bluetooth on or off, connect wireless headphones, earbuds, speakers and devices."
+  },
+  {
+   "kind": "action",
+   "id": "plane",
+   "title": "plane",
+   "text": "Airplane mode. Disable all wireless radios at once."
+  },
+  {
+   "kind": "action",
+   "id": "vpn",
+   "title": "vpn",
+   "text": "VPN. Connect or disconnect the virtual private network."
+  },
+  {
+   "kind": "action",
+   "id": "perf",
+   "title": "perf",
+   "text": "Power profile. Choose performance, balanced or power saver to extend battery life."
+  },
+  {
+   "kind": "action",
+   "id": "lock",
+   "title": "lock",
+   "text": "Lock screen. Lock the session so a password is needed."
+  },
+  {
+   "kind": "action",
+   "id": "sleep",
+   "title": "sleep",
+   "text": "Suspend. Put the computer to sleep."
+  },
+  {
+   "kind": "action",
+   "id": "shot",
+   "title": "shot",
+   "text": "Screenshot. Capture an image of a region or the full screen."
+  },
+  {
+   "kind": "action",
+   "id": "rec",
+   "title": "rec",
+   "text": "Screen recording. Start or stop recording a video of the screen."
+  },
+  {
+   "kind": "action",
+   "id": "close",
+   "title": "close",
+   "text": "Close window. Close the currently focused application window."
+  },
+  {
+   "kind": "action",
+   "id": "float",
+   "title": "float",
+   "text": "Floating window. Make the focused window float above the tiled layout."
+  },
+  {
+   "kind": "action",
+   "id": "timer",
+   "title": "timer",
+   "text": "Timer. Start a countdown timer for a number of minutes."
+  },
+  {
+   "kind": "action",
+   "id": "lamp",
+   "title": "lamp",
+   "text": "Room light. Turn the smart home room lamp or flashlight on or off."
+  },
+  {
+   "kind": "file",
+   "pkg": "archive/tar",
+   "chunk": 0,
+   "title": "archive/tar",
+   "text": "Package tar implements access to tar archives.\n\nTape archives (tar) are a file format for storing a sequence of files that\ncan be read and written in a streaming manner.\nThis package aims to cover most variations of the format,\nincluding those produced by GNU and BSD tar tools."
+  },
+  {
+   "kind": "file",
+   "pkg": "archive/zip",
+   "chunk": 0,
+   "title": "archive/zip",
+   "text": "Package zip provides support for reading and writing ZIP archives.\n\nSee the [ZIP specification] for details.\n\nThis package does not support disk spanning.\n\nA note about ZIP64:\n\nTo be backwards compatible the FileHeader has both 32 and 64 bit Size\nfields. The 64 bit fields will always contain the correct value and\nfor normal archives both fields will be the same. For files requiring\nthe ZIP64 format the 32 bit fields will be 0xffffffff and the 64 bit\nfields must be used instead.\n\n[ZIP specification]: https://support.pkware.com/pkzip/appnote"
+  },
+  {
+   "kind": "file",
+   "pkg": "arena",
+   "chunk": 0,
+   "title": "arena",
+   "text": "The arena package provides the ability to allocate memory for a collection\nof Go values and free that space manually all at once, safely. The purpose\nof this functionality is to improve efficiency: manually freeing memory\nbefore a garbage collection delays that cycle. Less frequent cycles means\nthe CPU cost of the garbage collector is incurred less frequently.\n\nThis functionality in this package is mostly captured in the Arena type.\nArenas allocate large chunks of memory for Go values, so they're likely to\nbe inefficient for allocating only small amounts of small Go values. They're\nbest used in bulk, on the order of MiB of memory allocated on each use."
+  },
+  {
+   "kind": "file",
+   "pkg": "arena",
+   "chunk": 1,
+   "title": "arena",
+   "text": "Note that by allowing for this limited form of manual memory allocation\nthat use-after-free bugs are possible with regular Go values. This package\nlimits the impact of these use-after-free bugs by preventing reuse of freed\nmemory regions until the garbage collector is able to determine that it is\nsafe. Typically, a use-after-free bug will result in a fault and a helpful\nerror message, but this package reserves the right to not force a fault on\nfreed memory. That means a valid implementation of this package is to just\nallocate all memory the way the runtime normally would, and in fact, it\nreserves the right to occasionally do so for some Go values."
+  },
+  {
+   "kind": "file",
+   "pkg": "bufio",
+   "chunk": 0,
+   "title": "bufio",
+   "text": "Package bufio implements buffered I/O. It wraps an io.Reader or io.Writer\nobject, creating another object (Reader or Writer) that also implements\nthe interface but provides buffering and some help for textual I/O."
+  },
+  {
+   "kind": "file",
+   "pkg": "bytes",
+   "chunk": 0,
+   "title": "bytes",
+   "text": "Package bytes implements functions for the manipulation of byte slices.\nIt is analogous to the facilities of the [strings] package."
+  },
+  {
+   "kind": "file",
+   "pkg": "cmp",
+   "chunk": 0,
+   "title": "cmp",
+   "text": "Package cmp provides types and functions related to comparing\nordered values."
+  },
+  {
+   "kind": "file",
+   "pkg": "compress/flate",
+   "chunk": 0,
+   "title": "compress/flate",
+   "text": "Package flate implements the DEFLATE compressed data format, described in\nRFC 1951.  The [compress/gzip] and [compress/zlib] packages implement access\nto DEFLATE-based file formats."
+  },
+  {
+   "kind": "file",
+   "pkg": "compress/gzip",
+   "chunk": 0,
+   "title": "compress/gzip",
+   "text": "Package gzip implements reading and writing of gzip format compressed files,\nas specified in RFC 1952."
+  },
+  {
+   "kind": "file",
+   "pkg": "compress/lzw",
+   "chunk": 0,
+   "title": "compress/lzw",
+   "text": "Package lzw implements the Lempel-Ziv-Welch compressed data format,\ndescribed in T. A. Welch, “A Technique for High-Performance Data\nCompression”, Computer, 17(6) (June 1984), pp 8-19.\n\nIn particular, it implements LZW as used by the GIF and PDF file\nformats, which means variable-width codes up to 12 bits and the first\ntwo non-literal codes are a clear code and an EOF code.\n\nThe TIFF file format uses a similar but incompatible version of the LZW\nalgorithm. See the [golang.org/x/image/tiff/lzw] package for an\nimplementation."
+  },
+  {
+   "kind": "file",
+   "pkg": "compress/zlib",
+   "chunk": 0,
+   "title": "compress/zlib",
+   "text": "Package zlib implements reading and writing of zlib format compressed data,\nas specified in RFC 1950.\n\nThe implementation provides filters that uncompress during reading\nand compress during writing.  For example, to write compressed data\nto a buffer:\n\nvar b bytes.Buffer\n\tw := zlib.NewWriter(&b)\n\tw.Write([]byte(\"hello, world\\n\"))\n\tw.Close()\n\nand to read that data back:\n\nr, err := zlib.NewReader(&b)\n\tio.Copy(os.Stdout, r)\n\tr.Close()"
+  },
+  {
+   "kind": "file",
+   "pkg": "container/heap",
+   "chunk": 0,
+   "title": "container/heap",
+   "text": "Package heap provides heap operations for any type that implements\nheap.Interface. A heap is a tree with the property that each node is the\nminimum-valued node in its subtree.\n\nThe minimum element in the tree is the root, at index 0.\n\nA heap is a common way to implement a priority queue. To build a priority\nqueue, implement the Heap interface with the (negative) priority as the\nordering for the Less method, so Push adds items while Pop removes the\nhighest-priority item from the queue. The Examples include such an\nimplementation; the file example_pq_test.go has the complete source."
+  },
+  {
+   "kind": "file",
+   "pkg": "container/list",
+   "chunk": 0,
+   "title": "container/list",
+   "text": "Package list implements a doubly linked list.\n\nTo iterate over a list (where l is a *List):\n\nfor e := l.Front(); e != nil; e = e.Next() {\n\t\t// do something with e.Value\n\t}"
+  },
+  {
+   "kind": "file",
+   "pkg": "context",
+   "chunk": 0,
+   "title": "context",
+   "text": "Package context defines the Context type, which carries deadlines,\ncancellation signals, and other request-scoped values across API boundaries\nand between processes.\n\nIncoming requests to a server should create a [Context], and outgoing\ncalls to servers should accept a Context. The chain of function\ncalls between them must propagate the Context, optionally replacing\nit with a derived Context created using [WithCancel], [WithDeadline],\n[WithTimeout], or [WithValue].\n\nA Context may be canceled to indicate that work done on its behalf should stop.\nA Context with a deadline is canceled after the deadline passes.\nWhen a Context is canceled, all Contexts derived from it are also canceled."
+  },
+  {
+   "kind": "file",
+   "pkg": "context",
+   "chunk": 1,
+   "title": "context",
+   "text": "The [WithCancel], [WithDeadline], and [WithTimeout] functions take a\nContext (the parent) and return a derived Context (the child) and a\n[CancelFunc]. Calling the CancelFunc directly cancels the child and its\nchildren, removes the parent's reference to the child, and stops\nany associated timers. Failing to call the CancelFunc leaks the\nchild and its children until the parent is canceled. The go vet tool\nchecks that CancelFuncs are used on all control-flow paths.\n\nThe [WithCancelCause] function returns a [CancelCauseFunc], which takes\nan error and records it as the cancellation cause. [WithDeadlineCause]\nand [WithTimeoutCause] take a cause to use when the deadline expires.\nCalling [Cause] on the canceled context or any of its children retrieves\nthe cause. If no cause is specified, Cause(ctx) returns the same value\nas ctx.Err().\n\nPrograms that use Contexts should follow these rules to keep interfaces\nconsistent across packages and enable static analysis tools to check context\npropagation:"
+  },
+  {
+   "kind": "file",
+   "pkg": "context",
+   "chunk": 2,
+   "title": "context",
+   "text": "Do not store Contexts inside a struct type; instead, pass a Context\nexplicitly to each function that needs it. This is discussed further in\nhttps://go.dev/blog/context-and-structs. The Context should be the first\nparameter, typically named ctx:\n\nfunc DoSomething(ctx context.Context, arg Arg) error {\n\t\t// ... use ctx ...\n\t}\n\nDo not pass a nil [Context], even if a function permits it. Pass [context.TODO]\nif you are unsure about which Context to use.\n\nUse context Values only for request-scoped data that transits processes and\nAPIs, not for passing optional parameters to functions.\n\nThe same Context may be passed to functions running in different goroutines;\nContexts are safe for simultaneous use by multiple goroutines.\n\nSee https://go.dev/blog/context for example code for a server that uses\nContexts."
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/aes",
+   "chunk": 0,
+   "title": "crypto/aes",
+   "text": "Package aes implements AES encryption (formerly Rijndael), as defined in\nU.S. Federal Information Processing Standards Publication 197.\n\nThe AES operations in this package are not implemented using constant-time algorithms.\nAn exception is when running on systems with enabled hardware support for AES\nthat makes these operations constant-time. Examples include amd64 systems using AES-NI\nextensions and s390x systems using Message-Security-Assist extensions.\nOn such systems, when the result of NewCipher is passed to cipher.NewGCM,\nthe GHASH operation used by GCM is also constant-time."
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/boring",
+   "chunk": 0,
+   "title": "crypto/boring",
+   "text": "Package boring exposes functions that are only available when building with\nGo+BoringCrypto. This package is available on all targets as long as the\nGo+BoringCrypto toolchain is used. Use the Enabled function to determine\nwhether the BoringCrypto core is actually in use.\n\nAny time the Go+BoringCrypto toolchain is used, the \"boringcrypto\" build tag\nis satisfied, so that applications can tag files that use this package."
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/cipher",
+   "chunk": 0,
+   "title": "crypto/cipher",
+   "text": "Package cipher implements standard block cipher modes that can be wrapped\naround low-level block cipher implementations.\nSee https://csrc.nist.gov/groups/ST/toolkit/BCM/current_modes.html\nand NIST Special Publication 800-38A."
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/des",
+   "chunk": 0,
+   "title": "crypto/des",
+   "text": "Package des implements the Data Encryption Standard (DES) and the\nTriple Data Encryption Algorithm (TDEA) as defined\nin U.S. Federal Information Processing Standards Publication 46-3.\n\nDES is cryptographically broken and should not be used for secure\napplications."
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/dsa",
+   "chunk": 0,
+   "title": "crypto/dsa",
+   "text": "Package dsa implements the Digital Signature Algorithm, as defined in FIPS 186-3.\n\nThe DSA operations in this package are not implemented using constant-time algorithms.\n\nDeprecated: DSA is a legacy algorithm, and modern alternatives such as\nEd25519 (implemented by package crypto/ed25519) should be used instead. Keys\nwith 1024-bit moduli (L1024N160 parameters) are cryptographically weak, while\nbigger keys are not widely supported. Note that FIPS 186-5 no longer approves\nDSA for signature generation."
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/ecdh",
+   "chunk": 0,
+   "title": "crypto/ecdh",
+   "text": "Package ecdh implements Elliptic Curve Diffie-Hellman over\nNIST curves and Curve25519."
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/ecdsa",
+   "chunk": 0,
+   "title": "crypto/ecdsa",
+   "text": "Package ecdsa implements the Elliptic Curve Digital Signature Algorithm, as\ndefined in [FIPS 186-5].\n\nSignatures generated by this package are not deterministic, but entropy is\nmixed with the private key and the message, achieving the same level of\nsecurity in case of randomness source failure.\n\nOperations involving private keys are implemented using constant-time\nalgorithms, as long as an [elliptic.Curve] returned by [elliptic.P224],\n[elliptic.P256], [elliptic.P384], or [elliptic.P521] is used.\n\n[FIPS 186-5]: https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf"
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/ed25519",
+   "chunk": 0,
+   "title": "crypto/ed25519",
+   "text": "Package ed25519 implements the Ed25519 signature algorithm. See\nhttps://ed25519.cr.yp.to/.\n\nThese functions are also compatible with the “Ed25519” function defined in\nRFC 8032. However, unlike RFC 8032's formulation, this package's private key\nrepresentation includes a public key suffix to make multiple signing\noperations with the same key more efficient. This package refers to the RFC\n8032 private key as the “seed”.\n\nOperations involving private keys are implemented using constant-time\nalgorithms."
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/elliptic",
+   "chunk": 0,
+   "title": "crypto/elliptic",
+   "text": "Package elliptic implements the standard NIST P-224, P-256, P-384, and P-521\nelliptic curves over prime fields.\n\nDirect use of this package is deprecated, beyond the [P224], [P256], [P384],\nand [P521] values necessary to use [crypto/ecdsa]. Most other uses\nshould migrate to the more efficient and safer [crypto/ecdh], or to\nthird-party modules for lower-level functionality."
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/fips140",
+   "chunk": 0,
+   "title": "crypto/fips140",
+   "text": "Package fips140 provides information about the FIPS 140-3 Go Cryptographic\nModule and FIPS 140-3 mode.\n\nFor more details, see the [FIPS 140-3 documentation].\n\n[FIPS 140-3 documentation]: https://go.dev/doc/security/fips140"
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/hkdf",
+   "chunk": 0,
+   "title": "crypto/hkdf",
+   "text": "Package hkdf implements the HMAC-based Extract-and-Expand Key Derivation\nFunction (HKDF) as defined in RFC 5869.\n\nHKDF is a cryptographic key derivation function (KDF) with the goal of\nexpanding limited input keying material into one or more cryptographically\nstrong secret keys."
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/hmac",
+   "chunk": 0,
+   "title": "crypto/hmac",
+   "text": "Package hmac implements the Keyed-Hash Message Authentication Code (HMAC) as\ndefined in U.S. Federal Information Processing Standards Publication 198.\nAn HMAC is a cryptographic hash that uses a key to sign a message.\nThe receiver verifies the hash by recomputing it using the same key.\n\nReceivers should be careful to use Equal to compare MACs in order to avoid\ntiming side-channels:\n\n// ValidMAC reports whether messageMAC is a valid HMAC tag for message.\n\tfunc ValidMAC(message, messageMAC, key []byte) bool {\n\t\tmac := hmac.New(sha256.New, key)\n\t\tmac.Write(message)\n\t\texpectedMAC := mac.Sum(nil)\n\t\treturn hmac.Equal(messageMAC, expectedMAC)\n\t}"
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/hpke",
+   "chunk": 0,
+   "title": "crypto/hpke",
+   "text": "Package hpke implements Hybrid Public Key Encryption (HPKE) as defined in\n[RFC 9180].\n\n[RFC 9180]: https://www.rfc-editor.org/rfc/rfc9180.html"
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/md5",
+   "chunk": 0,
+   "title": "crypto/md5",
+   "text": "Package md5 implements the MD5 hash algorithm as defined in RFC 1321.\n\nMD5 is cryptographically broken and should not be used for secure\napplications."
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/mldsa",
+   "chunk": 0,
+   "title": "crypto/mldsa",
+   "text": "Package mldsa implements the post-quantum ML-DSA signature scheme specified\nin [FIPS 204].\n\nThis package is unavailable if using the [FIPS 140-3 Go Cryptographic Module]\nv1.0.0, in which case [GenerateKey], [NewPrivateKey], [NewPublicKey], and\n[Verify] will return an error. It is available if using v1.26.0 or later.\n\n[FIPS 204]: https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.204.pdf\n[FIPS 140-3 Go Cryptographic Module]: https://go.dev/doc/security/fips140"
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/mlkem",
+   "chunk": 0,
+   "title": "crypto/mlkem",
+   "text": "Package mlkem implements the quantum-resistant key encapsulation method\nML-KEM (formerly known as Kyber), as specified in [NIST FIPS 203].\n\nMost applications should use the ML-KEM-768 parameter set, as implemented by\n[DecapsulationKey768] and [EncapsulationKey768].\n\n[NIST FIPS 203]: https://doi.org/10.6028/NIST.FIPS.203"
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/mlkem/mlkemtest",
+   "chunk": 0,
+   "title": "crypto/mlkem/mlkemtest",
+   "text": "Package mlkemtest provides testing functions for the ML-KEM algorithm."
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/pbkdf2",
+   "chunk": 0,
+   "title": "crypto/pbkdf2",
+   "text": "Package pbkdf2 implements the key derivation function PBKDF2 as defined in\nRFC 8018 (PKCS #5 v2.1).\n\nA key derivation function is useful when encrypting data based on a password\nor any other not-fully-random data. It uses a pseudorandom function to derive\na secure encryption key based on the password."
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/rand",
+   "chunk": 0,
+   "title": "crypto/rand",
+   "text": "Package rand implements a cryptographically secure\nrandom number generator."
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/rc4",
+   "chunk": 0,
+   "title": "crypto/rc4",
+   "text": "Package rc4 implements RC4 encryption, as defined in Bruce Schneier's\nApplied Cryptography.\n\nRC4 is cryptographically broken and should not be used for secure\napplications."
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/rsa",
+   "chunk": 0,
+   "title": "crypto/rsa",
+   "text": "Package rsa implements RSA encryption as specified in PKCS #1 and RFC 8017.\n\nRSA is a single, fundamental operation that is used in this package to\nimplement either public-key encryption or public-key signatures.\n\nThe original specification for encryption and signatures with RSA is PKCS #1\nand the terms \"RSA encryption\" and \"RSA signatures\" by default refer to\nPKCS #1 version 1.5. However, that specification has flaws and new designs\nshould use version 2, usually called by just OAEP and PSS, where\npossible.\n\nTwo sets of interfaces are included in this package. When a more abstract\ninterface isn't necessary, there are functions for encrypting/decrypting\nwith v1.5/OAEP and signing/verifying with v1.5/PSS. If one needs to abstract\nover the public key primitive, the PrivateKey type implements the\nDecrypter and Signer interfaces from the crypto package.\n\nOperations involving private keys are implemented using constant-time\nalgorithms, except for [GenerateKey] and for some operations involving\ndeprecated multi-prime keys.\n\n# Minimum key size"
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/rsa",
+   "chunk": 1,
+   "title": "crypto/rsa",
+   "text": "[GenerateKey] returns an error if a key of less than 1024 bits is requested,\nand all Sign, Verify, Encrypt, and Decrypt methods return an error if used\nwith a key smaller than 1024 bits. Such keys are insecure and should not be\nused.\n\nThe rsa1024min=0 GODEBUG setting suppresses this error, but we recommend\ndoing so only in tests, if necessary. Tests can set this option using\n[testing.T.Setenv] or by including \"//go:debug rsa1024min=0\" in a *_test.go\nsource file.\n\nAlternatively, see the [GenerateKey (TestKey)] example for a pregenerated\ntest-only 2048-bit key.\n\n[GenerateKey (TestKey)]: https://pkg.go.dev/crypto/rsa#example-GenerateKey-TestKey"
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/sha1",
+   "chunk": 0,
+   "title": "crypto/sha1",
+   "text": "Package sha1 implements the SHA-1 hash algorithm as defined in RFC 3174.\n\nSHA-1 is cryptographically broken and should not be used for secure\napplications."
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/sha256",
+   "chunk": 0,
+   "title": "crypto/sha256",
+   "text": "Package sha256 implements the SHA224 and SHA256 hash algorithms as defined\nin FIPS 180-4."
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/sha3",
+   "chunk": 0,
+   "title": "crypto/sha3",
+   "text": "Package sha3 implements the SHA-3 hash algorithms and the SHAKE extendable\noutput functions defined in FIPS 202."
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/sha512",
+   "chunk": 0,
+   "title": "crypto/sha512",
+   "text": "Package sha512 implements the SHA-384, SHA-512, SHA-512/224, and SHA-512/256\nhash algorithms as defined in FIPS 180-4.\n\nAll the hash.Hash implementations returned by this package also\nimplement encoding.BinaryMarshaler and encoding.BinaryUnmarshaler to\nmarshal and unmarshal the internal state of the hash."
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/subtle",
+   "chunk": 0,
+   "title": "crypto/subtle",
+   "text": "Package subtle implements functions that are often useful in cryptographic\ncode but require careful thought to use correctly."
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/tls",
+   "chunk": 0,
+   "title": "crypto/tls",
+   "text": "Package tls partially implements TLS 1.2, as specified in RFC 5246,\nand TLS 1.3, as specified in RFC 8446.\n\n# FIPS 140-3 mode\n\nWhen the program is in [FIPS 140-3 mode], this package behaves as if only\nSP 800-140C and SP 800-140D approved protocol versions, cipher suites,\nsignature algorithms, certificate public key types and sizes, and key\nexchange and derivation algorithms were implemented. Others are silently\nignored and not negotiated, or rejected. This set may depend on the\nalgorithms supported by the FIPS 140-3 Go Cryptographic Module selected with\nGOFIPS140, and may change across Go versions.\n\n[FIPS 140-3 mode]: https://go.dev/doc/security/fips140"
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/tls/fipsonly",
+   "chunk": 0,
+   "title": "crypto/tls/fipsonly",
+   "text": "Package fipsonly restricts all TLS configuration to FIPS-approved settings.\n\nThe effect is triggered by importing the package anywhere in a program, as in:\n\nimport _ \"crypto/tls/fipsonly\"\n\nThis package only exists when using Go compiled with GOEXPERIMENT=boringcrypto."
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/x509",
+   "chunk": 0,
+   "title": "crypto/x509",
+   "text": "Package x509 implements a subset of the X.509 standard.\n\nIt allows parsing and generating certificates, certificate signing\nrequests, certificate revocation lists, and encoded public and private keys.\nIt provides a certificate verifier, complete with a chain builder.\n\nThe package targets the X.509 technical profile defined by the IETF (RFC\n2459/3280/5280), and as further restricted by the CA/Browser Forum Baseline\nRequirements. There is minimal support for features outside of these\nprofiles, as the primary goal of the package is to provide compatibility\nwith the publicly trusted TLS certificate ecosystem and its policies and\nconstraints.\n\nOn macOS and Windows, certificate verification is handled by system APIs, but\nthe package aims to apply consistent validation rules across operating\nsystems."
+  },
+  {
+   "kind": "file",
+   "pkg": "crypto/x509/pkix",
+   "chunk": 0,
+   "title": "crypto/x509/pkix",
+   "text": "Package pkix contains shared, low level structures used for ASN.1 parsing\nand serialization of X.509 certificates, CRL and OCSP."
+  },
+  {
+   "kind": "file",
+   "pkg": "database/sql",
+   "chunk": 0,
+   "title": "database/sql",
+   "text": "Package sql provides a generic interface around SQL (or SQL-like)\ndatabases.\n\nThe sql package must be used in conjunction with a database driver.\nSee https://golang.org/s/sqldrivers for a list of drivers.\n\nDrivers that do not support context cancellation will not return until\nafter the query is completed.\n\nFor usage examples, see the wiki page at\nhttps://golang.org/s/sqlwiki."
+  },
+  {
+   "kind": "file",
+   "pkg": "database/sql/driver",
+   "chunk": 0,
+   "title": "database/sql/driver",
+   "text": "Package driver defines interfaces to be implemented by database\ndrivers as used by package sql.\n\nMost code should use the [database/sql] package.\n\nThe driver interface has evolved over time. Drivers should implement\n[Connector] and [DriverContext] interfaces.\nThe Connector.Connect and Driver.Open methods should never return [ErrBadConn].\n[ErrBadConn] should only be returned from [Validator], [SessionResetter], or\na query method if the connection is already in an invalid (e.g. closed) state.\n\nAll [Conn] implementations should implement the following interfaces:\n[Pinger], [SessionResetter], and [Validator].\n\nIf named parameters or context are supported, the driver's [Conn] should implement:\n[ExecerContext], [QueryerContext], [ConnPrepareContext], and [ConnBeginTx].\n\nTo support custom data types, implement [NamedValueChecker]. [NamedValueChecker]\nalso allows queries to accept per-query options as a parameter by returning\n[ErrRemoveArgument] from CheckNamedValue."
+  },
+  {
+   "kind": "file",
+   "pkg": "database/sql/driver",
+   "chunk": 1,
+   "title": "database/sql/driver",
+   "text": "If multiple result sets are supported, [Rows] should implement [RowsNextResultSet].\nIf the driver knows how to describe the types present in the returned result\nit should implement the following interfaces: [RowsColumnTypeScanType],\n[RowsColumnTypeDatabaseTypeName], [RowsColumnTypeLength], [RowsColumnTypeNullable],\nand [RowsColumnTypePrecisionScale]. A given row value may also return a [Rows]\ntype, which may represent a database cursor value.\n\nIf a [Conn] implements [Validator], then the IsValid method is called\nbefore returning the connection to the connection pool. If an entry in the\nconnection pool implements [SessionResetter], then ResetSession\nis called before reusing the connection for another query. If a connection is\nnever returned to the connection pool but is immediately reused, then\nResetSession is called prior to reuse but IsValid is not called."
+  },
+  {
+   "kind": "file",
+   "pkg": "debug/buildinfo",
+   "chunk": 0,
+   "title": "debug/buildinfo",
+   "text": "Package buildinfo provides access to information embedded in a Go binary\nabout how it was built. This includes the Go toolchain version, and the\nset of modules used (for binaries built in module mode).\n\nBuild information is available for the currently running binary in\nruntime/debug.ReadBuildInfo."
+  },
+  {
+   "kind": "file",
+   "pkg": "debug/dwarf",
+   "chunk": 0,
+   "title": "debug/dwarf",
+   "text": "Package dwarf provides access to DWARF debugging information loaded from\nexecutable files, as defined in the DWARF 2.0 Standard at\nhttp://dwarfstd.org/doc/dwarf-2.0.0.pdf.\n\n# Security\n\nThis package is not designed to be hardened against adversarial inputs, and is\noutside the scope of https://go.dev/security/policy. In particular, only basic\nvalidation is done when parsing object files. As such, care should be taken when\nparsing untrusted inputs, as parsing malformed files may consume significant\nresources, or cause panics."
+  },
+  {
+   "kind": "file",
+   "pkg": "debug/elf",
+   "chunk": 0,
+   "title": "debug/elf",
+   "text": "Package elf implements access to ELF object files.\n\n# Security\n\nThis package is not designed to be hardened against adversarial inputs, and is\noutside the scope of https://go.dev/security/policy. In particular, only basic\nvalidation is done when parsing object files. As such, care should be taken when\nparsing untrusted inputs, as parsing malformed files may consume significant\nresources, or cause panics."
+  },
+  {
+   "kind": "file",
+   "pkg": "debug/gosym",
+   "chunk": 0,
+   "title": "debug/gosym",
+   "text": "Package gosym implements access to the Go symbol\nand line number tables embedded in Go binaries generated\nby the gc compilers."
+  },
+  {
+   "kind": "file",
+   "pkg": "debug/macho",
+   "chunk": 0,
+   "title": "debug/macho",
+   "text": "Package macho implements access to Mach-O object files.\n\n# Security\n\nThis package is not designed to be hardened against adversarial inputs, and is\noutside the scope of https://go.dev/security/policy. In particular, only basic\nvalidation is done when parsing object files. As such, care should be taken when\nparsing untrusted inputs, as parsing malformed files may consume significant\nresources, or cause panics."
+  },
+  {
+   "kind": "file",
+   "pkg": "debug/pe",
+   "chunk": 0,
+   "title": "debug/pe",
+   "text": "Package pe implements access to PE (Microsoft Windows Portable Executable) files.\n\n# Security\n\nThis package is not designed to be hardened against adversarial inputs, and is\noutside the scope of https://go.dev/security/policy. In particular, only basic\nvalidation is done when parsing object files. As such, care should be taken when\nparsing untrusted inputs, as parsing malformed files may consume significant\nresources, or cause panics."
+  },
+  {
+   "kind": "file",
+   "pkg": "debug/plan9obj",
+   "chunk": 0,
+   "title": "debug/plan9obj",
+   "text": "Package plan9obj implements access to Plan 9 a.out object files.\n\n# Security\n\nThis package is not designed to be hardened against adversarial inputs, and is\noutside the scope of https://go.dev/security/policy. In particular, only basic\nvalidation is done when parsing object files. As such, care should be taken when\nparsing untrusted inputs, as parsing malformed files may consume significant\nresources, or cause panics."
+  },
+  {
+   "kind": "file",
+   "pkg": "embed",
+   "chunk": 0,
+   "title": "embed",
+   "text": "Package embed provides access to files embedded in the running Go program.\n\nGo source files that import \"embed\" can use the //go:embed directive\nto initialize a variable of type string, []byte, or [FS] with the contents of\nfiles read from the package directory or subdirectories at compile time.\n\nFor example, here are three ways to embed a file named hello.txt\nand then print its contents at run time.\n\nEmbedding one file into a string:\n\nimport _ \"embed\"\n\n//go:embed hello.txt\n\tvar s string\n\tprint(s)\n\nEmbedding one file into a slice of bytes:\n\nimport _ \"embed\"\n\n//go:embed hello.txt\n\tvar b []byte\n\tprint(string(b))\n\nEmbedded one or more files into a file system:\n\nimport \"embed\"\n\n//go:embed hello.txt\n\tvar f embed.FS\n\tdata, _ := f.ReadFile(\"hello.txt\")\n\tprint(string(data))\n\n# Directives\n\nA //go:embed directive above a variable declaration specifies which files to embed,\nusing one or more path.Match patterns."
+  },
+  {
+   "kind": "file",
+   "pkg": "embed",
+   "chunk": 1,
+   "title": "embed",
+   "text": "The directive must immediately precede a line containing the declaration of a single variable.\nOnly blank lines and ‘//’ line comments are permitted between the directive and the declaration.\n\nThe type of the variable must be a string type, or a slice of a byte type,\nor [FS] (or an alias of [FS]).\n\nFor example:\n\npackage server\n\nimport \"embed\"\n\n// content holds our static web server content.\n\t//go:embed image/* template/*\n\t//go:embed html/index.html\n\tvar content embed.FS\n\nThe Go build system will recognize the directives and arrange for the declared variable\n(in the example above, content) to be populated with the matching files from the file system."
+  },
+  {
+   "kind": "file",
+   "pkg": "embed",
+   "chunk": 2,
+   "title": "embed",
+   "text": "The //go:embed directive accepts multiple space-separated patterns for\nbrevity, but it can also be repeated, to avoid very long lines when there are\nmany patterns. The patterns are interpreted relative to the package directory\ncontaining the source file. The path separator is a forward slash, even on\nWindows systems. Patterns may not contain ‘.’ or ‘..’ or empty path elements,\nnor may they begin or end with a slash. To match everything in the current\ndirectory, use ‘*’ instead of ‘.’. To allow for naming files with spaces in\ntheir names, patterns can be written as Go double-quoted or back-quoted\nstring literals.\n\nIf a pattern names a directory, all files in the subtree rooted at that directory are\nembedded (recursively), except that files with names beginning with ‘.’ or ‘_’\nare excluded. So the variable in the above example is almost equivalent to:\n\n// content is our static web server content.\n\t//go:embed image template html/index.html\n\tvar content embed.FS\n\nThe difference is that ‘image/*’ embeds ‘image/.tempfile’ while ‘image’ does not.\nNeither embeds ‘image/dir/.tempfile’."
+  },
+  {
+   "kind": "file",
+   "pkg": "encoding",
+   "chunk": 0,
+   "title": "encoding",
+   "text": "Package encoding defines interfaces shared by other packages that\nconvert data to and from byte-level and textual representations.\nPackages that check for these interfaces include encoding/gob,\nencoding/json, and encoding/xml. As a result, implementing an\ninterface once can make a type useful in multiple encodings.\nStandard types that implement these interfaces include time.Time and net.IP.\nThe interfaces come in pairs that produce and consume encoded data.\n\nAdding encoding/decoding methods to existing types may constitute a breaking change,\nas they can be used for serialization in communicating with programs\nwritten with different library versions.\nThe policy for packages maintained by the Go project is to only allow\nthe addition of marshaling functions if no existing, reasonable marshaling exists."
+  },
+  {
+   "kind": "file",
+   "pkg": "encoding/ascii85",
+   "chunk": 0,
+   "title": "encoding/ascii85",
+   "text": "Package ascii85 implements the ascii85 data encoding\nas used in the btoa tool and Adobe's PostScript and PDF document formats."
+  },
+  {
+   "kind": "file",
+   "pkg": "encoding/asn1",
+   "chunk": 0,
+   "title": "encoding/asn1",
+   "text": "Package asn1 implements parsing of DER-encoded ASN.1 data structures,\nas defined in ITU-T Rec X.690.\n\nSee also “A Layman's Guide to a Subset of ASN.1, BER, and DER,”\nhttp://luca.ntop.org/Teaching/Appunti/asn1.html."
+  },
+  {
+   "kind": "file",
+   "pkg": "encoding/base32",
+   "chunk": 0,
+   "title": "encoding/base32",
+   "text": "Package base32 implements base32 encoding as specified by RFC 4648."
+  },
+  {
+   "kind": "file",
+   "pkg": "encoding/base64",
+   "chunk": 0,
+   "title": "encoding/base64",
+   "text": "Package base64 implements base64 encoding as specified by RFC 4648."
+  },
+  {
+   "kind": "file",
+   "pkg": "encoding/binary",
+   "chunk": 0,
+   "title": "encoding/binary",
+   "text": "Package binary implements simple translation between numbers and byte\nsequences and encoding and decoding of varints.\n\nNumbers are translated by reading and writing fixed-size values.\nA fixed-size value is either a fixed-size arithmetic\ntype (bool, int8, uint8, int16, float32, complex64, ...)\nor an array or struct containing only fixed-size values.\n\nThe varint functions encode and decode single integer values using\na variable-length encoding; smaller values require fewer bytes.\nFor a specification, see\nhttps://developers.google.com/protocol-buffers/docs/encoding.\n\nThis package favors simplicity over efficiency. Clients that require\nhigh-performance serialization, especially for large data structures,\nshould look at more advanced solutions such as the [encoding/gob]\npackage or [google.golang.org/protobuf] for protocol buffers."
+  },
+  {
+   "kind": "file",
+   "pkg": "encoding/csv",
+   "chunk": 0,
+   "title": "encoding/csv",
+   "text": "Package csv reads and writes comma-separated values (CSV) files.\nThere are many kinds of CSV files; this package supports the format\ndescribed in RFC 4180, except that [Writer] uses LF\ninstead of CRLF as newline character by default.\n\nA csv file contains zero or more records of one or more fields per record.\nEach record is separated by the newline character. The final record may\noptionally be followed by a newline character.\n\nfield1,field2,field3\n\nWhite space is considered part of a field.\n\nCarriage returns before newline characters are silently removed.\n\nBlank lines are ignored. A line with only whitespace characters (excluding\nthe ending newline character) is not considered a blank line.\n\nFields which start and stop with the quote character \" are called\nquoted-fields. The beginning and ending quote are not part of the\nfield.\n\nThe source:\n\nnormal string,\"quoted-field\"\n\nresults in the fields\n\n{`normal string`, `quoted-field`}\n\nWithin a quoted-field a quote character followed by a second quote\ncharacter is considered a single quote.\n\n\"the \"\"word\"\" is true\",\"a \"\"quoted-field\"\"\""
+  },
+  {
+   "kind": "file",
+   "pkg": "encoding/csv",
+   "chunk": 1,
+   "title": "encoding/csv",
+   "text": "results in\n\n{`the \"word\" is true`, `a \"quoted-field\"`}\n\nNewlines and commas may be included in a quoted-field\n\n\"Multi-line\n\tfield\",\"comma is ,\"\n\nresults in\n\n{`Multi-line\n\tfield`, `comma is ,`}"
+  },
+  {
+   "kind": "file",
+   "pkg": "encoding/gob",
+   "chunk": 0,
+   "title": "encoding/gob",
+   "text": "Package gob manages streams of gobs - binary values exchanged between an\n[Encoder] (transmitter) and a [Decoder] (receiver). A typical use is transporting\narguments and results of remote procedure calls (RPCs) such as those provided by\n[net/rpc].\n\nThe implementation compiles a custom codec for each data type in the stream and\nis most efficient when a single [Encoder] is used to transmit a stream of values,\namortizing the cost of compilation.\n\n# Basics\n\nA stream of gobs is self-describing. Each data item in the stream is preceded by\na specification of its type, expressed in terms of a small set of predefined\ntypes. Pointers are not transmitted, but the things they point to are\ntransmitted; that is, the values are flattened. Nil pointers are not permitted,\nas they have no value. Recursive types work fine, but\nrecursive values (data with cycles) are problematic. This may change."
+  },
+  {
+   "kind": "file",
+   "pkg": "encoding/gob",
+   "chunk": 1,
+   "title": "encoding/gob",
+   "text": "To use gobs, create an [Encoder] and present it with a series of data items as\nvalues or addresses that can be dereferenced to values. The [Encoder] makes sure\nall type information is sent before it is needed. At the receive side, a\n[Decoder] retrieves values from the encoded stream and unpacks them into local\nvariables.\n\n# Types and Values\n\nThe source and destination values/types need not correspond exactly. For structs,\nfields (identified by name) that are in the source but absent from the receiving\nvariable will be ignored. Fields that are in the receiving variable but missing\nfrom the transmitted type or value will be ignored in the destination. If a field\nwith the same name is present in both, their types must be compatible. Both the\nreceiver and transmitter will do all necessary indirection and dereferencing to\nconvert between gobs and actual Go values. For instance, a gob type that is\nschematically,\n\nstruct { A, B int }\n\ncan be sent from or received into any of these Go types:"
+  },
+  {
+   "kind": "file",
+   "pkg": "encoding/gob",
+   "chunk": 2,
+   "title": "encoding/gob",
+   "text": "struct { A, B int }\t// the same\n\t*struct { A, B int }\t// extra indirection of the struct\n\tstruct { *A, **B int }\t// extra indirection of the fields\n\tstruct { A, B int64 }\t// different concrete value type; see below\n\nIt may also be received into any of these:\n\nstruct { A, B int }\t// the same\n\tstruct { B, A int }\t// ordering doesn't matter; matching is by name\n\tstruct { A, B, C int }\t// extra field (C) ignored\n\tstruct { B int }\t// missing field (A) ignored; data will be dropped\n\tstruct { B, C int }\t// missing field (A) ignored; extra field (C) ignored.\n\nAttempting to receive into these types will draw a decode error:\n\nstruct { A int; B uint }\t// change of signedness for B\n\tstruct { A int; B float }\t// change of type for B\n\tstruct { }\t\t\t// no field names in common\n\tstruct { C, D int }\t\t// no field names in common"
+  },
+  {
+   "kind": "file",
+   "pkg": "encoding/json",
+   "chunk": 0,
+   "title": "encoding/json",
+   "text": "Migrating to v2\n\nThis package (i.e., [encoding/json]) is now formally known as the v1 package\nsince a v2 package now exists at [encoding/json/v2].\nAll the behavior of the v1 package is implemented in terms of\nthe v2 package with the appropriate set of options specified that\npreserve the historical behavior of v1.\n\nThe [jsonv2.Marshal] function is the newer equivalent of v1 [Marshal].\nThe [jsonv2.Unmarshal] function is the newer equivalent of v1 [Unmarshal].\nThe v2 functions have the same calling signature as the v1 equivalent\nexcept that they take in variadic [Options] arguments that can be specified\nto alter the behavior of marshal or unmarshal. Both v1 and v2 generally\nbehave in similar ways, but there are some notable differences.\n\nThe following is a list of differences between v1 and v2:"
+  },
+  {
+   "kind": "file",
+   "pkg": "encoding/json",
+   "chunk": 1,
+   "title": "encoding/json",
+   "text": "- In v1, JSON object members are unmarshaled into a Go struct using a\n    case-insensitive name match with the JSON name of the fields.\n    In contrast, v2 matches fields using an exact, case-sensitive match.\n    The [jsonv2.MatchCaseInsensitiveNames] and [MatchCaseSensitiveDelimiter]\n    options control this behavior difference. To explicitly specify a Go struct\n    field to use a particular name matching scheme, either the `case:ignore`\n    or the `case:strict` field option can be specified.\n    Field-specified options take precedence over caller-specified options."
+  },
+  {
+   "kind": "file",
+   "pkg": "encoding/json",
+   "chunk": 2,
+   "title": "encoding/json",
+   "text": "- In v1, when marshaling a Go struct, a field marked as `omitempty`\n    is omitted if the field value is an \"empty\" Go value, which is defined as\n    false, 0, a nil pointer, a nil interface value, and\n    any empty array, slice, map, or string. In contrast, v2 redefines\n    `omitempty` to omit a field if it encodes as an \"empty\" JSON value,\n    which is defined as a JSON null, or an empty JSON string, object, or array.\n    The [OmitEmptyWithLegacySemantics] option controls this behavior difference.\n    Note that `omitempty` behaves identically in both v1 and v2 for a\n    Go array, slice, map, or string (assuming no user-defined MarshalJSON method\n    overrides the default representation). Existing usages of `omitempty` on a\n    Go bool, number, pointer, or interface value should migrate to specifying\n    `omitzero` instead (which is identically supported in both v1 and v2)."
+  },
+  {
+   "kind": "file",
+   "pkg": "encoding/json/jsontext",
+   "chunk": 0,
+   "title": "encoding/json/jsontext",
+   "text": "Package jsontext implements syntactic processing of JSON\nas specified in RFC 4627, RFC 7159, RFC 7493, RFC 8259, and RFC 8785.\nJSON is a simple data interchange format that can represent\nprimitive data types such as booleans, strings, and numbers,\nin addition to structured data types such as objects and arrays.\n\nThe [Encoder] and [Decoder] types are used to encode or decode\na stream of JSON tokens or values.\n\n# Tokens and Values\n\nA JSON token refers to the basic structural elements of JSON:\n\n- a JSON literal (i.e., null, true, or false)\n  - a JSON string (e.g., \"hello, world!\")\n  - a JSON number (e.g., 123.456)\n  - a begin or end delimiter for a JSON object (i.e., '{' or '}')\n  - a begin or end delimiter for a JSON array (i.e., '[' or ']')"
+  },
+  {
+   "kind": "file",
+   "pkg": "encoding/json/jsontext",
+   "chunk": 1,
+   "title": "encoding/json/jsontext",
+   "text": "A JSON token is represented by the [Token] type in Go. Technically,\nthere are two additional structural characters (i.e., ':' and ','),\nbut there is no [Token] representation for them since their presence\ncan be inferred by the structure of the JSON grammar itself.\nFor example, there must always be an implicit colon between\nthe name and value of a JSON object member.\n\nA JSON value refers to a complete unit of JSON data:\n\n- a JSON literal, string, or number\n  - a JSON object (e.g., `{\"name\":\"value\"}`)\n  - a JSON array (e.g., `[1,2,3]`)\n\nA JSON value is represented by the [Value] type in Go and is a []byte\ncontaining the raw textual representation of the value. There is some overlap\nbetween tokens and values as both contain literals, strings, and numbers.\nHowever, only a value can represent the entirety of a JSON object or array."
+  },
+  {
+   "kind": "file",
+   "pkg": "encoding/json/jsontext",
+   "chunk": 2,
+   "title": "encoding/json/jsontext",
+   "text": "The [Encoder] and [Decoder] types contain methods to read or write the next\n[Token] or [Value] in a sequence. They maintain a state machine to validate\nwhether the sequence of JSON tokens and/or values produces valid JSON.\n[Options] may be passed to the [NewEncoder] or [NewDecoder] constructors\nto configure the behavior of encoding and decoding.\n\n# Terminology\n\nThe terms \"encode\" and \"decode\" are used for syntactic functionality\nthat is concerned with processing JSON based on its grammar, and\nthe terms \"marshal\" and \"unmarshal\" are used for semantic functionality\nthat determines the meaning of JSON values as Go values and vice versa.\nThis package deals with JSON syntax,\nwhile [encoding/json/v2] deals with JSON semantics.\nThe goal is to provide a clear distinction between functionality that\nis purely concerned with encoding versus that of marshaling.\nFor example, one can directly encode a stream of JSON tokens without\nneeding to marshal a concrete Go value representing them.\nSimilarly, one can decode a stream of JSON tokens without\nneeding to unmarshal them into a concrete Go value."
+  },
+  {
+   "kind": "file",
+   "pkg": "encoding/json/v2",
+   "chunk": 0,
+   "title": "encoding/json/v2",
+   "text": "Package json implements semantic processing of JSON as specified in RFC 8259.\nJSON is a simple data interchange format that can represent\nprimitive data types such as booleans, strings, and numbers,\nin addition to structured data types such as objects and arrays.\n\nSee the [Working with JSON] tutorial for an introduction to this package.\n\n[Marshal] and [Unmarshal] encode and decode Go values\nto/from JSON text contained within a []byte.\n[MarshalWrite] and [UnmarshalRead] operate on JSON text\nby writing to or reading from an [io.Writer] or [io.Reader].\n[MarshalEncode] and [UnmarshalDecode] operate on JSON text\nby encoding to or decoding from a [jsontext.Encoder] or [jsontext.Decoder].\n[Options] may be passed to each of the marshal or unmarshal functions\nto configure the semantic behavior of marshaling and unmarshaling\n(i.e., alter how JSON data is understood as Go data and vice versa).\n[jsontext.Options] may also be passed to the marshal or unmarshal functions\nto configure the syntactic behavior of encoding or decoding."
+  },
+  {
+   "kind": "file",
+   "pkg": "encoding/json/v2",
+   "chunk": 1,
+   "title": "encoding/json/v2",
+   "text": "The data types of JSON are mapped to/from the data types of Go based on\nthe closest logical equivalent between the two type systems. For example,\na JSON boolean corresponds with a Go bool,\na JSON string corresponds with a Go string,\na JSON number corresponds with a Go int, uint or float,\na JSON array corresponds with a Go slice or array, and\na JSON object corresponds with a Go struct or map.\nSee the documentation on [Marshal] and [Unmarshal] for a comprehensive list\nof how the JSON and Go type systems correspond.\n\nArbitrary Go types can customize their JSON representation by implementing\n[Marshaler], [MarshalerTo], [Unmarshaler], or [UnmarshalerFrom].\nThis provides authors of Go types with control over how their types are\nserialized as JSON. Alternatively, users can implement functions that match\n[MarshalFunc], [MarshalToFunc], [UnmarshalFunc], or [UnmarshalFromFunc]\nto specify the JSON representation for arbitrary types.\nThis provides callers of JSON functionality with control over\nhow any arbitrary type is serialized as JSON.\n\n# JSON Representation of Go structs"
+  },
+  {
+   "kind": "file",
+   "pkg": "encoding/json/v2",
+   "chunk": 2,
+   "title": "encoding/json/v2",
+   "text": "A Go struct is naturally represented as a JSON object,\nwhere each Go struct field corresponds with a JSON object member.\nWhen marshaling, all Go struct fields are recursively encoded in depth-first\norder as JSON object members except those that are ignored or omitted.\nWhen unmarshaling, JSON object members are recursively decoded\ninto the corresponding Go struct fields.\nObject members that do not match any struct fields,\nalso known as “unknown members”, are ignored by default or rejected\nif [RejectUnknownMembers] is specified.\n\nThe representation of each struct field can be customized in the\n\"json\" struct field tag, where the tag is a comma-separated list of options.\nAs a special case, if the entire tag is `json:\"-\"`,\nthen the field is ignored with regard to its JSON representation.\nSome options also have equivalent behavior controlled by a caller-specified [Options].\nField-specified options take precedence over caller-specified options."
+  },
+  {
+   "kind": "file",
+   "pkg": "encoding/pem",
+   "chunk": 0,
+   "title": "encoding/pem",
+   "text": "Package pem implements the PEM data encoding, which originated in Privacy\nEnhanced Mail. The most common use of PEM encoding today is in TLS keys and\ncertificates. See RFC 1421."
+  },
+  {
+   "kind": "file",
+   "pkg": "encoding/xml",
+   "chunk": 0,
+   "title": "encoding/xml",
+   "text": "Package xml implements a simple XML 1.0 parser that\nunderstands XML name spaces."
+  },
+  {
+   "kind": "file",
+   "pkg": "errors",
+   "chunk": 0,
+   "title": "errors",
+   "text": "Package errors implements functions to manipulate errors.\n\nThe [New] function creates errors whose only content is a text message.\n\nAn error e wraps another error if e's type has one of the methods\n\nUnwrap() error\n\tUnwrap() []error\n\nIf e.Unwrap() returns a non-nil error w or a slice containing w,\nthen we say that e wraps w. A nil error returned from e.Unwrap()\nindicates that e does not wrap any error. It is invalid for an\nUnwrap method to return an []error containing a nil error value.\n\nAn easy way to create wrapped errors is to call [fmt.Errorf] and apply\nthe %w verb to the error argument:\n\nwrapsErr := fmt.Errorf(\"... %w ...\", ..., err, ...)\n\nSuccessive unwrapping of an error creates a tree. The [Is] and [As]\nfunctions inspect an error's tree by examining first the error\nitself followed by the tree of each of its children in turn\n(pre-order, depth-first traversal).\n\nSee https://go.dev/blog/go1.13-errors for a deeper discussion of the\nphilosophy of wrapping and when to wrap."
+  },
+  {
+   "kind": "file",
+   "pkg": "errors",
+   "chunk": 1,
+   "title": "errors",
+   "text": "[Is] examines the tree of its first argument looking for an error that\nmatches the second. It reports whether it finds a match. It should be\nused in preference to simple equality checks:\n\nif errors.Is(err, fs.ErrExist)\n\nis preferable to\n\nif err == fs.ErrExist\n\nbecause the former will succeed if err wraps [io/fs.ErrExist].\n\n[AsType] examines the tree of its argument looking for an error whose\ntype matches its type argument. If it succeeds, it returns the\ncorresponding value of that type and true. Otherwise, it returns the\nzero value of that type and false. The form\n\nif perr, ok := errors.AsType[*fs.PathError](err); ok {\n\t\tfmt.Println(perr.Path)\n\t}\n\nis preferable to\n\nif perr, ok := err.(*fs.PathError); ok {\n\t\tfmt.Println(perr.Path)\n\t}\n\nbecause the former will succeed if err wraps an [*io/fs.PathError]."
+  },
+  {
+   "kind": "file",
+   "pkg": "expvar",
+   "chunk": 0,
+   "title": "expvar",
+   "text": "Package expvar provides a standardized interface to public variables, such\nas operation counters in servers. It exposes these variables via HTTP at\n/debug/vars in JSON format. As of Go 1.22, the /debug/vars request must\nuse GET.\n\nOperations to set or modify these public variables are atomic.\n\nIn addition to adding the HTTP handler, this package registers the\nfollowing variables:\n\ncmdline   os.Args\n\tmemstats  runtime.Memstats\n\nThe package is sometimes only imported for the side effect of\nregistering its HTTP handler and the above variables. To use it\nthis way, link this package into your program:\n\nimport _ \"expvar\""
+  },
+  {
+   "kind": "file",
+   "pkg": "flag",
+   "chunk": 0,
+   "title": "flag",
+   "text": "Package flag implements command-line flag parsing.\n\n# Usage\n\nDefine flags using [flag.String], [Bool], [Int], etc.\n\nThis declares an integer flag, -n, stored in the pointer nFlag, with type *int:\n\nimport \"flag\"\n\tvar nFlag = flag.Int(\"n\", 1234, \"help message for flag n\")\n\nIf you like, you can bind the flag to a variable using the Var() functions.\n\nvar flagvar int\n\tfunc init() {\n\t\tflag.IntVar(&flagvar, \"flagname\", 1234, \"help message for flagname\")\n\t}\n\nOr you can create custom flags that satisfy the Value interface (with\npointer receivers) and couple them to flag parsing by\n\nflag.Var(&flagVal, \"name\", \"help message for flagname\")\n\nFor such flags, the default value is just the initial value of the variable.\n\nAfter all flags are defined, call\n\nflag.Parse()\n\nto parse the command line into the defined flags.\n\nFlags may then be used directly. If you're using the flags themselves,\nthey are all pointers; if you bind to variables, they're values.\n\nfmt.Println(\"ip has value \", *ip)\n\tfmt.Println(\"flagvar has value \", flagvar)"
+  },
+  {
+   "kind": "file",
+   "pkg": "flag",
+   "chunk": 1,
+   "title": "flag",
+   "text": "After parsing, the arguments following the flags are available as the\nslice [flag.Args] or individually as [flag.Arg](i).\nThe arguments are indexed from 0 through [flag.NArg]-1.\n\n# Command line flag syntax\n\nThe following forms are permitted:\n\n-flag\n\t--flag   // double dashes are also permitted\n\t-flag=x\n\t-flag x  // non-boolean flags only\n\nOne or two dashes may be used; they are equivalent.\nThe last form is not permitted for boolean flags because the\nmeaning of the command\n\ncmd -x *\n\nwhere * is a Unix shell wildcard, will change if there is a file\ncalled 0, false, etc. You must use the -flag=false form to turn\noff a boolean flag.\n\nFlag parsing stops just before the first non-flag argument\n(\"-\" is a non-flag argument) or after the terminator \"--\".\n\nInteger flags accept 1234, 0664, 0x1234 and may be negative.\nBoolean flags may be:\n\n1, 0, t, f, T, F, true, false, TRUE, FALSE, True, False\n\nDuration flags accept any input valid for time.ParseDuration."
+  },
+  {
+   "kind": "file",
+   "pkg": "flag",
+   "chunk": 2,
+   "title": "flag",
+   "text": "The default set of command-line flags is controlled by\ntop-level functions.  The [FlagSet] type allows one to define\nindependent sets of flags, such as to implement subcommands\nin a command-line interface. The methods of [FlagSet] are\nanalogous to the top-level functions for the command-line\nflag set."
+  },
+  {
+   "kind": "file",
+   "pkg": "fmt",
+   "chunk": 0,
+   "title": "fmt",
+   "text": "Package fmt implements formatted I/O with functions analogous\nto C's printf and scanf.  The format 'verbs' are derived from C's but\nare simpler.\n\n# Printing\n\nThere are four families of printing functions defined by their output destination.\n[Print], [Println] and [Printf] write to [os.Stdout];\n[Sprint], [Sprintln] and [Sprintf] return a string;\n[Fprint], [Fprintln] and [Fprintf] write to an [io.Writer]; and\n[Append], [Appendln] and [Appendf] append the output to a byte slice.\n\nThe functions within each family do the formatting according to the end of the name.\nPrint, Sprint, Fprint and Append use the default format for each argument,\nadding a space between operands when neither is a string.\nPrintln, Sprintln, Fprintln and Appendln always add spaces and append a newline.\nPrintf, Sprintf, Fprintf and Appendf use a sequence of \"verbs\" to control the formatting.\n\nThe verbs:\n\nGeneral:"
+  },
+  {
+   "kind": "file",
+   "pkg": "fmt",
+   "chunk": 1,
+   "title": "fmt",
+   "text": "%v\tthe value in a default format\n\t\twhen printing structs, the plus flag (%+v) adds field names\n\t%#v\ta Go-syntax representation of the value\n\t\t(floating-point infinities and NaNs print as ±Inf and NaN)\n\t%T\ta Go-syntax representation of the type of the value\n\t%%\ta literal percent sign; consumes no value\n\nBoolean:\n\n%t\tthe word true or false\n\nInteger:\n\n%b\tbase 2\n\t%c\tthe character represented by the corresponding Unicode code point\n\t%d\tbase 10\n\t%o\tbase 8\n\t%O\tbase 8 with 0o prefix\n\t%q\ta single-quoted rune literal safely escaped with Go syntax.\n\t%x\tbase 16, with lower-case letters for a-f\n\t%X\tbase 16, with upper-case letters for A-F\n\t%U\tUnicode format: U+1234; same as \"U+%04X\"\n\nFloating-point and complex constituents:"
+  },
+  {
+   "kind": "file",
+   "pkg": "fmt",
+   "chunk": 2,
+   "title": "fmt",
+   "text": "%b\tdecimalless scientific notation with exponent a power of two,\n\t\tin the manner of strconv.FormatFloat with the 'b' format,\n\t\te.g. -123456p-78\n\t%e\tscientific notation, e.g. -1.234456e+78\n\t%E\tscientific notation, e.g. -1.234456E+78\n\t%f\tdecimal point but no exponent, e.g. 123.456\n\t%F\tsynonym for %f\n\t%g\t%e for large exponents, %f otherwise. Precision is discussed below.\n\t%G\t%E for large exponents, %F otherwise\n\t%x\thexadecimal notation (with decimal power of two exponent), e.g. -0x1.23abcp+20\n\t%X\tupper-case hexadecimal notation, e.g. -0X1.23ABCP+20\n\nThe exponent is always a decimal integer.\n\tFor formats other than %b the exponent is at least two digits.\n\nString and slice of bytes (treated equivalently with these verbs):\n\n%s\tthe uninterpreted bytes of the string or slice\n\t%q\ta double-quoted string safely escaped with Go syntax\n\t%x\tbase 16, lower-case, two characters per byte\n\t%X\tbase 16, upper-case, two characters per byte\n\nSlice:\n\n%p\taddress of 0th element in base 16 notation, with leading 0x\n\nPointer:"
+  },
+  {
+   "kind": "file",
+   "pkg": "go/ast",
+   "chunk": 0,
+   "title": "go/ast",
+   "text": "Package ast declares the types used to represent syntax trees for Go\npackages.\n\nSyntax trees may be constructed directly, but they are typically\nproduced from Go source code by the parser; see the\n[go/parser.ParseFile] function."
+  },
+  {
+   "kind": "file",
+   "pkg": "go/build",
+   "chunk": 0,
+   "title": "go/build",
+   "text": "Package build gathers information about Go packages.\n\n# Build Constraints\n\nA build constraint, also known as a build tag, is a condition under which a\nfile should be included in the package. Build constraints are given by a\nline comment that begins\n\n//go:build\n\nBuild constraints may also be part of a file's name\n(for example, source_windows.go will only be included if the target\noperating system is windows).\n\nSee 'go help buildconstraint'\n(https://pkg.go.dev/cmd/go#hdr-Build_constraints) for details.\n\n# Go Path\n\nThe Go path is a list of directory trees containing Go source code.\nIt is consulted to resolve imports that cannot be found in the standard\nGo tree. The default path is the value of the GOPATH environment\nvariable, interpreted as a path list appropriate to the operating system\n(on Unix, the variable is a colon-separated string;\non Windows, a semicolon-separated string;\non Plan 9, a list).\n\nEach directory listed in the Go path must have a prescribed structure:\n\nThe src/ directory holds source code. The path below 'src' determines\nthe import path or executable name."
+  },
+  {
+   "kind": "file",
+   "pkg": "go/build",
+   "chunk": 1,
+   "title": "go/build",
+   "text": "The pkg/ directory holds installed package objects.\nAs in the Go tree, each target operating system and\narchitecture pair has its own subdirectory of pkg\n(pkg/GOOS_GOARCH).\n\nIf DIR is a directory listed in the Go path, a package with\nsource in DIR/src/foo/bar can be imported as \"foo/bar\" and\nhas its compiled form installed to \"DIR/pkg/GOOS_GOARCH/foo/bar.a\"\n(or, for gccgo, \"DIR/pkg/gccgo/foo/libbar.a\").\n\nThe bin/ directory holds compiled commands.\nEach command is named for its source directory, but only\nusing the final element, not the entire path. That is, the\ncommand with source in DIR/src/foo/quux is installed into\nDIR/bin/quux, not DIR/bin/foo/quux. The foo/ is stripped\nso that you can add DIR/bin to your PATH to get at the\ninstalled commands.\n\nHere's an example directory layout:\n\nGOPATH=/home/user/gocode"
+  },
+  {
+   "kind": "file",
+   "pkg": "go/build",
+   "chunk": 2,
+   "title": "go/build",
+   "text": "/home/user/gocode/\n\t    src/\n\t        foo/\n\t            bar/               (go code in package bar)\n\t                x.go\n\t            quux/              (go code in package main)\n\t                y.go\n\t    bin/\n\t        quux                   (installed command)\n\t    pkg/\n\t        linux_amd64/\n\t            foo/\n\t                bar.a          (installed package object)\n\n# Binary-Only Packages\n\nIn Go 1.12 and earlier, it was possible to distribute packages in binary\nform without including the source code used for compiling the package.\nThe package was distributed with a source file not excluded by build\nconstraints and containing a \"//go:binary-only-package\" comment. Like a\nbuild constraint, this comment appeared at the top of a file, preceded\nonly by blank lines and other line comments and with a blank line\nfollowing the comment, to separate it from the package documentation.\nUnlike build constraints, this comment is only recognized in non-test\nGo source files.\n\nThe minimal source code for a binary-only package was therefore:\n\n//go:binary-only-package\n\npackage mypkg"
+  },
+  {
+   "kind": "file",
+   "pkg": "go/build/constraint",
+   "chunk": 0,
+   "title": "go/build/constraint",
+   "text": "Package constraint implements parsing and evaluation of build constraint lines.\nSee https://golang.org/cmd/go/#hdr-Build_constraints for documentation about build constraints themselves.\n\nThis package parses both the original “// +build” syntax and the “//go:build” syntax that was added in Go 1.17.\nSee https://golang.org/design/draft-gobuild for details about the “//go:build” syntax."
+  },
+  {
+   "kind": "file",
+   "pkg": "go/constant",
+   "chunk": 0,
+   "title": "go/constant",
+   "text": "Package constant implements Values representing untyped\nGo constants and their corresponding operations.\n\nA special Unknown value may be used when a value\nis unknown due to an error. Operations on unknown\nvalues produce unknown values unless specified\notherwise."
+  },
+  {
+   "kind": "file",
+   "pkg": "go/doc",
+   "chunk": 0,
+   "title": "go/doc",
+   "text": "The headscan command extracts comment headings from package files;\nit is used to detect false positives which may require an adjustment\nto the comment formatting heuristics in comment.go.\n\nUsage: headscan [-root root_directory]\n\nBy default, the $GOROOT/src directory is scanned."
+  },
+  {
+   "kind": "file",
+   "pkg": "go/doc/comment",
+   "chunk": 0,
+   "title": "go/doc/comment",
+   "text": "Package comment implements parsing and reformatting of Go doc comments,\n(documentation comments), which are comments that immediately precede\na top-level declaration of a package, const, func, type, or var.\n\nGo doc comment syntax is a simplified subset of Markdown that supports\nlinks, headings, paragraphs, lists (without nesting), and preformatted text blocks.\nThe details of the syntax are documented at https://go.dev/doc/comment.\n\nTo parse the text associated with a doc comment (after removing comment markers),\nuse a [Parser]:\n\nvar p comment.Parser\n\tdoc := p.Parse(text)\n\nThe result is a [*Doc].\nTo reformat it as a doc comment, HTML, Markdown, or plain text,\nuse a [Printer]:\n\nvar pr comment.Printer\n\tos.Stdout.Write(pr.Text(doc))\n\nThe [Parser] and [Printer] types are structs whose fields can be\nmodified to customize the operations.\nFor details, see the documentation for those types."
+  },
+  {
+   "kind": "file",
+   "pkg": "go/doc/comment",
+   "chunk": 1,
+   "title": "go/doc/comment",
+   "text": "Use cases that need additional control over reformatting can\nimplement their own logic by inspecting the parsed syntax itself.\nSee the documentation for [Doc], [Block], [Text] for an overview\nand links to additional types."
+  },
+  {
+   "kind": "file",
+   "pkg": "go/format",
+   "chunk": 0,
+   "title": "go/format",
+   "text": "Package format implements standard formatting of Go source.\n\nNote that formatting of Go source code changes over time, so tools relying on\nconsistent formatting should execute a specific version of the gofmt binary\ninstead of using this package. That way, the formatting will be stable, and\nthe tools won't need to be recompiled each time gofmt changes.\n\nFor example, pre-submit checks that use this package directly would behave\ndifferently depending on what Go version each developer uses, causing the\ncheck to be inherently fragile."
+  },
+  {
+   "kind": "file",
+   "pkg": "go/importer",
+   "chunk": 0,
+   "title": "go/importer",
+   "text": "Package importer provides access to export data importers.\n\nThese functions, which are mostly deprecated, date from before the\nintroduction of modules in release Go 1.11. They should no longer\nbe relied on except for use in test cases using small programs that\ndepend only on the standard library. For reliable module-aware\nloading of type information, use the packages.Load function from\ngolang.org/x/tools/go/packages."
+  },
+  {
+   "kind": "file",
+   "pkg": "go/parser",
+   "chunk": 0,
+   "title": "go/parser",
+   "text": "Package parser implements a parser for Go source files.\n\nThe [ParseFile] function reads file input from a string, []byte, or\nio.Reader, and produces an [ast.File] representing the complete\nabstract syntax tree of the file.\n\nThe [ParseExprFrom] function reads a single source-level expression and\nproduces an [ast.Expr], the syntax tree of the expression.\n\nThe parser accepts a larger language than is syntactically permitted by\nthe Go spec, for simplicity, and for improved robustness in the presence\nof syntax errors. For instance, in method declarations, the receiver is\ntreated like an ordinary parameter list and thus may contain multiple\nentries where the spec permits exactly one. Consequently, the corresponding\nfield in the AST (ast.FuncDecl.Recv) field is not restricted to one entry.\n\nApplications that need to parse one or more complete packages of Go\nsource code may find it more convenient not to interact directly\nwith the parser but instead to use the Load function in package\n[golang.org/x/tools/go/packages]."
+  },
+  {
+   "kind": "file",
+   "pkg": "go/scanner",
+   "chunk": 0,
+   "title": "go/scanner",
+   "text": "Package scanner implements a scanner for Go source text.\nIt takes a []byte as source which can then be tokenized\nthrough repeated calls to the Scan method."
+  },
+  {
+   "kind": "file",
+   "pkg": "go/token",
+   "chunk": 0,
+   "title": "go/token",
+   "text": "Package token defines constants representing the lexical tokens of the Go\nprogramming language and basic operations on tokens (printing, predicates)."
+  },
+  {
+   "kind": "file",
+   "pkg": "go/types",
+   "chunk": 0,
+   "title": "go/types",
+   "text": "The gotype command, like the front-end of a Go compiler, parses and\ntype-checks a single Go package. Errors are reported if the analysis\nfails; otherwise gotype is quiet (unless -v is set).\n\nWithout a list of paths, gotype reads from standard input, which\nmust provide a single Go source file defining a complete package.\n\nWith a single directory argument, gotype checks the Go files in\nthat directory, comprising a single package. Use -t to include the\n(in-package) _test.go files. Use -x to type check only external\ntest files.\n\nOtherwise, each path must be the filename of a Go file belonging\nto the same package.\n\nImports are processed by importing directly from the source of\nimported packages (default), or by importing from compiled and\ninstalled packages (by setting -c to the respective compiler).\n\nThe -c flag must be set to a compiler (\"gc\", \"gccgo\") when type-\nchecking packages containing imports with relative import paths\n(import \"./mypkg\") because the source importer cannot know which\nfiles to include for such packages.\n\nUsage:\n\ngotype [flags] [path...]\n\nThe flags are:"
+  },
+  {
+   "kind": "file",
+   "pkg": "go/types",
+   "chunk": 1,
+   "title": "go/types",
+   "text": "-t\n\t\tinclude local test files in a directory (ignored if -x is provided)\n\t-x\n\t\tconsider only external test files in a directory\n\t-e\n\t\treport all errors (not just the first 10)\n\t-v\n\t\tverbose mode\n\t-c\n\t\tcompiler used for installed packages (gc, gccgo, or source); default: source\n\nFlags controlling additional output:\n\n-ast\n\t\tprint AST\n\t-trace\n\t\tprint parse trace\n\t-comments\n\t\tparse comments (ignored unless -ast or -trace is provided)\n\t-panic\n\t\tpanic on first error\n\nExamples:\n\nTo check the files a.go, b.go, and c.go:\n\ngotype a.go b.go c.go\n\nTo check an entire package including (in-package) tests in the directory dir and print the processed files:\n\ngotype -t -v dir\n\nTo check the external test package (if any) in the current directory, based on installed packages compiled with\ncmd/compile:\n\ngotype -c=gc -x .\n\nTo verify the output of a pipe:\n\necho \"package foo\" | gotype"
+  },
+  {
+   "kind": "file",
+   "pkg": "go/version",
+   "chunk": 0,
+   "title": "go/version",
+   "text": "Package version provides operations on [Go versions]\nin [Go toolchain name syntax]: strings like\n\"go1.20\", \"go1.21.0\", \"go1.22rc2\", and \"go1.23.4-custom\".\n\n[Go versions]: https://go.dev/doc/toolchain#version\n[Go toolchain name syntax]: https://go.dev/doc/toolchain#name"
+  },
+  {
+   "kind": "file",
+   "pkg": "hash/adler32",
+   "chunk": 0,
+   "title": "hash/adler32",
+   "text": "Package adler32 implements the Adler-32 checksum.\n\nIt is defined in RFC 1950:\n\nAdler-32 is composed of two sums accumulated per byte: s1 is\n\tthe sum of all bytes, s2 is the sum of all s1 values. Both sums\n\tare done modulo 65521. s1 is initialized to 1, s2 to zero.  The\n\tAdler-32 checksum is stored as s2*65536 + s1 in most-\n\tsignificant-byte first (network) order."
+  },
+  {
+   "kind": "file",
+   "pkg": "hash/crc32",
+   "chunk": 0,
+   "title": "hash/crc32",
+   "text": "Package crc32 implements the 32-bit cyclic redundancy check, or CRC-32,\nchecksum. See https://en.wikipedia.org/wiki/Cyclic_redundancy_check for\ninformation.\n\nPolynomials are represented in LSB-first form also known as reversed representation.\n\nSee https://en.wikipedia.org/wiki/Mathematics_of_cyclic_redundancy_checks#Reversed_representations_and_reciprocal_polynomials\nfor information."
+  },
+  {
+   "kind": "file",
+   "pkg": "hash/crc64",
+   "chunk": 0,
+   "title": "hash/crc64",
+   "text": "Package crc64 implements the 64-bit cyclic redundancy check, or CRC-64,\nchecksum. See https://en.wikipedia.org/wiki/Cyclic_redundancy_check for\ninformation."
+  },
+  {
+   "kind": "file",
+   "pkg": "hash/fnv",
+   "chunk": 0,
+   "title": "hash/fnv",
+   "text": "Package fnv implements FNV-1 and FNV-1a, non-cryptographic hash functions\ncreated by Glenn Fowler, Landon Curt Noll, and Phong Vo.\nSee\nhttps://en.wikipedia.org/wiki/Fowler-Noll-Vo_hash_function.\n\nAll the hash.Hash implementations returned by this package also\nimplement encoding.BinaryMarshaler and encoding.BinaryUnmarshaler to\nmarshal and unmarshal the internal state of the hash."
+  },
+  {
+   "kind": "file",
+   "pkg": "hash/maphash",
+   "chunk": 0,
+   "title": "hash/maphash",
+   "text": "Package maphash provides hash functions on byte sequences and comparable values.\nIt also defines [Hasher], the interface between a hash function and a hash table.\n\nThese hash functions are intended to be used to implement hash\ntables, Bloom filters, and other data structures that need to map\narbitrary strings or byte sequences to a uniform distribution on\nunsigned 64-bit integers.\n\nEach different instance of a hash table or data structure should use its own [Seed].\n\nThe hash functions are not cryptographically secure.\n(See crypto/sha256 and crypto/sha512 for cryptographic use.)"
+  },
+  {
+   "kind": "file",
+   "pkg": "html",
+   "chunk": 0,
+   "title": "html",
+   "text": "Package html provides functions for escaping and unescaping HTML text."
+  },
+  {
+   "kind": "file",
+   "pkg": "html/template",
+   "chunk": 0,
+   "title": "html/template",
+   "text": "Package template (html/template) implements data-driven templates for\ngenerating HTML output safe against code injection. It provides the\nsame interface as [text/template] and should be used instead of\n[text/template] whenever the output is HTML.\n\nThe documentation here focuses on the security features of the package.\nFor information about how to program the templates themselves, see the\ndocumentation for [text/template].\n\n# Introduction\n\nThis package wraps [text/template] so you can share its template API\nto parse and execute HTML templates safely.\n\ntmpl, err := template.New(\"name\").Parse(...)\n\t// Error checking elided\n\terr = tmpl.Execute(out, data)\n\nIf successful, tmpl will now be injection-safe. Otherwise, err is an error\ndefined in the docs for ErrorCode.\n\nHTML templates treat data values as plain text which should be encoded so they\ncan be safely embedded in an HTML document. The escaping is contextual, so\nactions can appear within JavaScript, CSS, and URI contexts."
+  },
+  {
+   "kind": "file",
+   "pkg": "html/template",
+   "chunk": 1,
+   "title": "html/template",
+   "text": "Comments are stripped from output, except for those passed in via the\n[HTML], [CSS], and [JS] types for their respective contexts.\n\nThe security model used by this package assumes that template authors are\ntrusted, while Execute's data parameter is not. More details are\nprovided below.\n\nExample\n\nimport \"text/template\"\n\t...\n\tt, err := template.New(\"foo\").Parse(`{{define \"T\"}}Hello, {{.}}!{{end}}`)\n\terr = t.ExecuteTemplate(out, \"T\", \"<script>alert('you have been pwned')</script>\")\n\nproduces\n\nHello, <script>alert('you have been pwned')</script>!\n\nbut the contextual autoescaping in html/template\n\nimport \"html/template\"\n\t...\n\tt, err := template.New(\"foo\").Parse(`{{define \"T\"}}Hello, {{.}}!{{end}}`)\n\terr = t.ExecuteTemplate(out, \"T\", \"<script>alert('you have been pwned')</script>\")\n\nproduces safe, escaped HTML output\n\nHello, &lt;script&gt;alert(&#39;you have been pwned&#39;)&lt;/script&gt;!\n\n# Contexts\n\nThis package understands HTML, CSS, JavaScript, and URIs. It adds sanitizing\nfunctions to each simple action pipeline, so given the excerpt\n\n<a href=\"/search?q={{.}}\">{{.}}</a>"
+  },
+  {
+   "kind": "file",
+   "pkg": "html/template",
+   "chunk": 2,
+   "title": "html/template",
+   "text": "At parse time each {{.}} is overwritten to add escaping functions as necessary.\nIn this case it becomes\n\n<a href=\"/search?q={{. | urlescaper | attrescaper}}\">{{. | htmlescaper}}</a>\n\nwhere urlescaper, attrescaper, and htmlescaper are aliases for internal escaping\nfunctions.\n\nFor these internal escaping functions, if an action pipeline evaluates to\na nil interface value, it is treated as though it were an empty string.\n\n# Namespaced and data- attributes\n\nAttributes with a namespace are treated as if they had no namespace.\nGiven the excerpt\n\n<a my:href=\"{{.}}\"></a>\n\nAt parse time the attribute will be treated as if it were just \"href\".\nSo at parse time the template becomes:\n\n<a my:href=\"{{. | urlescaper | attrescaper}}\"></a>\n\nSimilarly to attributes with namespaces, attributes with a \"data-\" prefix are\ntreated as if they had no \"data-\" prefix. So given\n\n<a data-href=\"{{.}}\"></a>\n\nAt parse time this becomes\n\n<a data-href=\"{{. | urlescaper | attrescaper}}\"></a>"
+  },
+  {
+   "kind": "file",
+   "pkg": "image",
+   "chunk": 0,
+   "title": "image",
+   "text": "Package image implements a basic 2-D image library.\n\nThe fundamental interface is called [Image]. An [Image] contains colors, which\nare described in the image/color package.\n\nValues of the [Image] interface are created either by calling functions such\nas [NewRGBA] and [NewPaletted], or by calling [Decode] on an [io.Reader] containing\nimage data in a format such as GIF, JPEG or PNG. Decoding any particular\nimage format requires the prior registration of a decoder function.\nRegistration is typically automatic as a side effect of initializing that\nformat's package so that, to decode a PNG image, it suffices to have\n\nimport _ \"image/png\"\n\nin a program's main package. The _ means to import a package purely for its\ninitialization side effects.\n\nSee \"The Go image package\" for more details:\nhttps://golang.org/doc/articles/image_package.html\n\n# Security Considerations"
+  },
+  {
+   "kind": "file",
+   "pkg": "image",
+   "chunk": 1,
+   "title": "image",
+   "text": "The image package can be used to parse arbitrarily large images, which can\ncause resource exhaustion on machines which do not have enough memory to\nstore them. When operating on arbitrary images, [DecodeConfig] should be called\nbefore [Decode], so that the program can decide whether the image, as defined\nin the returned header, can be safely decoded with the available resources. A\ncall to [Decode] which produces an extremely large image, as defined in the\nheader returned by [DecodeConfig], is not considered a security issue,\nregardless of whether the image is itself malformed or not. A call to\n[DecodeConfig] which returns a header which does not match the image returned\nby [Decode] may be considered a security issue, and should be reported per the\n[Go Security Policy].\n\n[Go Security Policy]: https://go.dev/security/policy"
+  },
+  {
+   "kind": "file",
+   "pkg": "image/draw",
+   "chunk": 0,
+   "title": "image/draw",
+   "text": "Package draw provides image composition functions.\n\nSee \"The Go image/draw package\" for an introduction to this package:\nhttps://golang.org/doc/articles/image_draw.html"
+  },
+  {
+   "kind": "file",
+   "pkg": "image/gif",
+   "chunk": 0,
+   "title": "image/gif",
+   "text": "Package gif implements a GIF image decoder and encoder.\n\nThe GIF specification is at https://www.w3.org/Graphics/GIF/spec-gif89a.txt.\n\nWhen decoding untrusted input, read dimensions with [DecodeConfig] before\ncalling [Decode] or [DecodeAll]; see those functions and the \"Security\nConsiderations\" section in the [image] package documentation."
+  },
+  {
+   "kind": "file",
+   "pkg": "image/jpeg",
+   "chunk": 0,
+   "title": "image/jpeg",
+   "text": "Package jpeg implements a JPEG image decoder and encoder.\n\nJPEG is defined in ITU-T T.81: https://www.w3.org/Graphics/JPEG/itu-t81.pdf."
+  },
+  {
+   "kind": "file",
+   "pkg": "image/png",
+   "chunk": 0,
+   "title": "image/png",
+   "text": "Package png implements a PNG image decoder and encoder.\n\nThe PNG specification is at https://www.w3.org/TR/PNG/."
+  },
+  {
+   "kind": "file",
+   "pkg": "index/suffixarray",
+   "chunk": 0,
+   "title": "index/suffixarray",
+   "text": "Package suffixarray implements substring search in logarithmic time using\nan in-memory suffix array.\n\nExample use:\n\n// create index for some data\n\tindex := suffixarray.New(data)\n\n// lookup byte slice s\n\toffsets1 := index.Lookup(s, -1) // the list of all indices where s occurs in data\n\toffsets2 := index.Lookup(s, 3)  // the list of at most 3 indices where s occurs in data"
+  },
+  {
+   "kind": "file",
+   "pkg": "io",
+   "chunk": 0,
+   "title": "io",
+   "text": "Package io provides basic interfaces to I/O primitives.\nIts primary job is to wrap existing implementations of such primitives,\nsuch as those in package os, into shared public interfaces that\nabstract the functionality, plus some other related primitives.\n\nBecause these interfaces and primitives wrap lower-level operations with\nvarious implementations, unless otherwise informed clients should not\nassume they are safe for parallel execution."
+  },
+  {
+   "kind": "file",
+   "pkg": "io/fs",
+   "chunk": 0,
+   "title": "io/fs",
+   "text": "Package fs defines basic interfaces to a file system.\nA file system can be provided by the host operating system\nbut also by other packages.\n\n# Path Names\n\nThe interfaces in this package all operate on the same\npath name syntax, regardless of the host operating system.\n\nPath names are UTF-8-encoded,\nunrooted, slash-separated sequences of path elements, like “x/y/z”.\nPath names must not contain an element that is “.” or “..” or the empty string,\nexcept for the special case that the name \".\" may be used for the root directory.\nPaths must not start or end with a slash: “/x” and “x/” are invalid.\n\n# Testing\n\nSee the [testing/fstest] package for support with testing\nimplementations of file systems."
+  },
+  {
+   "kind": "file",
+   "pkg": "io/ioutil",
+   "chunk": 0,
+   "title": "io/ioutil",
+   "text": "Package ioutil implements some I/O utility functions.\n\nDeprecated: As of Go 1.16, the same functionality is now provided\nby package [io] or package [os], and those implementations\nshould be preferred in new code.\nSee the specific function documentation for details."
+  },
+  {
+   "kind": "file",
+   "pkg": "iter",
+   "chunk": 0,
+   "title": "iter",
+   "text": "Package iter provides basic definitions and operations related to\niterators over sequences.\n\n# Iterators\n\nAn iterator is a function that passes successive elements of a\nsequence to a callback function, conventionally named yield.\nThe function stops either when the sequence is finished or\nwhen yield returns false, indicating to stop the iteration early.\nThis package defines [Seq] and [Seq2]\n(pronounced like seek—the first syllable of sequence)\nas shorthands for iterators that pass 1 or 2 values per sequence element\nto yield:\n\ntype (\n\t\tSeq[V any]     func(yield func(V) bool)\n\t\tSeq2[K, V any] func(yield func(K, V) bool)\n\t)\n\nSeq2 represents a sequence of paired values, conventionally key-value\nor index-value pairs.\n\nYield returns true if the iterator should continue with the next\nelement in the sequence, false if it should stop.\n\nYield panics if called after it returns false.\n\nFor instance, [maps.Keys] returns an iterator that produces the sequence\nof keys of the map m, implemented as follows:"
+  },
+  {
+   "kind": "file",
+   "pkg": "iter",
+   "chunk": 1,
+   "title": "iter",
+   "text": "func Keys[Map ~map[K]V, K comparable, V any](m Map) iter.Seq[K] {\n\t\treturn func(yield func(K) bool) {\n\t\t\tfor k := range m {\n\t\t\t\tif !yield(k) {\n\t\t\t\t\treturn\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\nFurther examples can be found in [The Go Blog: Range Over Function Types].\n\nIterator functions are most often called by a [range loop], as in:\n\nfunc PrintAll[V any](seq iter.Seq[V]) {\n\t\tfor v := range seq {\n\t\t\tfmt.Println(v)\n\t\t}\n\t}\n\n# Naming Conventions\n\nIterator functions and methods are named for the sequence being walked:\n\n// All returns an iterator over all elements in s.\n\tfunc (s *Set[V]) All() iter.Seq[V]\n\nThe iterator method on a collection type is conventionally named All,\nbecause it iterates a sequence of all the values in the collection.\n\nFor a type containing multiple possible sequences, the iterator's name\ncan indicate which sequence is being provided:\n\n// Cities returns an iterator over the major cities in the country.\n\tfunc (c *Country) Cities() iter.Seq[*City]\n\n// Languages returns an iterator over the official spoken languages of the country.\n\tfunc (c *Country) Languages() iter.Seq[string]"
+  },
+  {
+   "kind": "file",
+   "pkg": "iter",
+   "chunk": 2,
+   "title": "iter",
+   "text": "If an iterator requires additional configuration, the constructor function\ncan take additional configuration arguments:\n\n// Scan returns an iterator over key-value pairs with min ≤ key ≤ max.\n\tfunc (m *Map[K, V]) Scan(min, max K) iter.Seq2[K, V]\n\n// Split returns an iterator over the (possibly-empty) substrings of s\n\t// separated by sep.\n\tfunc Split(s, sep string) iter.Seq[string]\n\nWhen there are multiple possible iteration orders, the method name may\nindicate that order:\n\n// All returns an iterator over the list from head to tail.\n\tfunc (l *List[V]) All() iter.Seq[V]\n\n// Backward returns an iterator over the list from tail to head.\n\tfunc (l *List[V]) Backward() iter.Seq[V]\n\n// Preorder returns an iterator over all nodes of the syntax tree\n\t// beneath (and including) the specified root, in depth-first preorder,\n\t// visiting a parent node before its children.\n\tfunc Preorder(root Node) iter.Seq[Node]\n\n# Single-Use Iterators"
+  },
+  {
+   "kind": "file",
+   "pkg": "log",
+   "chunk": 0,
+   "title": "log",
+   "text": "Package log implements a simple logging package. It defines a type, [Logger],\nwith methods for formatting output. It also has a predefined 'standard'\nLogger accessible through helper functions Print[f|ln], Fatal[f|ln], and\nPanic[f|ln], which are easier to use than creating a Logger manually.\nThat logger writes to standard error and prints the date and time\nof each logged message.\nEvery log message is output on a separate line: if the message being\nprinted does not end in a newline, the logger will add one.\nThe Fatal functions call [os.Exit](1) after writing the log message.\nThe Panic functions call panic after writing the log message."
+  },
+  {
+   "kind": "file",
+   "pkg": "log/slog",
+   "chunk": 0,
+   "title": "log/slog",
+   "text": "Package slog provides structured logging,\nin which log records include a message,\na severity level, and various other attributes\nexpressed as key-value pairs.\n\nIt defines a type, [Logger],\nwhich provides several methods (such as [Logger.Info] and [Logger.Error])\nfor reporting events of interest.\n\nEach Logger is associated with a [Handler].\nA Logger output method creates a [Record] from the method arguments\nand passes it to the Handler, which decides how to handle it.\nThere is a default Logger accessible through top-level functions\n(such as [Info] and [Error]) that call the corresponding Logger methods.\n\nA log record consists of a time, a level, a message, and a set of key-value\npairs, where the keys are strings and the values may be of any type.\nAs an example,\n\nslog.Info(\"hello\", \"count\", 3)\n\ncreates a record containing the time of the call,\na level of Info, the message \"hello\", and a single\npair with key \"count\" and value 3."
+  },
+  {
+   "kind": "file",
+   "pkg": "log/slog",
+   "chunk": 1,
+   "title": "log/slog",
+   "text": "The [Info] top-level function calls the [Logger.Info] method on the default Logger.\nIn addition to [Logger.Info], there are methods for Debug, Warn and Error levels.\nBesides these convenience methods for common levels,\nthere is also a [Logger.Log] method which takes the level as an argument.\nEach of these methods has a corresponding top-level function that uses the\ndefault logger.\n\nThe default handler formats the log record's message, time, level, and attributes\nas a string and passes it to the [log] package.\n\n2022/11/08 15:28:26 INFO hello count=3\n\nFor more control over the output format, create a logger with a different handler.\nThis statement uses [New] to create a new logger with a [TextHandler]\nthat writes structured records in text form to standard error:\n\nlogger := slog.New(slog.NewTextHandler(os.Stderr, nil))\n\n[TextHandler] output is a sequence of key=value pairs, easily and unambiguously\nparsed by machine. This statement:\n\nlogger.Info(\"hello\", \"count\", 3)\n\nproduces this output:\n\ntime=2022-11-08T15:28:26.000-05:00 level=INFO msg=hello count=3"
+  },
+  {
+   "kind": "file",
+   "pkg": "log/slog",
+   "chunk": 2,
+   "title": "log/slog",
+   "text": "The package also provides [JSONHandler], whose output is line-delimited JSON:\n\nlogger := slog.New(slog.NewJSONHandler(os.Stdout, nil))\n\tlogger.Info(\"hello\", \"count\", 3)\n\nproduces this output:\n\n{\"time\":\"2022-11-08T15:28:26.000000000-05:00\",\"level\":\"INFO\",\"msg\":\"hello\",\"count\":3}\n\nBoth [TextHandler] and [JSONHandler] can be configured with [HandlerOptions].\nThere are options for setting the minimum level (see Levels, below),\ndisplaying the source file and line of the log call, and\nmodifying attributes before they are logged.\n\nSetting a logger as the default with\n\nslog.SetDefault(logger)\n\nwill cause the top-level functions like [Info] to use it.\n[SetDefault] also updates the default logger used by the [log] package,\nso that existing applications that use [log.Printf] and related functions\nwill send log records to the logger's handler without needing to be rewritten."
+  },
+  {
+   "kind": "file",
+   "pkg": "log/syslog",
+   "chunk": 0,
+   "title": "log/syslog",
+   "text": "Package syslog provides a simple interface to the system log\nservice. It can send messages to the syslog daemon using UNIX\ndomain sockets, UDP or TCP.\n\nOnly one call to Dial is necessary. On write failures,\nthe syslog client will attempt to reconnect to the server\nand write again.\n\nThe syslog package is frozen and is not accepting new features.\nSome external packages provide more functionality. See:\n\nhttps://godoc.org/?q=syslog"
+  },
+  {
+   "kind": "file",
+   "pkg": "maps",
+   "chunk": 0,
+   "title": "maps",
+   "text": "Package maps defines various functions useful with maps of any type.\n\nThis package does not have any special handling for non-reflexive keys\n(keys k where k != k), such as floating-point NaNs."
+  },
+  {
+   "kind": "file",
+   "pkg": "math",
+   "chunk": 0,
+   "title": "math",
+   "text": "Package math provides basic constants and mathematical functions.\n\nThis package does not guarantee bit-identical results across architectures."
+  },
+  {
+   "kind": "file",
+   "pkg": "math/big",
+   "chunk": 0,
+   "title": "math/big",
+   "text": "Package big implements arbitrary-precision arithmetic (big numbers).\nThe following numeric types are supported:\n\nInt    signed integers\n\tRat    rational numbers\n\tFloat  floating-point numbers\n\nThe zero value for an [Int], [Rat], or [Float] correspond to 0. Thus, new\nvalues can be declared in the usual ways and denote 0 without further\ninitialization:\n\nvar x Int        // &x is an *Int of value 0\n\tvar r = &Rat{}   // r is a *Rat of value 0\n\ty := new(Float)  // y is a *Float of value 0\n\nAlternatively, new values can be allocated and initialized with factory\nfunctions of the form:\n\nfunc NewT(v V) *T\n\nFor instance, [NewInt](x) returns an *[Int] set to the value of the int64\nargument x, [NewRat](a, b) returns a *[Rat] set to the fraction a/b where\na and b are int64 values, and [NewFloat](f) returns a *[Float] initialized\nto the float64 argument f. More flexibility is provided with explicit\nsetters, for instance:\n\nvar z1 Int\n\tz1.SetUint64(123)                 // z1 := 123\n\tz2 := new(Rat).SetFloat64(1.25)   // z2 := 5/4\n\tz3 := new(Float).SetInt(z1)       // z3 := 123.0"
+  },
+  {
+   "kind": "file",
+   "pkg": "math/big",
+   "chunk": 1,
+   "title": "math/big",
+   "text": "Setters, numeric operations and predicates are represented as methods of\nthe form:\n\nfunc (z *T) SetV(v V) *T          // z = v\n\tfunc (z *T) Unary(x *T) *T        // z = unary x\n\tfunc (z *T) Binary(x, y *T) *T    // z = x binary y\n\tfunc (x *T) Pred() P              // p = pred(x)\n\nwith T one of [Int], [Rat], or [Float]. For unary and binary operations, the\nresult is the receiver (usually named z in that case; see below); if it\nis one of the operands x or y it may be safely overwritten (and its memory\nreused).\n\nArithmetic expressions are typically written as a sequence of individual\nmethod calls, with each call corresponding to an operation. The receiver\ndenotes the result and the method arguments are the operation's operands.\nFor instance, given three *Int values a, b and c, the invocation\n\nc.Add(a, b)\n\ncomputes the sum a + b and stores the result in c, overwriting whatever\nvalue was held in c before. Unless specified otherwise, operations permit\naliasing of parameters, so it is perfectly ok to write\n\nsum.Add(sum, x)\n\nto accumulate values x in a sum."
+  },
+  {
+   "kind": "file",
+   "pkg": "math/big",
+   "chunk": 2,
+   "title": "math/big",
+   "text": "(By always passing in a result value via the receiver, memory use can be\nmuch better controlled. Instead of having to allocate new memory for each\nresult, an operation can reuse the space allocated for the result value,\nand overwrite that value with the new result in the process.)\n\nNotational convention: Incoming method parameters (including the receiver)\nare named consistently in the API to clarify their use. Incoming operands\nare usually named x, y, a, b, and so on, but never z. A parameter specifying\nthe result is named z (typically the receiver).\n\nFor instance, the arguments for (*Int).Add are named x and y, and because\nthe receiver specifies the result destination, it is called z:\n\nfunc (z *Int) Add(x, y *Int) *Int\n\nMethods of this form typically return the incoming receiver as well, to\nenable simple call chaining.\n\nMethods which don't require a result value to be passed in (for instance,\n[Int.Sign]), simply return the result. In this case, the receiver is typically\nthe first operand, named x:\n\nfunc (x *Int) Sign() int"
+  },
+  {
+   "kind": "file",
+   "pkg": "math/bits",
+   "chunk": 0,
+   "title": "math/bits",
+   "text": "Package bits implements bit counting and manipulation\nfunctions for the predeclared unsigned integer types.\n\nFunctions in this package may be implemented directly by\nthe compiler, for better performance. For those functions\nthe code in this package will not be used. Which\nfunctions are implemented by the compiler depends on the\narchitecture and the Go release."
+  },
+  {
+   "kind": "file",
+   "pkg": "math/cmplx",
+   "chunk": 0,
+   "title": "math/cmplx",
+   "text": "Package cmplx provides basic constants and mathematical functions for\ncomplex numbers. Special case handling conforms to the C99 standard\nAnnex G IEC 60559-compatible complex arithmetic."
+  },
+  {
+   "kind": "file",
+   "pkg": "math/rand",
+   "chunk": 0,
+   "title": "math/rand",
+   "text": "Package rand implements pseudo-random number generators suitable for tasks\nsuch as simulation, but it should not be used for security-sensitive work.\n\nRandom numbers are generated by a [Source], usually wrapped in a [Rand].\nBoth types should be used by a single goroutine at a time: sharing among\nmultiple goroutines requires some kind of synchronization.\n\nTop-level functions, such as [Float64] and [Int],\nare safe for concurrent use by multiple goroutines.\n\nThis package's outputs might be easily predictable regardless of how it's\nseeded. For random numbers suitable for security-sensitive work, see the\ncrypto/rand package."
+  },
+  {
+   "kind": "file",
+   "pkg": "math/rand/v2",
+   "chunk": 0,
+   "title": "math/rand/v2",
+   "text": "Package rand implements pseudo-random number generators suitable for tasks\nsuch as simulation, but it should not be used for security-sensitive work.\n\nRandom numbers are generated by a [Source], usually wrapped in a [Rand].\nBoth types should be used by a single goroutine at a time: sharing among\nmultiple goroutines requires some kind of synchronization.\n\nTop-level functions, such as [Float64] and [Int],\nare safe for concurrent use by multiple goroutines.\n\nThe [ChaCha8] source is a general-purpose source resistant to prediction.\nThe [PCG] source is faster but unfit for security-relevant purposes.\n\nThis package's outputs might be easily predictable regardless of how it's\nseeded. For random numbers suitable for security-sensitive work, see the\n[crypto/rand] package."
+  },
+  {
+   "kind": "file",
+   "pkg": "mime/multipart",
+   "chunk": 0,
+   "title": "mime/multipart",
+   "text": "Package multipart implements MIME multipart parsing, as defined in RFC\n2046.\n\nThe implementation is sufficient for HTTP (RFC 2388) and the multipart\nbodies generated by popular browsers.\n\n# Limits\n\nTo protect against malicious inputs, this package sets limits on the size\nof the MIME data it processes.\n\n[Reader.NextPart] and [Reader.NextRawPart] limit the number of headers in a\npart to 10000 and [Reader.ReadForm] limits the total number of headers in all\nFileHeaders to 10000.\nThese limits may be adjusted with the GODEBUG=multipartmaxheaders=<values>\nsetting.\n\nReader.ReadForm further limits the number of parts in a form to 1000.\nThis limit may be adjusted with the GODEBUG=multipartmaxparts=<value>\nsetting."
+  },
+  {
+   "kind": "file",
+   "pkg": "mime/quotedprintable",
+   "chunk": 0,
+   "title": "mime/quotedprintable",
+   "text": "Package quotedprintable implements quoted-printable encoding as specified by\nRFC 2045."
+  },
+  {
+   "kind": "file",
+   "pkg": "net",
+   "chunk": 0,
+   "title": "net",
+   "text": "Package net provides a portable interface for network I/O, including\nTCP/IP, UDP, domain name resolution, and Unix domain sockets.\n\nAlthough the package provides access to low-level networking\nprimitives, most clients will need only the basic interface provided\nby the [Dial], [Listen], and Accept functions and the associated\n[Conn] and [Listener] interfaces. The crypto/tls package uses\nthe same interfaces and similar Dial and Listen functions.\n\nThe Dial function connects to a server:\n\nconn, err := net.Dial(\"tcp\", \"golang.org:80\")\n\tif err != nil {\n\t\t// handle error\n\t}\n\tfmt.Fprintf(conn, \"GET / HTTP/1.0\\r\\n\\r\\n\")\n\tstatus, err := bufio.NewReader(conn).ReadString('\\n')\n\t// ...\n\nThe Listen function creates servers:\n\nln, err := net.Listen(\"tcp\", \":8080\")\n\tif err != nil {\n\t\t// handle error\n\t}\n\tfor {\n\t\tconn, err := ln.Accept()\n\t\tif err != nil {\n\t\t\t// handle error\n\t\t}\n\t\tgo handleConnection(conn)\n\t}\n\n# Name Resolution\n\nThe method for resolving domain names, whether indirectly with functions like Dial\nor directly with functions like [LookupHost] and [LookupAddr], varies by operating system."
+  },
+  {
+   "kind": "file",
+   "pkg": "net",
+   "chunk": 1,
+   "title": "net",
+   "text": "On Unix systems, the resolver has two options for resolving names.\nIt can use a pure Go resolver that sends DNS requests directly to the servers\nlisted in /etc/resolv.conf, or it can use a cgo-based resolver that calls C\nlibrary routines such as getaddrinfo and getnameinfo.\n\nOn Unix the pure Go resolver is preferred over the cgo resolver, because a blocked DNS\nrequest consumes only a goroutine, while a blocked C call consumes an operating system thread.\nWhen cgo is available, the cgo-based resolver is used instead under a variety of\nconditions: on systems that do not let programs make direct DNS requests (OS X),\nwhen the LOCALDOMAIN environment variable is present (even if empty),\nwhen the RES_OPTIONS or HOSTALIASES environment variable is non-empty,\nwhen the ASR_CONFIG environment variable is non-empty (OpenBSD only),\nwhen /etc/resolv.conf or /etc/nsswitch.conf specify the use of features that the\nGo resolver does not implement."
+  },
+  {
+   "kind": "file",
+   "pkg": "net",
+   "chunk": 2,
+   "title": "net",
+   "text": "On all systems (except Plan 9), when the cgo resolver is being used\nthis package applies a concurrent cgo lookup limit to prevent the system\nfrom running out of system threads. Currently, it is limited to 500 concurrent lookups.\n\nThe resolver decision can be overridden by setting the netdns value of the\nGODEBUG environment variable (see package runtime) to go or cgo, as in:\n\nexport GODEBUG=netdns=go    # force pure Go resolver\n\texport GODEBUG=netdns=cgo   # force native resolver (cgo, win32)\n\nThe decision can also be forced while building the Go source tree\nby setting the netgo or netcgo build tag.\nThe netgo build tag disables entirely the use of the native (CGO) resolver,\nmeaning the Go resolver is the only one that can be used.\nWith the netcgo build tag the native and the pure Go resolver are compiled into the binary,\nbut the native (CGO) resolver is preferred over the Go resolver.\nWith netcgo, the Go resolver can still be forced at runtime with GODEBUG=netdns=go."
+  },
+  {
+   "kind": "file",
+   "pkg": "net/http",
+   "chunk": 0,
+   "title": "net/http",
+   "text": "Package http provides HTTP client and server implementations.\n\n[Get], [Head], [Post], and [PostForm] make HTTP (or HTTPS) requests:\n\nresp, err := http.Get(\"http://example.com/\")\n\t...\n\tresp, err := http.Post(\"http://example.com/upload\", \"image/jpeg\", &buf)\n\t...\n\tresp, err := http.PostForm(\"http://example.com/form\",\n\t\turl.Values{\"key\": {\"Value\"}, \"id\": {\"123\"}})\n\nThe caller must close the response body when finished with it:\n\nresp, err := http.Get(\"http://example.com/\")\n\tif err != nil {\n\t\t// handle error\n\t}\n\tdefer resp.Body.Close()\n\tbody, err := io.ReadAll(resp.Body)\n\t// ...\n\n# Clients and Transports\n\nFor control over HTTP client headers, redirect policy, and other\nsettings, create a [Client]:\n\nclient := &http.Client{\n\t\tCheckRedirect: redirectPolicyFunc,\n\t}\n\nresp, err := client.Get(\"http://example.com\")\n\t// ...\n\nreq, err := http.NewRequest(\"GET\", \"http://example.com\", nil)\n\t// ...\n\treq.Header.Add(\"If-None-Match\", `W/\"wyzzy\"`)\n\tresp, err := client.Do(req)\n\t// ...\n\nFor control over proxies, TLS configuration, keep-alives,\ncompression, and other settings, create a [Transport]:"
+  },
+  {
+   "kind": "file",
+   "pkg": "net/http",
+   "chunk": 1,
+   "title": "net/http",
+   "text": "tr := &http.Transport{\n\t\tMaxIdleConns:       10,\n\t\tIdleConnTimeout:    30 * time.Second,\n\t\tDisableCompression: true,\n\t}\n\tclient := &http.Client{Transport: tr}\n\tresp, err := client.Get(\"https://example.com\")\n\nClients and Transports are safe for concurrent use by multiple\ngoroutines and for efficiency should only be created once and re-used.\n\n# Servers\n\nListenAndServe starts an HTTP server with a given address and handler.\nThe handler is usually nil, which means to use [DefaultServeMux].\n[Handle] and [HandleFunc] add handlers to [DefaultServeMux]:\n\nhttp.Handle(\"/foo\", fooHandler)\n\nhttp.HandleFunc(\"/bar\", func(w http.ResponseWriter, r *http.Request) {\n\t\tfmt.Fprintf(w, \"Hello, %q\", html.EscapeString(r.URL.Path))\n\t})\n\nlog.Fatal(http.ListenAndServe(\":8080\", nil))\n\nMore control over the server's behavior is available by creating a\ncustom Server:\n\ns := &http.Server{\n\t\tAddr:           \":8080\",\n\t\tHandler:        myHandler,\n\t\tReadTimeout:    10 * time.Second,\n\t\tWriteTimeout:   10 * time.Second,\n\t\tMaxHeaderBytes: 1 << 20,\n\t}\n\tlog.Fatal(s.ListenAndServe())\n\n# HTTP/2"
+  },
+  {
+   "kind": "file",
+   "pkg": "net/http",
+   "chunk": 2,
+   "title": "net/http",
+   "text": "The http package has transparent support for the HTTP/2 protocol.\n\n[Server] and [DefaultTransport] automatically enable HTTP/2 support\nwhen using HTTPS. [Transport] does not enable HTTP/2 by default.\n\nTo enable or disable support for HTTP/1, HTTP/2, and/or unencrypted HTTP/2,\nsee the [Server.Protocols] and [Transport.Protocols] configuration fields.\n\nTo configure advanced HTTP/2 features, see the [Server.HTTP2] and\n[Transport.HTTP2] configuration fields.\n\nAlternatively, the following GODEBUG settings are currently supported:\n\nGODEBUG=http2client=0  # disable HTTP/2 client support\n\tGODEBUG=http2server=0  # disable HTTP/2 server support\n\tGODEBUG=http2debug=1   # enable verbose HTTP/2 debug logs\n\tGODEBUG=http2debug=2   # ... even more verbose, with frame dumps\n\nThe \"omithttp2\" build tag may be used to disable the HTTP/2 implementation\ncontained in the http package."
+  },
+  {
+   "kind": "file",
+   "pkg": "net/http/cgi",
+   "chunk": 0,
+   "title": "net/http/cgi",
+   "text": "Package cgi implements CGI (Common Gateway Interface) as specified\nin RFC 3875.\n\nNote that using CGI means starting a new process to handle each\nrequest, which is typically less efficient than using a\nlong-running server. This package is intended primarily for\ncompatibility with existing systems."
+  },
+  {
+   "kind": "file",
+   "pkg": "net/http/cookiejar",
+   "chunk": 0,
+   "title": "net/http/cookiejar",
+   "text": "Package cookiejar implements an in-memory [RFC 6265]-compliant [http.CookieJar].\n\n[RFC 6265]: https://www.rfc-editor.org/info/rfc6265"
+  },
+  {
+   "kind": "file",
+   "pkg": "net/http/fcgi",
+   "chunk": 0,
+   "title": "net/http/fcgi",
+   "text": "Package fcgi implements the FastCGI protocol.\n\nSee https://fast-cgi.github.io/ for an unofficial mirror of the\noriginal documentation.\n\nCurrently only the responder role is supported."
+  },
+  {
+   "kind": "file",
+   "pkg": "net/http/httptrace",
+   "chunk": 0,
+   "title": "net/http/httptrace",
+   "text": "Package httptrace provides mechanisms to trace the events within\nHTTP client requests."
+  },
+  {
+   "kind": "file",
+   "pkg": "net/http/httputil",
+   "chunk": 0,
+   "title": "net/http/httputil",
+   "text": "Package httputil provides HTTP utility functions, complementing the\nmore common ones in the net/http package."
+  },
+  {
+   "kind": "file",
+   "pkg": "net/http/pprof",
+   "chunk": 0,
+   "title": "net/http/pprof",
+   "text": "Package pprof serves via its HTTP server runtime profiling data\nin the format expected by the pprof visualization tool.\n\nThe package is typically only imported for the side effect of\nregistering its HTTP handlers.\nThe handled paths all begin with /debug/pprof/.\nAs of Go 1.22, all the paths must be requested with GET.\n\nTo use pprof, link this package into your program:\n\nimport _ \"net/http/pprof\"\n\nIf your application is not already running an http server, you\nneed to start one. Add \"net/http\" and \"log\" to your imports and\nthe following code to your main function:\n\ngo func() {\n\t\tlog.Println(http.ListenAndServe(\"localhost:6060\", nil))\n\t}()\n\nBy default, all the profiles listed in [runtime/pprof.Profile] are\navailable (via [Handler]), in addition to the [Cmdline], [Profile], [Symbol],\nand [Trace] profiles defined in this package.\nIf you are not using DefaultServeMux, you will have to register handlers\nwith the mux you are using.\n\n# Parameters\n\nParameters can be passed via GET query params:"
+  },
+  {
+   "kind": "file",
+   "pkg": "net/http/pprof",
+   "chunk": 1,
+   "title": "net/http/pprof",
+   "text": "- debug=N (all profiles): response format: N = 0: binary (default), N > 0: plaintext\n  - gc=N (heap profile): N > 0: run a garbage collection cycle before profiling\n  - seconds=N (allocs, block, goroutine, heap, mutex, threadcreate profiles): return a delta profile\n  - seconds=N (cpu (profile), trace profiles): profile for the given duration\n\n# Usage examples\n\nUse the pprof tool to look at the heap profile:\n\ngo tool pprof http://localhost:6060/debug/pprof/heap\n\nOr to look at a 30-second CPU profile:\n\ngo tool pprof http://localhost:6060/debug/pprof/profile?seconds=30\n\nOr to look at the goroutine blocking profile, after calling\n[runtime.SetBlockProfileRate] in your program:\n\ngo tool pprof http://localhost:6060/debug/pprof/block\n\nOr to look at the holders of contended mutexes, after calling\n[runtime.SetMutexProfileFraction] in your program:\n\ngo tool pprof http://localhost:6060/debug/pprof/mutex\n\nThe package also exports a handler that serves execution trace data\nfor the \"go tool trace\" command. To collect a 5-second execution trace:"
+  },
+  {
+   "kind": "file",
+   "pkg": "net/http/pprof",
+   "chunk": 2,
+   "title": "net/http/pprof",
+   "text": "curl -o trace.out http://localhost:6060/debug/pprof/trace?seconds=5\n\tgo tool trace trace.out\n\nTo view all available profiles, open http://localhost:6060/debug/pprof/\nin your browser.\n\nFor a study of the facility in action, visit\nhttps://go.dev/blog/pprof."
+  },
+  {
+   "kind": "file",
+   "pkg": "net/mail",
+   "chunk": 0,
+   "title": "net/mail",
+   "text": "Package mail implements parsing of mail messages.\n\nFor the most part, this package follows the syntax as specified by RFC 5322 and\nextended by RFC 6532.\nNotable divergences:\n  - Obsolete address formats are not parsed, including addresses with\n    embedded route information.\n  - The full range of spacing (the CFWS syntax element) is not supported,\n    such as breaking addresses across lines.\n  - No unicode normalization is performed.\n  - A leading From line is permitted, as in mbox format (RFC 4155)."
+  },
+  {
+   "kind": "file",
+   "pkg": "net/netip",
+   "chunk": 0,
+   "title": "net/netip",
+   "text": "Package netip defines an IP address type that's a small value type.\nBuilding on that [Addr] type, the package also defines [AddrPort] (an\nIP address and a port) and [Prefix] (an IP address and a bit length\nprefix).\n\nCompared to the [net.IP] type, [Addr] type takes less memory, is immutable,\nand is comparable (supports == and being a map key)."
+  },
+  {
+   "kind": "file",
+   "pkg": "net/rpc",
+   "chunk": 0,
+   "title": "net/rpc",
+   "text": "Package rpc provides access to the exported methods of an object across a\nnetwork or other I/O connection.\n\nThe net/rpc package is frozen and is not accepting new features.\n\nA server registers an object, making it visible\nas a service with the name of the type of the object.  After registration, exported\nmethods of the object will be accessible remotely.  A server may register multiple\nobjects (services) of different types but it is an error to register multiple\nobjects of the same type.\n\nOnly methods that satisfy these criteria will be made available for remote access;\nother methods will be ignored:\n\n- the method's type is exported.\n  - the method is exported.\n  - the method has two arguments, both exported (or builtin) types.\n  - the method's second argument is a pointer.\n  - the method has return type error.\n\nIn effect, the method must look schematically like\n\nfunc (t *T) MethodName(argType T1, replyType *T2) error"
+  },
+  {
+   "kind": "file",
+   "pkg": "net/rpc",
+   "chunk": 1,
+   "title": "net/rpc",
+   "text": "where T1 and T2 can be marshaled by encoding/gob.\nThese requirements apply even if a different codec is used.\n(In the future, these requirements may soften for custom codecs.)\n\nThe method's first argument represents the arguments provided by the caller; the\nsecond argument represents the result parameters to be returned to the caller.\nThe method's return value, if non-nil, is passed back as a string that the client\nsees as if created by [errors.New].  If an error is returned, the reply parameter\nwill not be sent back to the client.\n\nThe server may handle requests on a single connection by calling [ServeConn].  More\ntypically it will create a network listener and call [Accept] or, for an HTTP\nlistener, [HandleHTTP] and [http.Serve]."
+  },
+  {
+   "kind": "file",
+   "pkg": "net/rpc",
+   "chunk": 2,
+   "title": "net/rpc",
+   "text": "A client wishing to use the service establishes a connection and then invokes\n[NewClient] on the connection.  The convenience function [Dial] ([DialHTTP]) performs\nboth steps for a raw network connection (an HTTP connection).  The resulting\n[Client] object has two methods, [Call] and Go, that specify the service and method to\ncall, a pointer containing the arguments, and a pointer to receive the result\nparameters.\n\nThe Call method waits for the remote call to complete while the Go method\nlaunches the call asynchronously and signals completion using the Call\nstructure's Done channel.\n\nUnless an explicit codec is set up, package [encoding/gob] is used to\ntransport the data.\n\nHere is a simple example.  A server wishes to export an object of type Arith:\n\npackage server\n\nimport \"errors\"\n\ntype Args struct {\n\t\tA, B int\n\t}\n\ntype Quotient struct {\n\t\tQuo, Rem int\n\t}\n\ntype Arith int\n\nfunc (t *Arith) Multiply(args *Args, reply *int) error {\n\t\t*reply = args.A * args.B\n\t\treturn nil\n\t}"
+  },
+  {
+   "kind": "file",
+   "pkg": "net/rpc/jsonrpc",
+   "chunk": 0,
+   "title": "net/rpc/jsonrpc",
+   "text": "Package jsonrpc implements a JSON-RPC 1.0 ClientCodec and ServerCodec\nfor the rpc package.\nFor JSON-RPC 2.0 support, see https://godoc.org/?q=json-rpc+2.0"
+  },
+  {
+   "kind": "file",
+   "pkg": "net/smtp",
+   "chunk": 0,
+   "title": "net/smtp",
+   "text": "Package smtp implements the Simple Mail Transfer Protocol as defined in RFC 5321.\nIt also implements the following extensions:\n\n8BITMIME  RFC 1652\n\tAUTH      RFC 2554\n\tSTARTTLS  RFC 3207\n\nAdditional extensions may be handled by clients.\n\nThe smtp package is frozen and is not accepting new features.\nSome external packages provide more functionality. See:\n\nhttps://godoc.org/?q=smtp"
+  },
+  {
+   "kind": "file",
+   "pkg": "net/textproto",
+   "chunk": 0,
+   "title": "net/textproto",
+   "text": "Package textproto implements generic support for text-based request/response\nprotocols in the style of HTTP, NNTP, and SMTP.\n\nThis package enforces the HTTP/1.1 character set defined by\nRFC 9112 for header keys and values.\n\nThe package provides:\n\n[Error], which represents a numeric error response from\na server.\n\n[Pipeline], to manage pipelined requests and responses\nin a client.\n\n[Reader], to read numeric response code lines,\nkey: value headers, lines wrapped with leading spaces\non continuation lines, and whole text blocks ending\nwith a dot on a line by itself.\n\n[Writer], to write dot-encoded text blocks.\n\n[Conn], a convenient packaging of [Reader], [Writer], and [Pipeline] for use\nwith a single network connection."
+  },
+  {
+   "kind": "file",
+   "pkg": "net/url",
+   "chunk": 0,
+   "title": "net/url",
+   "text": "Package url parses URLs and implements query escaping.\n\nSee RFC 3986. This package generally follows RFC 3986, except where\nit deviates for compatibility reasons.\nRFC 6874 followed for IPv6 zone literals."
+  },
+  {
+   "kind": "file",
+   "pkg": "os",
+   "chunk": 0,
+   "title": "os",
+   "text": "Package os provides a platform-independent interface to operating system\nfunctionality. The design is Unix-like, although the error handling is\nGo-like; failing calls return values of type error rather than error numbers.\nOften, more information is available within the error. For example,\nif a call that takes a file name fails, such as [Open] or [Stat], the error\nwill include the failing file name when printed and will be of type\n[*PathError], which may be unpacked for more information.\n\nThe os interface is intended to be uniform across all operating systems.\nFeatures not generally available appear in the system-specific package syscall.\n\nHere is a simple example, opening a file and reading some of it.\n\nfile, err := os.Open(\"file.go\") // For read access.\n\tif err != nil {\n\t\tlog.Fatal(err)\n\t}\n\nIf the open fails, the error string will be self-explanatory, like\n\nopen file.go: no such file or directory\n\nThe file's data can then be read into a slice of bytes. Read and\nWrite take their byte counts from the length of the argument slice."
+  },
+  {
+   "kind": "file",
+   "pkg": "os",
+   "chunk": 1,
+   "title": "os",
+   "text": "data := make([]byte, 100)\n\tcount, err := file.Read(data)\n\tif err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tfmt.Printf(\"read %d bytes: %q\\n\", count, data[:count])\n\n# Concurrency\n\nThe methods of [File] correspond to file system operations. All are\nsafe for concurrent use. The maximum number of concurrent\noperations on a File may be limited by the OS or the system. The\nnumber should be high, but exceeding it may degrade performance or\ncause other issues."
+  },
+  {
+   "kind": "file",
+   "pkg": "os/exec",
+   "chunk": 0,
+   "title": "os/exec",
+   "text": "Package exec runs external commands. It wraps os.StartProcess to make it\neasier to remap stdin and stdout, connect I/O with pipes, and do other\nadjustments.\n\nUnlike the \"system\" library call from C and other languages, the\nos/exec package intentionally does not invoke the system shell and\ndoes not expand any glob patterns or handle other expansions,\npipelines, or redirections typically done by shells. The package\nbehaves more like C's \"exec\" family of functions. To expand glob\npatterns, either call the shell directly, taking care to escape any\ndangerous input, or use the [path/filepath] package's Glob function.\nTo expand environment variables, use package os's ExpandEnv.\n\nNote that the examples in this package assume a Unix system.\nThey may not run on Windows, and they do not run in the Go Playground\nused by go.dev and pkg.go.dev.\n\n# Executables in the current directory"
+  },
+  {
+   "kind": "file",
+   "pkg": "os/exec",
+   "chunk": 1,
+   "title": "os/exec",
+   "text": "The functions [Command] and [LookPath] look for a program\nin the directories listed in the current path, following the\nconventions of the host operating system.\nOperating systems have for decades included the current\ndirectory in this search, sometimes implicitly and sometimes\nconfigured explicitly that way by default.\nModern practice is that including the current directory\nis usually unexpected and often leads to security problems.\n\nTo avoid those security problems, as of Go 1.19, this package will not resolve a program\nusing an implicit or explicit path entry relative to the current directory.\nThat is, if you run [LookPath](\"go\"), it will not successfully return\n./go on Unix nor .\\go.exe on Windows, no matter how the path is configured.\nInstead, if the usual path algorithms would result in that answer,\nthese functions return an error err satisfying [errors.Is](err, [ErrDot]).\n\nFor example, consider these two program snippets:\n\npath, err := exec.LookPath(\"prog\")\n\tif err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tuse(path)\n\nand"
+  },
+  {
+   "kind": "file",
+   "pkg": "os/exec",
+   "chunk": 2,
+   "title": "os/exec",
+   "text": "cmd := exec.Command(\"prog\")\n\tif err := cmd.Run(); err != nil {\n\t\tlog.Fatal(err)\n\t}\n\nThese will not find and run ./prog or .\\prog.exe,\nno matter how the current path is configured.\n\nCode that always wants to run a program from the current directory\ncan be rewritten to say \"./prog\" instead of \"prog\".\n\nCode that insists on including results from relative path entries\ncan instead override the error using an errors.Is check:\n\npath, err := exec.LookPath(\"prog\")\n\tif errors.Is(err, exec.ErrDot) {\n\t\terr = nil\n\t}\n\tif err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tuse(path)\n\nand\n\ncmd := exec.Command(\"prog\")\n\tif errors.Is(cmd.Err, exec.ErrDot) {\n\t\tcmd.Err = nil\n\t}\n\tif err := cmd.Run(); err != nil {\n\t\tlog.Fatal(err)\n\t}\n\nSetting the environment variable GODEBUG=execerrdot=0\ndisables generation of ErrDot entirely, temporarily restoring the pre-Go 1.19\nbehavior for programs that are unable to apply more targeted fixes.\nA future version of Go may remove support for this variable."
+  },
+  {
+   "kind": "file",
+   "pkg": "os/signal",
+   "chunk": 0,
+   "title": "os/signal",
+   "text": "Package signal implements access to incoming signals.\n\nSignals are primarily used on Unix-like systems. For the use of this\npackage on Windows and Plan 9, see below.\n\n# Types of signals\n\nThe signals SIGKILL and SIGSTOP may not be caught by a program, and\ntherefore cannot be affected by this package.\n\nSynchronous signals are signals triggered by errors in program\nexecution: SIGBUS, SIGFPE, and SIGSEGV. These are only considered\nsynchronous when caused by program execution, not when sent using\n[os.Process.Kill] or the kill program or some similar mechanism. In\ngeneral, except as discussed below, Go programs will convert a\nsynchronous signal into a run-time panic.\n\nThe remaining signals are asynchronous signals. They are not\ntriggered by program errors, but are instead sent from the kernel or\nfrom some other program."
+  },
+  {
+   "kind": "file",
+   "pkg": "os/signal",
+   "chunk": 1,
+   "title": "os/signal",
+   "text": "Of the asynchronous signals, the SIGHUP signal is sent when a program\nloses its controlling terminal. The SIGINT signal is sent when the\nuser at the controlling terminal presses the interrupt character,\nwhich by default is ^C (Control-C). The SIGQUIT signal is sent when\nthe user at the controlling terminal presses the quit character, which\nby default is ^\\ (Control-Backslash). In general you can cause a\nprogram to simply exit by pressing ^C, and you can cause it to exit\nwith a stack dump by pressing ^\\.\n\n# Default behavior of signals in Go programs\n\nBy default, a synchronous signal is converted into a run-time panic. A\nSIGHUP, SIGINT, or SIGTERM signal causes the program to exit. A\nSIGQUIT, SIGILL, SIGTRAP, SIGABRT, SIGSTKFLT, SIGEMT, or SIGSYS signal\ncauses the program to exit with a stack dump. A SIGTSTP, SIGTTIN, or\nSIGTTOU signal gets the system default behavior (these signals are\nused by the shell for job control). The SIGPROF signal is handled\ndirectly by the Go runtime to implement runtime.CPUProfile. Other\nsignals will be caught but no action will be taken."
+  },
+  {
+   "kind": "file",
+   "pkg": "os/signal",
+   "chunk": 2,
+   "title": "os/signal",
+   "text": "If the Go program is started with either SIGHUP or SIGINT ignored\n(signal handler set to SIG_IGN), they will remain ignored.\n\nIf the Go program is started with a non-empty signal mask, that will\ngenerally be honored. However, some signals are explicitly unblocked:\nthe synchronous signals, SIGILL, SIGTRAP, SIGSTKFLT, SIGCHLD, SIGPROF,\nand, on Linux, signals 32 (SIGCANCEL) and 33 (SIGSETXID)\n(SIGCANCEL and SIGSETXID are used internally by glibc). Subprocesses\nstarted by [os.Exec], or by [os/exec], will inherit the\nmodified signal mask.\n\n# Changing the behavior of signals in Go programs\n\nThe functions in this package allow a program to change the way Go\nprograms handle signals."
+  },
+  {
+   "kind": "file",
+   "pkg": "os/user",
+   "chunk": 0,
+   "title": "os/user",
+   "text": "Package user allows user account lookups by name or id.\n\nFor most Unix systems, this package has two internal implementations of\nresolving user and group ids to names, and listing supplementary group IDs.\nOne is written in pure Go and parses /etc/passwd and /etc/group. The other\nis cgo-based and relies on the standard C library (libc) routines such as\ngetpwuid_r, getgrnam_r, and getgrouplist.\n\nWhen cgo is available, and the required routines are implemented in libc\nfor a particular platform, cgo-based (libc-backed) code is used.\nThis can be overridden by using osusergo build tag, which enforces\nthe pure Go implementation."
+  },
+  {
+   "kind": "file",
+   "pkg": "path",
+   "chunk": 0,
+   "title": "path",
+   "text": "Package path implements utility routines for manipulating slash-separated\npaths.\n\nThe path package should only be used for paths separated by forward\nslashes, such as the paths in URLs. This package does not deal with\nWindows paths with drive letters or backslashes; to manipulate\noperating system paths, use the [path/filepath] package."
+  },
+  {
+   "kind": "file",
+   "pkg": "path/filepath",
+   "chunk": 0,
+   "title": "path/filepath",
+   "text": "Package filepath implements utility routines for manipulating filename paths\nin a way compatible with the target operating system-defined file paths.\n\nThe filepath package uses either forward slashes or backslashes,\ndepending on the operating system. To process paths such as URLs\nthat always use forward slashes regardless of the operating\nsystem, see the [path] package."
+  },
+  {
+   "kind": "file",
+   "pkg": "plugin",
+   "chunk": 0,
+   "title": "plugin",
+   "text": "Package plugin implements loading and symbol resolution of Go plugins.\n\nA plugin is a Go main package with exported functions and variables that\nhas been built with:\n\ngo build -buildmode=plugin\n\nWhen a plugin is first opened, the init functions of all packages not\nalready part of the program are called. The main function is not run.\nA plugin is only initialized once, and cannot be closed.\n\n# Warnings\n\nThe ability to dynamically load parts of an application during\nexecution, perhaps based on user-defined configuration, may be a\nuseful building block in some designs. In particular, because\napplications and dynamically loaded functions can share data\nstructures directly, plugins may enable very high-performance\nintegration of separate parts.\n\nHowever, the plugin mechanism has many significant drawbacks that\nshould be considered carefully during the design. For example:\n\n- Plugins are currently supported only on Linux, FreeBSD, and\n    macOS, making them unsuitable for applications intended to be\n    portable."
+  },
+  {
+   "kind": "file",
+   "pkg": "plugin",
+   "chunk": 1,
+   "title": "plugin",
+   "text": "- Plugins are poorly supported by the Go race detector. Even simple\n    race conditions may not be automatically detected. See\n    https://go.dev/issue/24245 for more information.\n\n- Applications that use plugins may require careful configuration\n    to ensure that the various parts of the program be made available\n    in the correct location in the file system (or container image).\n    By contrast, deploying an application consisting of a single static\n    executable is straightforward.\n\n- Reasoning about program initialization is more difficult when\n    some packages may not be initialized until long after the\n    application has started running.\n\n- Bugs in applications that load plugins could be exploited by\n    an attacker to load dangerous or untrusted libraries.\n\n- Runtime crashes are likely to occur unless all parts of the\n    program (the application and all its plugins) are compiled\n    using exactly the same version of the toolchain, the same build\n    tags, and the same values of certain flags and environment\n    variables."
+  },
+  {
+   "kind": "file",
+   "pkg": "plugin",
+   "chunk": 2,
+   "title": "plugin",
+   "text": "- Similar crashing problems are likely to arise unless all common\n    dependencies of the application and its plugins are built from\n    exactly the same source code.\n\n- Together, these restrictions mean that, in practice, the\n    application and its plugins must all be built together by a\n    single person or component of a system. In that case, it may\n    be simpler for that person or component to generate Go source\n    files that blank-import the desired set of plugins and then\n    compile a static executable in the usual way.\n\nFor these reasons, many users decide that traditional interprocess\ncommunication (IPC) mechanisms such as sockets, pipes, remote\nprocedure call (RPC), shared memory mappings, or file system\noperations may be more suitable despite the performance overheads."
+  },
+  {
+   "kind": "file",
+   "pkg": "reflect",
+   "chunk": 0,
+   "title": "reflect",
+   "text": "Package reflect implements run-time reflection, allowing a program to\nmanipulate objects with arbitrary types. The typical use is to take a value\nwith static type interface{} and extract its dynamic type information by\ncalling TypeOf, which returns a Type.\n\nA call to ValueOf returns a Value representing the run-time data.\nZero takes a Type and returns a Value representing a zero value\nfor that type.\n\nSee \"The Laws of Reflection\" for an introduction to reflection in Go:\nhttps://golang.org/doc/articles/laws_of_reflection.html"
+  },
+  {
+   "kind": "file",
+   "pkg": "regexp",
+   "chunk": 0,
+   "title": "regexp",
+   "text": "Package regexp implements regular expression search.\n\nThe syntax of the regular expressions accepted is the same\ngeneral syntax used by Perl, Python, and other languages.\nMore precisely, it is the syntax accepted by RE2 and described at\nhttps://golang.org/s/re2syntax, except for \\C.\nFor an overview of the syntax, see the [regexp/syntax] package.\n\nThe regexp implementation provided by this package is\nguaranteed to run in time linear in the size of the input.\n(This is a property not guaranteed by most open source\nimplementations of regular expressions.) For more information\nabout this property, see https://swtch.com/~rsc/regexp/regexp1.html\nor any book about automata theory.\n\nAll characters are UTF-8-encoded code points.\nFollowing [utf8.DecodeRune], each byte of an invalid UTF-8 sequence\nis treated as if it encoded utf8.RuneError (U+FFFD).\n\nThere are 24 methods of [Regexp] that match a regular expression and identify\nthe matched text. Their names are matched by this regular expression:\n\n(All|Find|FindAll)(String)?(Submatch)?(Index)?"
+  },
+  {
+   "kind": "file",
+   "pkg": "regexp",
+   "chunk": 1,
+   "title": "regexp",
+   "text": "The ‘All’ variants return an iterator over successive non-overlapping\nmatches of the entire expression. The ‘FindAll’ variants return a slice\nof those matches instead. Empty matches abutting a preceding\nmatch are ignored. The ‘FindAll’ variants take an extra integer argument, n.\nIf n >= 0, the function returns at most n matches/submatches;\notherwise, it returns all of them.\n\nThe ‘Find’ variants return only the first match that All or FindAll would return.\n\nIf ‘String’ is present, the argument is a string; otherwise it is a []byte."
+  },
+  {
+   "kind": "file",
+   "pkg": "regexp",
+   "chunk": 2,
+   "title": "regexp",
+   "text": "By default, each returned match is denoted by the substring matching the\nregular expression, of type string or []byte according to the type of the argument.\nIf ‘Submatch’ is present, each match is represented instead by a slice of\nthe substrings matching the regular expression's parenthesized subexpressions\n(also known as capturing groups), numbered from left to right in order of opening\nparenthesis. Submatch 0 is the match of the entire expression, submatch 1 is\nthe match of the first parenthesized subexpression, and so on.\nIf ‘Index’ is present, each substring is instead denoted by a pair of byte indexes\nwithin the input string. If an index is negative or substring is nil, it means that\nthe subexpression did not match any string in the input. For ‘String’ versions,\nan empty string means either no match or an empty match."
+  },
+  {
+   "kind": "file",
+   "pkg": "regexp/syntax",
+   "chunk": 0,
+   "title": "regexp/syntax",
+   "text": "Package syntax parses regular expressions into parse trees and compiles\nparse trees into programs. Most clients of regular expressions will use the\nfacilities of package [regexp] (such as [regexp.Compile] and [regexp.Match]) instead of this package.\n\n# Syntax\n\nThe regular expression syntax understood by this package when parsing with the [Perl] flag is as follows.\nParts of the syntax can be disabled by passing alternate flags to [Parse].\n\nSingle characters:\n\n.              any character, possibly including newline (flag s=true)\n\t[xyz]          character class\n\t[^xyz]         negated character class\n\t\\d             Perl character class\n\t\\D             negated Perl character class\n\t[[:alpha:]]    ASCII character class\n\t[[:^alpha:]]   negated ASCII character class\n\t\\pN            Unicode character class (one-letter name)\n\t\\p{Greek}      Unicode character class\n\t\\PN            negated Unicode character class (one-letter name)\n\t\\P{Greek}      negated Unicode character class\n\nComposites:\n\nxy             x followed by y\n\tx|y            x or y (prefer x)\n\nRepetitions:"
+  },
+  {
+   "kind": "file",
+   "pkg": "regexp/syntax",
+   "chunk": 1,
+   "title": "regexp/syntax",
+   "text": "x*             zero or more x, prefer more\n\tx+             one or more x, prefer more\n\tx?             zero or one x, prefer one\n\tx{n,m}         n or n+1 or ... or m x, prefer more\n\tx{n,}          n or more x, prefer more\n\tx{n}           exactly n x\n\tx*?            zero or more x, prefer fewer\n\tx+?            one or more x, prefer fewer\n\tx??            zero or one x, prefer zero\n\tx{n,m}?        n or n+1 or ... or m x, prefer fewer\n\tx{n,}?         n or more x, prefer fewer\n\tx{n}?          exactly n x\n\nImplementation restriction: The counting forms x{n,m}, x{n,}, and x{n}\nreject forms that create a minimum or maximum repetition count above 1000.\nUnlimited repetitions are not subject to this restriction.\n\nGrouping:\n\n(re)           numbered capturing group (submatch)\n\t(?P<name>re)   named & numbered capturing group (submatch)\n\t(?<name>re)    named & numbered capturing group (submatch)\n\t(?:re)         non-capturing group\n\t(?flags)       set flags within current group; non-capturing\n\t(?flags:re)    set flags during re; non-capturing"
+  },
+  {
+   "kind": "file",
+   "pkg": "regexp/syntax",
+   "chunk": 2,
+   "title": "regexp/syntax",
+   "text": "Flag syntax is xyz (set) or -xyz (clear) or xy-z (set xy, clear z). The flags are:\n\ni              case-insensitive (default false)\n\tm              multi-line mode: ^ and $ match begin/end line in addition to begin/end text (default false)\n\ts              let . match \\n (default false)\n\tU              ungreedy: swap meaning of x* and x*?, x+ and x+?, etc (default false)\n\nEmpty strings:\n\n^              at beginning of text or line (flag m=true)\n\t$              at end of text (like \\z not \\Z) or line (flag m=true)\n\t\\A             at beginning of text\n\t\\b             at ASCII word boundary (\\w on one side and \\W, \\A, or \\z on the other)\n\t\\B             not at ASCII word boundary\n\t\\z             at end of text\n\nEscape sequences:"
+  },
+  {
+   "kind": "file",
+   "pkg": "runtime",
+   "chunk": 0,
+   "title": "runtime",
+   "text": "Package runtime contains operations that interact with Go's runtime system,\nsuch as functions to control goroutines. It also includes the low-level type information\nused by the reflect package; see [reflect]'s documentation for the programmable\ninterface to the run-time type system.\n\n# Environment Variables\n\nThe following environment variables ($name or %name%, depending on the host\noperating system) control the run-time behavior of Go programs. The meanings\nand use may change from release to release.\n\nThe GOGC variable sets the initial garbage collection target percentage.\nA collection is triggered when the ratio of freshly allocated data to live data\nremaining after the previous collection reaches this percentage. The default\nis GOGC=100. Setting GOGC=off disables the garbage collector entirely.\n[runtime/debug.SetGCPercent] allows changing this percentage at run time."
+  },
+  {
+   "kind": "file",
+   "pkg": "runtime",
+   "chunk": 1,
+   "title": "runtime",
+   "text": "The GOMEMLIMIT variable sets a soft memory limit for the runtime. This memory limit\nincludes the Go heap and all other memory managed by the runtime, and excludes\nexternal memory sources such as mappings of the binary itself, memory managed in\nother languages, and memory held by the operating system on behalf of the Go\nprogram. GOMEMLIMIT is a numeric value in bytes with an optional unit suffix.\nThe supported suffixes include B, KiB, MiB, GiB, and TiB. These suffixes\nrepresent quantities of bytes as defined by the IEC 80000-13 standard. That is,\nthey are based on powers of two: KiB means 2^10 bytes, MiB means 2^20 bytes,\nand so on. The default setting is [math.MaxInt64], which effectively disables the\nmemory limit. [runtime/debug.SetMemoryLimit] allows changing this limit at run\ntime.\n\nThe GODEBUG variable controls debugging variables within the runtime.\nIt is a comma-separated list of name=val pairs setting these named variables:\n\nclobberfree: setting clobberfree=1 causes the garbage collector to\n\tclobber the memory content of an object with bad content when it frees\n\tthe object."
+  },
+  {
+   "kind": "file",
+   "pkg": "runtime",
+   "chunk": 2,
+   "title": "runtime",
+   "text": "cpu.*: cpu.all=off disables the use of all optional instruction set extensions.\n\tcpu.extension=off disables use of instructions from the specified instruction set extension.\n\textension is the lower case name for the instruction set extension such as sse41 or avx\n\tas listed in internal/cpu package. As an example cpu.avx=off disables runtime detection\n\tand thereby use of AVX instructions.\n\ncgocheck: setting cgocheck=0 disables all checks for packages\n\tusing cgo to incorrectly pass Go pointers to non-Go code.\n\tSetting cgocheck=1 (the default) enables relatively cheap\n\tchecks that may miss some errors. A more complete, but slow,\n\tcgocheck mode can be enabled using GOEXPERIMENT (which\n\trequires a rebuild), see https://pkg.go.dev/internal/goexperiment for details."
+  },
+  {
+   "kind": "file",
+   "pkg": "runtime/cgo",
+   "chunk": 0,
+   "title": "runtime/cgo",
+   "text": "Package cgo contains runtime support for code generated\nby the cgo tool.  See the documentation for the cgo command\nfor details on using cgo."
+  },
+  {
+   "kind": "file",
+   "pkg": "runtime/coverage",
+   "chunk": 0,
+   "title": "runtime/coverage",
+   "text": "Package coverage contains APIs for writing coverage profile data at runtime\nfrom long-running and/or server programs that do not terminate via [os.Exit]."
+  },
+  {
+   "kind": "file",
+   "pkg": "runtime/debug",
+   "chunk": 0,
+   "title": "runtime/debug",
+   "text": "Package debug contains facilities for programs to debug themselves while\nthey are running."
+  },
+  {
+   "kind": "file",
+   "pkg": "runtime/metrics",
+   "chunk": 0,
+   "title": "runtime/metrics",
+   "text": "Package metrics provides a stable interface to access implementation-defined\nmetrics exported by the Go runtime. This package is similar to existing functions\nlike [runtime.ReadMemStats] and [runtime/debug.ReadGCStats], but significantly more general.\n\nThe set of metrics defined by this package may evolve as the runtime itself\nevolves, and also enables variation across Go implementations, whose relevant\nmetric sets may not intersect.\n\n# Interface\n\nMetrics are designated by a string key, rather than, for example, a field name in\na struct. The full list of supported metrics is always available in the slice of\nDescriptions returned by [All]. Each [Description] also includes useful information\nabout the metric."
+  },
+  {
+   "kind": "file",
+   "pkg": "runtime/metrics",
+   "chunk": 1,
+   "title": "runtime/metrics",
+   "text": "Thus, users of this API are encouraged to sample supported metrics defined by the\nslice returned by All to remain compatible across Go versions. Of course, situations\narise where reading specific metrics is critical. For these cases, users are\nencouraged to use build tags, and although metrics may be deprecated and removed,\nusers should consider this to be an exceptional and rare event, coinciding with a\nvery large change in a particular Go implementation.\n\nEach metric key also has a \"kind\" (see [ValueKind]) that describes the format of the\nmetric's value.\nIn the interest of not breaking users of this package, the \"kind\" for a given metric\nis guaranteed not to change. If it must change, then a new metric will be introduced\nwith a new key and a new \"kind.\"\n\n# Metric key format"
+  },
+  {
+   "kind": "file",
+   "pkg": "runtime/metrics",
+   "chunk": 2,
+   "title": "runtime/metrics",
+   "text": "As mentioned earlier, metric keys are strings. Their format is simple and well-defined,\ndesigned to be both human and machine readable. It is split into two components,\nseparated by a colon: a rooted path and a unit. The choice to include the unit in\nthe key is motivated by compatibility: if a metric's unit changes, its semantics likely\ndid also, and a new key should be introduced.\n\nFor more details on the precise definition of the metric key's path and unit formats, see\nthe documentation of the Name field of the Description struct.\n\n# A note about floats\n\nThis package supports metrics whose values have a floating-point representation. In\norder to improve ease-of-use, this package promises to never produce the following\nclasses of floating-point values: NaN, infinity.\n\n# Supported metrics\n\nBelow is the full list of supported metrics, ordered lexicographically.\n\n/cgo/go-to-c-calls:calls\n\t\tCount of calls made from Go to C by the current process."
+  },
+  {
+   "kind": "file",
+   "pkg": "runtime/pprof",
+   "chunk": 0,
+   "title": "runtime/pprof",
+   "text": "Package pprof writes runtime profiling data in the format expected\nby the pprof visualization tool.\n\n# Profiling a Go program\n\nThe first step to profiling a Go program is to enable profiling.\nSupport for profiling benchmarks built with the standard testing\npackage is built into go test. For example, the following command\nruns benchmarks in the current directory and writes the CPU and\nmemory profiles to cpu.prof and mem.prof:\n\ngo test -cpuprofile cpu.prof -memprofile mem.prof -bench .\n\nTo add equivalent profiling support to a standalone program, add\ncode like the following to your main function:\n\nvar cpuprofile = flag.String(\"cpuprofile\", \"\", \"write cpu profile to `file`\")\n\tvar memprofile = flag.String(\"memprofile\", \"\", \"write memory profile to `file`\")"
+  },
+  {
+   "kind": "file",
+   "pkg": "runtime/pprof",
+   "chunk": 1,
+   "title": "runtime/pprof",
+   "text": "func main() {\n\t    flag.Parse()\n\t    if *cpuprofile != \"\" {\n\t        f, err := os.Create(*cpuprofile)\n\t        if err != nil {\n\t            log.Fatal(\"could not create CPU profile: \", err)\n\t        }\n\t        defer f.Close() // error handling omitted for example\n\t        if err := pprof.StartCPUProfile(f); err != nil {\n\t            log.Fatal(\"could not start CPU profile: \", err)\n\t        }\n\t        defer pprof.StopCPUProfile()\n\t    }\n\n// ... rest of the program ...\n\nif *memprofile != \"\" {\n\t        f, err := os.Create(*memprofile)\n\t        if err != nil {\n\t            log.Fatal(\"could not create memory profile: \", err)\n\t        }\n\t        defer f.Close() // error handling omitted for example\n\t        runtime.GC() // get up-to-date statistics\n\t        // Lookup(\"allocs\") creates a profile similar to go test -memprofile.\n\t        // Alternatively, use Lookup(\"heap\") for a profile\n\t        // that has inuse_space as the default index.\n\t        if err := pprof.Lookup(\"allocs\").WriteTo(f, 0); err != nil {\n\t            log.Fatal(\"could not write memory profile: \", err)\n\t        }\n\t    }\n\t}"
+  },
+  {
+   "kind": "file",
+   "pkg": "runtime/pprof",
+   "chunk": 2,
+   "title": "runtime/pprof",
+   "text": "There is also a standard HTTP interface to profiling data. Adding\nthe following line will install handlers under the /debug/pprof/\nURL to download live profiles:\n\nimport _ \"net/http/pprof\"\n\nSee the net/http/pprof package for more details.\n\nProfiles can then be visualized with the pprof tool:\n\ngo tool pprof cpu.prof\n\nThere are many commands available from the pprof command line.\nCommonly used commands include \"top\", which prints a summary of the\ntop program hot-spots, and \"web\", which opens an interactive graph\nof hot-spots and their call graphs. Use \"help\" for information on\nall pprof commands.\n\nFor more information about pprof, see\nhttps://github.com/google/pprof/blob/main/doc/README.md."
+  },
+  {
+   "kind": "file",
+   "pkg": "runtime/race",
+   "chunk": 0,
+   "title": "runtime/race",
+   "text": "Package race implements data race detection logic.\nNo public interface is provided.\nFor details about the race detector see\nhttps://golang.org/doc/articles/race_detector.html"
+  },
+  {
+   "kind": "file",
+   "pkg": "runtime/secret",
+   "chunk": 0,
+   "title": "runtime/secret",
+   "text": "Package secret contains helper functions for zeroing out memory\nthat is otherwise invisible to a user program in the service of\nforward secrecy. See https://en.wikipedia.org/wiki/Forward_secrecy for\nmore information.\n\nThis package (runtime/secret) is experimental,\nand not subject to the Go 1 compatibility promise.\nIt only exists when building with the GOEXPERIMENT=runtimesecret environment variable set."
+  },
+  {
+   "kind": "file",
+   "pkg": "runtime/trace",
+   "chunk": 0,
+   "title": "runtime/trace",
+   "text": "Package trace contains facilities for programs to generate traces\nfor the Go execution tracer.\n\n# Tracing runtime activities\n\nThe execution trace captures a wide range of execution events such as\ngoroutine creation/blocking/unblocking, syscall enter/exit/block,\nGC-related events, changes of heap size, processor start/stop, etc.\nWhen CPU profiling is active, the execution tracer makes an effort to\ninclude those samples as well.\nA precise nanosecond-precision timestamp and a stack trace is\ncaptured for most events. The generated trace can be interpreted\nusing `go tool trace`.\n\nSupport for tracing tests and benchmarks built with the standard\ntesting package is built into `go test`. For example, the following\ncommand runs the test in the current directory and writes the trace\nfile (trace.out).\n\ngo test -trace=trace.out\n\nThis runtime/trace package provides APIs to add equivalent tracing\nsupport to a standalone program. See the Example that demonstrates\nhow to use this API to enable tracing."
+  },
+  {
+   "kind": "file",
+   "pkg": "runtime/trace",
+   "chunk": 1,
+   "title": "runtime/trace",
+   "text": "There is also a standard HTTP interface to trace data. Adding the\nfollowing line will install a handler under the /debug/pprof/trace URL\nto download a live trace:\n\nimport _ \"net/http/pprof\"\n\nSee the [net/http/pprof] package for more details about all of the\ndebug endpoints installed by this import.\n\n# User annotation\n\nPackage trace provides user annotation APIs that can be used to\nlog interesting events during execution.\n\nThere are three types of user annotations: log messages, regions,\nand tasks.\n\n[Log] emits a timestamped message to the execution trace along with\nadditional information such as the category of the message and\nwhich goroutine called [Log]. The execution tracer provides UIs to filter\nand group goroutines using the log category and the message supplied\nin [Log]."
+  },
+  {
+   "kind": "file",
+   "pkg": "runtime/trace",
+   "chunk": 2,
+   "title": "runtime/trace",
+   "text": "A region is for logging a time interval during a goroutine's execution.\nBy definition, a region starts and ends in the same goroutine.\nRegions can be nested to represent subintervals.\nFor example, the following code records four regions in the execution\ntrace to trace the durations of sequential steps in a cappuccino making\noperation.\n\ntrace.WithRegion(ctx, \"makeCappuccino\", func() {\n\n// orderID allows to identify a specific order\n\t   // among many cappuccino order region records.\n\t   trace.Log(ctx, \"orderID\", orderID)\n\ntrace.WithRegion(ctx, \"steamMilk\", steamMilk)\n\t   trace.WithRegion(ctx, \"extractCoffee\", extractCoffee)\n\t   trace.WithRegion(ctx, \"mixMilkCoffee\", mixMilkCoffee)\n\t})"
+  },
+  {
+   "kind": "file",
+   "pkg": "simd",
+   "chunk": 0,
+   "title": "simd",
+   "text": "Package simd implements portable and vector-size-agnostic SIMD types,\nand functions and methods for working with these types.  SIMD types\nare either implemented in hardware (for example, arm64 \"Neon\" or\namd64 \"AVX/AVX2/AVX512\") using the corresponding types in the\n[simd/archsimd] package, or emulated in pure Go.  In all cases, the\nvector length is at least 128 bits, and within a given program\nexecution, all vectors have the same length.\n\n# SIMD Types\n\nThere is a simd type corresponding to each primitive numeric type,\nexcept for complex64 and complex128.  Each of these is the type name,\ncapitalized, with an \"s\" suffix, for example [Int8s], [Uint16s],\nor [Float64s].\n\nThere are also simd \"mask\" types that abstract the mask registers\npresent in some architectures, otherwise these will be implemented\nas bit masks.\n\n# Obtaining SIMD values\n\nThe zero value of a SIMD vector type is valid and represents a zero vector.\n\nFor each SIMD type, \"Load<Types>(s []<type>) <Types>\"\nloads a full verctor of the type from a long-enough slice."
+  },
+  {
+   "kind": "file",
+   "pkg": "simd",
+   "chunk": 1,
+   "title": "simd",
+   "text": "For slices that are not long enough, \"Load<Types>Part(s []<type>) (<Types>, int)\"\nwill load as many elements as are available from the slice, fill the remainder\nwith zero, and also return the number that were loaded.\n\nFor each SIMD type, \"Broadcast<Types>(x type) <Types>\"\nreturns a vector whose elements are all initialized to x.\n\nExamples:\n  - [LoadInt8s]\n  - [LoadUint16sPart]\n  - [BroadcastFloat32s]\n\n# Operations\n\nSIMD types provide methods for unary ([Float32s.Abs], [Int16s.Not]), binary\n([Float64s.Add], [Uint32s.GreaterEqual]), and ternary operations ([Int64s.IfElse], [Float32s.MulAdd]).\nRelational operations produce masks.\n\nSIMD types also support conversions between types, both those that are\nmostly value-preserving ([Int32s.ConvertToFloat32], [Float32s.ConvertToInt32]) and\nthose that change types without altering the underlying vector bit\npattern."
+  },
+  {
+   "kind": "file",
+   "pkg": "simd",
+   "chunk": 2,
+   "title": "simd",
+   "text": "Signed integer types convert to mask types ([Int16s.ToMask]), but this is a\ncomparison against zero, not a simple bitwise conversion.  Mask types\nconvert to signed integers in an operation ([Mask32s.ToInt32s]) that may be a\nzero-cost bitwise conversion, or not, depending on the underlying hardware.\n\n# Storing\n\nSIMD vector types have two methods, one for storing the entire vector into a slice\n\"Store([]<type>)\"\" and a second for storing part of a vector into a slice \"StorePart([]<type>) int\".\nStorePart returns the number of elements actually stored.\n\n# String conversion\n\nVectors and masks provide a String method for conversion to strings.\n\n# Conversion to and from simd/archsimd types.\n\nEach SIMD vector type has a \"ToArch() any\" method that returns the type\nsupported by the current hardware as an \"any\".  Code using\nthese methods must be build-tagged to the relevant architecture(s)\nand type-assert the returned value to the appropriate type."
+  },
+  {
+   "kind": "file",
+   "pkg": "simd/archsimd",
+   "chunk": 0,
+   "title": "simd/archsimd",
+   "text": "Package archsimd provides access to architecture-specific SIMD operations.\n\nThis is a low-level package that exposes hardware-specific functionality.\nIt currently supports AMD64.\n\nThis package is experimental, and not subject to the Go 1 compatibility promise.\nIt only exists when building with the GOEXPERIMENT=simd environment variable set.\n\n# Vector types and operations\n\nVector types are defined as structs, such as Int8x16 and Float64x8, corresponding\nto the hardware's vector registers. On AMD64, 128-, 256-, and 512-bit vectors are\nsupported.\n\nMask types are defined similarly, such as Mask8x16, and are represented as\nopaque types, handling the differences in the underlying representations.\nA mask can be converted to/from the corresponding integer vector type, or\nto/from a bitmask.\n\nOperations are mostly defined as methods on the vector types. Most of them\nare compiler intrinsics and correspond directly to hardware instructions."
+  },
+  {
+   "kind": "file",
+   "pkg": "simd/archsimd",
+   "chunk": 1,
+   "title": "simd/archsimd",
+   "text": "Common operations include:\n  - Load/Store: Load a vector from memory or store a vector to memory.\n  - Arithmetic: Add, Sub, Mul, etc.\n  - Bitwise: And, Or, Xor, etc.\n  - Comparison: Equal, Greater, etc., which produce a mask.\n  - Conversion: Convert between different vector types.\n  - Field selection and rearrangement: GetElem, Permute, etc.\n  - Masking: Masked, Merge.\n\nThe compiler recognizes certain patterns of operations and may optimize\nthem to more performant instructions. For example, on AVX512, an Add operation\nfollowed by Masked may be optimized to a masked add instruction.\nFor this reason, not all hardware instructions are available as APIs.\n\n# CPU feature checks\n\nThe package provides global variables to check for CPU features available\nat runtime. For example, on AMD64, the [X86] variable provides methods to\ncheck for AVX2, AVX512, etc.\nIt is recommended to check for CPU features before using the corresponding\nvector operations.\n\n# Notes"
+  },
+  {
+   "kind": "file",
+   "pkg": "simd/archsimd",
+   "chunk": 2,
+   "title": "simd/archsimd",
+   "text": "- This package is not portable, as the available types and operations depend\n    on the target architecture. It is not recommended to expose the SIMD types\n    defined in this package in public APIs.\n  - For performance reasons, it is recommended to use the vector types directly\n    as values. It is not recommended to take the address of a vector type,\n    allocate it in the heap, or put it in an aggregate type."
+  },
+  {
+   "kind": "file",
+   "pkg": "slices",
+   "chunk": 0,
+   "title": "slices",
+   "text": "Package slices defines various functions useful with slices of any type."
+  },
+  {
+   "kind": "file",
+   "pkg": "sort",
+   "chunk": 0,
+   "title": "sort",
+   "text": "Package sort provides primitives for sorting slices and user-defined collections."
+  },
+  {
+   "kind": "file",
+   "pkg": "strconv",
+   "chunk": 0,
+   "title": "strconv",
+   "text": "Package strconv implements conversions to and from string representations\nof basic data types.\n\n# Numeric Conversions\n\nThe most common numeric conversions are [Atoi] (string to int) and [Itoa] (int to string).\n\ni, err := strconv.Atoi(\"-42\")\n\ts := strconv.Itoa(-42)\n\nThese assume decimal and the Go int type.\n\n[ParseBool], [ParseFloat], [ParseInt], and [ParseUint] convert strings to values:\n\nb, err := strconv.ParseBool(\"true\")\n\tf, err := strconv.ParseFloat(\"3.1415\", 64)\n\ti, err := strconv.ParseInt(\"-42\", 10, 64)\n\tu, err := strconv.ParseUint(\"42\", 10, 64)\n\nThe parse functions return the widest type (float64, int64, and uint64),\nbut if the size argument specifies a narrower width the result can be\nconverted to that narrower type without data loss:\n\ns := \"2147483647\" // biggest int32\n\ti64, err := strconv.ParseInt(s, 10, 32)\n\t...\n\ti := int32(i64)\n\n[FormatBool], [FormatFloat], [FormatInt], and [FormatUint] convert values to strings:\n\ns := strconv.FormatBool(true)\n\ts := strconv.FormatFloat(3.1415, 'E', -1, 64)\n\ts := strconv.FormatInt(-42, 16)\n\ts := strconv.FormatUint(42, 16)"
+  },
+  {
+   "kind": "file",
+   "pkg": "strconv",
+   "chunk": 1,
+   "title": "strconv",
+   "text": "[AppendBool], [AppendFloat], [AppendInt], and [AppendUint] are similar but\nappend the formatted value to a destination slice.\n\n# String Conversions\n\n[Quote] and [QuoteToASCII] convert strings to quoted Go string literals.\nThe latter guarantees that the result is an ASCII string, by escaping\nany non-ASCII Unicode with \\u:\n\nq := strconv.Quote(\"Hello, 世界\")\n\tq := strconv.QuoteToASCII(\"Hello, 世界\")\n\n[QuoteRune] and [QuoteRuneToASCII] are similar but accept runes and\nreturn quoted Go rune literals.\n\n[Unquote] and [UnquoteChar] unquote Go string and rune literals."
+  },
+  {
+   "kind": "file",
+   "pkg": "strings",
+   "chunk": 0,
+   "title": "strings",
+   "text": "Package strings implements simple functions to manipulate UTF-8 encoded strings.\n\nFor information about UTF-8 strings in Go, see https://blog.golang.org/strings."
+  },
+  {
+   "kind": "file",
+   "pkg": "structs",
+   "chunk": 0,
+   "title": "structs",
+   "text": "Package structs defines marker types that can be used as struct fields\nto modify the properties of a struct.\n\nBy convention, a marker type should be used as the type of a field\nnamed \"_\", placed at the beginning of a struct type definition."
+  },
+  {
+   "kind": "file",
+   "pkg": "sync",
+   "chunk": 0,
+   "title": "sync",
+   "text": "Package sync provides basic synchronization primitives such as mutual\nexclusion locks. Other than the [Once] and [WaitGroup] types, most are intended\nfor use by low-level library routines. Higher-level synchronization is\nbetter done via channels and communication.\n\nValues containing the types defined in this package should not be copied."
+  },
+  {
+   "kind": "file",
+   "pkg": "sync/atomic",
+   "chunk": 0,
+   "title": "sync/atomic",
+   "text": "Package atomic provides low-level atomic memory primitives\nuseful for implementing synchronization algorithms.\n\nThese functions require great care to be used correctly.\nExcept for special, low-level applications, synchronization is better\ndone with channels or the facilities of the [sync] package.\nShare memory by communicating;\ndon't communicate by sharing memory.\n\nThe swap operation, implemented by the SwapT functions, is the atomic\nequivalent of:\n\nold = *addr\n\t*addr = new\n\treturn old\n\nThe compare-and-swap operation, implemented by the CompareAndSwapT\nfunctions, is the atomic equivalent of:\n\nif *addr == old {\n\t\t*addr = new\n\t\treturn true\n\t}\n\treturn false\n\nThe add operation, implemented by the AddT functions, is the atomic\nequivalent of:\n\n*addr += delta\n\treturn *addr\n\nThe load and store operations, implemented by the LoadT and StoreT\nfunctions, are the atomic equivalents of \"return *addr\" and\n\"*addr = val\"."
+  },
+  {
+   "kind": "file",
+   "pkg": "sync/atomic",
+   "chunk": 1,
+   "title": "sync/atomic",
+   "text": "In the terminology of [the Go memory model], if the effect of\nan atomic operation A is observed by atomic operation B,\nthen A “synchronizes before” B.\nAdditionally, all the atomic operations executed in a program\nbehave as though executed in some sequentially consistent order.\nThis definition provides the same semantics as\nC++'s sequentially consistent atomics and Java's volatile variables.\n\nOnly a few integer sizes are supported: on many architectures,\natomic operations on non-word-sized integers are inefficient or\ninfeasible. For example, a [Bool] may be larger than a built-in bool.\n\n[the Go memory model]: https://go.dev/ref/mem"
+  },
+  {
+   "kind": "file",
+   "pkg": "syscall",
+   "chunk": 0,
+   "title": "syscall",
+   "text": "Package syscall contains an interface to the low-level operating system\nprimitives. The details vary depending on the underlying system, and\nby default, godoc will display the syscall documentation for the current\nsystem. If you want godoc to display syscall documentation for another\nsystem, set $GOOS and $GOARCH to the desired system. For example, if\nyou want to view documentation for freebsd/arm on linux/amd64, set $GOOS\nto freebsd and $GOARCH to arm.\nThe primary use of syscall is inside other packages that provide a more\nportable interface to the system, such as \"os\", \"time\" and \"net\".  Use\nthose packages rather than this one if you can.\nFor details of the functions and data types in this package consult\nthe manuals for the appropriate operating system.\nThese calls return err == nil to indicate success; otherwise\nerr is an operating system error describing the failure.\nOn most systems, that error has type [Errno]."
+  },
+  {
+   "kind": "file",
+   "pkg": "syscall",
+   "chunk": 1,
+   "title": "syscall",
+   "text": "NOTE: Most of the functions, types, and constants defined in\nthis package are also available in the [golang.org/x/sys] package.\nThat package has more system call support than this one,\nand most new code should prefer that package where possible.\nSee https://golang.org/s/go1.4-syscall for more information."
+  },
+  {
+   "kind": "file",
+   "pkg": "syscall/js",
+   "chunk": 0,
+   "title": "syscall/js",
+   "text": "Package js gives access to the WebAssembly host environment when using the js/wasm architecture.\nIts API is based on JavaScript semantics.\n\nThis package is EXPERIMENTAL. Its current scope is only to allow tests to run, but not yet to provide a\ncomprehensive API for users. It is exempt from the Go compatibility promise."
+  },
+  {
+   "kind": "file",
+   "pkg": "testing",
+   "chunk": 0,
+   "title": "testing",
+   "text": "Package testing provides support for automated testing of Go packages.\nIt is intended to be used in concert with the \"go test\" command, which automates\nexecution of any function of the form\n\nfunc TestXxx(*testing.T)\n\nwhere Xxx does not start with a lowercase letter. The function name\nserves to identify the test routine.\n\nWithin these functions, use [T.Error], [T.Fail] or related methods to signal failure.\n\nTo write a new test suite, create a file that\ncontains the TestXxx functions as described here,\nand give that file a name ending in \"_test.go\".\nThe file will be excluded from regular\npackage builds but will be included when the \"go test\" command is run.\n\nThe test file can be in the same package as the one being tested,\nor in a corresponding package with the suffix \"_test\".\n\nIf the test file is in the same package, it may refer to unexported\nidentifiers within the package, as in this example:\n\npackage abs\n\nimport \"testing\"\n\nfunc TestAbs(t *testing.T) {\n\t    got := abs(-1)\n\t    if got != 1 {\n\t        t.Errorf(\"abs(-1) = %d; want 1\", got)\n\t    }\n\t}"
+  },
+  {
+   "kind": "file",
+   "pkg": "testing",
+   "chunk": 1,
+   "title": "testing",
+   "text": "If the file is in a separate \"_test\" package, the package being tested\nmust be imported explicitly and only its exported identifiers may be used.\nThis is known as \"black box\" testing.\n\npackage abs_test\n\nimport (\n\t\t\"testing\"\n\n\"path_to_pkg/abs\"\n\t)\n\nfunc TestAbs(t *testing.T) {\n\t    got := abs.Abs(-1)\n\t    if got != 1 {\n\t        t.Errorf(\"Abs(-1) = %d; want 1\", got)\n\t    }\n\t}\n\nFor more detail, run [go help test] and [go help testflag].\n\n# Benchmarks\n\nFunctions of the form\n\nfunc BenchmarkXxx(*testing.B)\n\nare considered benchmarks, and are executed by the \"go test\" command when\nits -bench flag is provided. Benchmarks are run sequentially.\n\nFor a description of the testing flags, see [go help testflag].\n\nA sample benchmark function looks like this:\n\nfunc BenchmarkRandInt(b *testing.B) {\n\t    for b.Loop() {\n\t        rand.Int()\n\t    }\n\t}\n\nThe output\n\nBenchmarkRandInt-8   \t68453040\t        17.8 ns/op\n\nmeans that the body of the loop ran 68453040 times at a speed of 17.8 ns per loop."
+  },
+  {
+   "kind": "file",
+   "pkg": "testing",
+   "chunk": 2,
+   "title": "testing",
+   "text": "Only the body of the loop is timed, so benchmarks may do expensive\nsetup before calling b.Loop, which will not be counted toward the\nbenchmark measurement:\n\nfunc BenchmarkBigLen(b *testing.B) {\n\t    big := NewBig()\n\t    for b.Loop() {\n\t        big.Len()\n\t    }\n\t}\n\nIf a benchmark needs to test performance in a parallel setting, it may use\nthe RunParallel helper function; such benchmarks are intended to be used with\nthe go test -cpu flag:\n\nfunc BenchmarkTemplateParallel(b *testing.B) {\n\t    templ := template.Must(template.New(\"test\").Parse(\"Hello, {{.}}!\"))\n\t    b.RunParallel(func(pb *testing.PB) {\n\t        var buf bytes.Buffer\n\t        for pb.Next() {\n\t            buf.Reset()\n\t            templ.Execute(&buf, \"World\")\n\t        }\n\t    })\n\t}\n\nA detailed specification of the benchmark results format is given\nin https://go.dev/design/14313-benchmark-format.\n\nThere are standard tools for working with benchmark results at\n[golang.org/x/perf/cmd].\nIn particular, [golang.org/x/perf/cmd/benchstat] performs\nstatistically robust A/B comparisons.\n\n# b.N-style benchmarks"
+  },
+  {
+   "kind": "file",
+   "pkg": "testing/cryptotest",
+   "chunk": 0,
+   "title": "testing/cryptotest",
+   "text": "Package cryptotest provides deterministic random source testing."
+  },
+  {
+   "kind": "file",
+   "pkg": "testing/fstest",
+   "chunk": 0,
+   "title": "testing/fstest",
+   "text": "Package fstest implements support for testing implementations and users of file systems."
+  },
+  {
+   "kind": "file",
+   "pkg": "testing/iotest",
+   "chunk": 0,
+   "title": "testing/iotest",
+   "text": "Package iotest implements Readers and Writers useful mainly for testing."
+  },
+  {
+   "kind": "file",
+   "pkg": "testing/quick",
+   "chunk": 0,
+   "title": "testing/quick",
+   "text": "Package quick implements utility functions to help with black box testing.\n\nThe testing/quick package is frozen and is not accepting new features."
+  },
+  {
+   "kind": "file",
+   "pkg": "testing/slogtest",
+   "chunk": 0,
+   "title": "testing/slogtest",
+   "text": "Package slogtest implements support for testing implementations of log/slog.Handler."
+  },
+  {
+   "kind": "file",
+   "pkg": "testing/synctest",
+   "chunk": 0,
+   "title": "testing/synctest",
+   "text": "Package synctest provides support for testing concurrent code.\n\nThe [Test] function runs a function in an isolated \"bubble\".\nAny goroutines started within the bubble are also part of the bubble.\n\nEach test should be entirely self-contained:\nThe following guidelines should apply to most tests:\n\n- Avoid interacting with goroutines not started from within the test.\n  - Avoid using the network. Use a fake network implementation as needed.\n  - Avoid interacting with external processes.\n  - Avoid leaking goroutines in background tasks.\n\n# Time\n\nWithin a bubble, the [time] package uses a fake clock.\nEach bubble has its own clock.\nThe initial time is midnight UTC 2000-01-01.\n\nTime in a bubble only advances when every goroutine in the\nbubble is durably blocked.\nSee below for the exact definition of \"durably blocked\".\n\nFor example, this test runs immediately rather than taking\ntwo seconds:"
+  },
+  {
+   "kind": "file",
+   "pkg": "testing/synctest",
+   "chunk": 1,
+   "title": "testing/synctest",
+   "text": "func TestTime(t *testing.T) {\n\t\tsynctest.Test(t, func(t *testing.T) {\n\t\t\tstart := time.Now() // always midnight UTC 2000-01-01\n\t\t\tgo func() {\n\t\t\t\ttime.Sleep(1 * time.Second)\n\t\t\t\tt.Log(time.Since(start)) // always logs \"1s\"\n\t\t\t}()\n\t\t\ttime.Sleep(2 * time.Second) // the goroutine above will run before this Sleep returns\n\t\t\tt.Log(time.Since(start))    // always logs \"2s\"\n\t\t})\n\t}\n\nTime stops advancing when the root goroutine of the bubble exits.\n\n# Blocking\n\nA goroutine in a bubble is \"durably blocked\" when it is blocked\nand can only be unblocked by another goroutine in the same bubble.\nA goroutine which can be unblocked by an event from outside its\nbubble is not durably blocked.\n\nThe [Wait] function blocks until all other goroutines in the\nbubble are durably blocked.\n\nFor example:\n\nfunc TestWait(t *testing.T) {\n\t\tsynctest.Test(t, func(t *testing.T) {\n\t\t\tdone := false\n\t\t\tgo func() {\n\t\t\t\tdone = true\n\t\t\t}()\n\t\t\t// Wait will block until the goroutine above has finished.\n\t\t\tsynctest.Wait()\n\t\t\tt.Log(done) // always logs \"true\"\n\t\t})\n\t}\n\nWhen every goroutine in a bubble is durably blocked:"
+  },
+  {
+   "kind": "file",
+   "pkg": "testing/synctest",
+   "chunk": 2,
+   "title": "testing/synctest",
+   "text": "- [Wait] returns, if it has been called.\n  - Otherwise, time advances to the next time that will\n    unblock at least one goroutine, if there is such a time\n    and the root goroutine of the bubble has not exited.\n  - Otherwise, there is a deadlock and [Test] panics.\n\nThe following operations durably block a goroutine:\n\n- a blocking send or receive on a channel created within the bubble\n  - a blocking select statement where every case is a channel created\n    within the bubble\n  - [sync.Cond.Wait]\n  - [sync.WaitGroup.Wait], when [sync.WaitGroup.Add] was called within the bubble\n  - [time.Sleep]\n\nOperations not in the above list are not durably blocking.\nIn particular, the following operations may block a goroutine,\nbut are not durably blocking because the goroutine can be unblocked\nby an event occurring outside its bubble:\n\n- locking a [sync.Mutex] or [sync.RWMutex]\n  - blocking on I/O, such as reading from a network socket\n  - system calls\n\n# Isolation"
+  },
+  {
+   "kind": "file",
+   "pkg": "text/scanner",
+   "chunk": 0,
+   "title": "text/scanner",
+   "text": "Package scanner provides a scanner and tokenizer for UTF-8-encoded text.\nIt takes an io.Reader providing the source, which then can be tokenized\nthrough repeated calls to the Scan function. For compatibility with\nexisting tools, the NUL character is not allowed. If the first character\nin the source is a UTF-8 encoded byte order mark (BOM), it is discarded.\n\nBy default, a [Scanner] skips white space and Go comments and recognizes all\nliterals as defined by the Go language specification. It may be\ncustomized to recognize only a subset of those literals and to recognize\ndifferent identifier and white space characters."
+  },
+  {
+   "kind": "file",
+   "pkg": "text/tabwriter",
+   "chunk": 0,
+   "title": "text/tabwriter",
+   "text": "Package tabwriter implements a write filter (tabwriter.Writer) that\ntranslates tabbed columns in input into properly aligned text.\n\nThe package is using the Elastic Tabstops algorithm described at\nhttp://nickgravgaard.com/elastictabstops/index.html.\n\nThe text/tabwriter package is frozen and is not accepting new features."
+  },
+  {
+   "kind": "file",
+   "pkg": "text/template",
+   "chunk": 0,
+   "title": "text/template",
+   "text": "Package template implements data-driven templates for generating textual output.\n\nTo generate HTML output, see [html/template], which has the same interface\nas this package but automatically secures HTML output against certain attacks.\n\nTemplates are executed by applying them to a data structure. Annotations in the\ntemplate refer to elements of the data structure (typically a field of a struct\nor a key in a map) to control execution and derive values to be displayed.\nExecution of the template walks the structure and sets the cursor, represented\nby a period '.' and called \"dot\", to the value at the current location in the\nstructure as execution proceeds.\n\nThe security model used by this package assumes that template authors are\ntrusted. The package does not auto-escape output, so injecting code into\na template can lead to arbitrary code execution if the template is executed\nby an untrusted source."
+  },
+  {
+   "kind": "file",
+   "pkg": "text/template",
+   "chunk": 1,
+   "title": "text/template",
+   "text": "The input text for a template is UTF-8-encoded text in any format.\n\"Actions\"--data evaluations or control structures--are delimited by\n\"{{\" and \"}}\"; all text outside actions is copied to the output unchanged.\n\nOnce parsed, a template may be executed safely in parallel, although if parallel\nexecutions share a Writer the output may be interleaved.\n\nHere is a trivial example that prints \"17 items are made of wool\".\n\ntype Inventory struct {\n\t\tMaterial string\n\t\tCount    uint\n\t}\n\tsweaters := Inventory{\"wool\", 17}\n\ttmpl, err := template.New(\"test\").Parse(\"{{.Count}} items are made of {{.Material}}\")\n\tif err != nil { panic(err) }\n\terr = tmpl.Execute(os.Stdout, sweaters)\n\tif err != nil { panic(err) }\n\nMore intricate examples appear below.\n\nText and spaces\n\nBy default, all text between actions is copied verbatim when the template is\nexecuted. For example, the string \" items are made of \" in the example above\nappears on standard output when the program is run."
+  },
+  {
+   "kind": "file",
+   "pkg": "text/template",
+   "chunk": 2,
+   "title": "text/template",
+   "text": "However, to aid in formatting template source code, if an action's left\ndelimiter (by default \"{{\") is followed immediately by a minus sign and white\nspace, all trailing white space is trimmed from the immediately preceding text.\nSimilarly, if the right delimiter (\"}}\") is preceded by white space and a minus\nsign, all leading white space is trimmed from the immediately following text.\nIn these trim markers, the white space must be present:\n\"{{- 3}}\" is like \"{{3}}\" but trims the immediately preceding text, while\n\"{{-3}}\" parses as an action containing the number -3.\n\nFor instance, when executing the template whose source is\n\n\"{{23 -}} < {{- 45}}\"\n\nthe generated output would be\n\n\"23<45\"\n\nFor this trimming, the definition of white space characters is the same as in Go:\nspace, horizontal tab, carriage return, and newline.\n\nActions\n\nHere is the list of actions. \"Arguments\" and \"pipelines\" are evaluations of\ndata, defined in detail in the corresponding sections that follow."
+  },
+  {
+   "kind": "file",
+   "pkg": "text/template/parse",
+   "chunk": 0,
+   "title": "text/template/parse",
+   "text": "Package parse builds parse trees for templates as defined by text/template\nand html/template. Clients should use those packages to construct templates\nrather than this one, which provides shared internal data structures not\nintended for general use."
+  },
+  {
+   "kind": "file",
+   "pkg": "time",
+   "chunk": 0,
+   "title": "time",
+   "text": "Package time provides functionality for measuring and displaying time.\n\nThe calendrical calculations always assume a Gregorian calendar, with\nno leap seconds.\n\n# Monotonic Clocks\n\nOperating systems provide both a “wall clock,” which is subject to\nchanges for clock synchronization, and a “monotonic clock,” which is\nnot. The general rule is that the wall clock is for telling time and\nthe monotonic clock is for measuring time. Rather than split the API,\nin this package the Time returned by [time.Now] contains both a wall\nclock reading and a monotonic clock reading; later time-telling\noperations use the wall clock reading, but later time-measuring\noperations, specifically comparisons and subtractions, use the\nmonotonic clock reading.\n\nFor example, this code always computes a positive elapsed time of\napproximately 20 milliseconds, even if the wall clock is changed during\nthe operation being timed:\n\nstart := time.Now()\n\t... operation that takes 20 milliseconds ...\n\tt := time.Now()\n\telapsed := t.Sub(start)"
+  },
+  {
+   "kind": "file",
+   "pkg": "time",
+   "chunk": 1,
+   "title": "time",
+   "text": "Other idioms, such as [time.Since](start), [time.Until](deadline), and\ntime.Now().Before(deadline), are similarly robust against wall clock\nresets.\n\nThe rest of this section gives the precise details of how operations\nuse monotonic clocks, but understanding those details is not required\nto use this package.\n\nThe Time returned by time.Now contains a monotonic clock reading.\nIf Time t has a monotonic clock reading, t.Add adds the same duration to\nboth the wall clock and monotonic clock readings to compute the result.\nBecause t.AddDate(y, m, d), t.Round(d), and t.Truncate(d) are wall time\ncomputations, they always strip any monotonic clock reading from their results.\nBecause t.In, t.Local, and t.UTC are used for their effect on the interpretation\nof the wall time, they also strip any monotonic clock reading from their results.\nThe canonical way to strip a monotonic clock reading is to use t = t.Round(0)."
+  },
+  {
+   "kind": "file",
+   "pkg": "time",
+   "chunk": 2,
+   "title": "time",
+   "text": "If Times t and u both contain monotonic clock readings, the operations\nt.After(u), t.Before(u), t.Equal(u), t.Compare(u), and t.Sub(u) are carried out\nusing the monotonic clock readings alone, ignoring the wall clock\nreadings. If either t or u contains no monotonic clock reading, these\noperations fall back to using the wall clock readings.\n\nOn some systems the monotonic clock will stop if the computer goes to sleep.\nOn such a system, t.Sub(u) may not accurately reflect the actual\ntime that passed between t and u. The same applies to other functions and\nmethods that subtract times, such as [Since], [Until], [Time.Before], [Time.After],\n[Time.Add], [Time.Equal] and [Time.Compare]. In some cases, you may need to strip\nthe monotonic clock to get accurate results."
+  },
+  {
+   "kind": "file",
+   "pkg": "time/tzdata",
+   "chunk": 0,
+   "title": "time/tzdata",
+   "text": "Package tzdata provides an embedded copy of the timezone database.\nIf this package is imported anywhere in the program, then if\nthe time package cannot find tzdata files on the system,\nit will use this embedded information.\n\nImporting this package will increase the size of a program by about\n450 KB.\n\nThis package should normally be imported by a program's main package,\nnot by a library. Libraries normally shouldn't decide whether to\ninclude the timezone database in a program.\n\nThis package will be automatically imported if you build with\n-tags timetzdata."
+  },
+  {
+   "kind": "file",
+   "pkg": "unicode",
+   "chunk": 0,
+   "title": "unicode",
+   "text": "Package unicode provides data and functions to test some properties of\nUnicode code points."
+  },
+  {
+   "kind": "file",
+   "pkg": "unicode/utf16",
+   "chunk": 0,
+   "title": "unicode/utf16",
+   "text": "Package utf16 implements encoding and decoding of UTF-16 sequences."
+  },
+  {
+   "kind": "file",
+   "pkg": "unicode/utf8",
+   "chunk": 0,
+   "title": "unicode/utf8",
+   "text": "Package utf8 implements functions and constants to support text encoded in\nUTF-8. It includes functions to translate between runes and UTF-8 byte sequences.\nSee https://en.wikipedia.org/wiki/UTF-8"
+  },
+  {
+   "kind": "file",
+   "pkg": "unique",
+   "chunk": 0,
+   "title": "unique",
+   "text": "The unique package provides facilities for canonicalizing (\"interning\")\ncomparable values."
+  },
+  {
+   "kind": "file",
+   "pkg": "unsafe",
+   "chunk": 0,
+   "title": "unsafe",
+   "text": "Package unsafe contains operations that step around the type safety of Go programs.\n\nPackages that import unsafe may be non-portable and are not protected by the\nGo 1 compatibility guidelines."
+  },
+  {
+   "kind": "file",
+   "pkg": "uuid",
+   "chunk": 0,
+   "title": "uuid",
+   "text": "Package uuid provides support for generating and manipulating UUIDs.\n\nSee [RFC 9562] for details.\n\nRandom components of new UUIDs are generated with a\ncryptographically secure random number generator.\n\nUUIDs may be generated using various algorithms.\nThe [New] function returns a new UUID generated using\nan algorithm suitable for most purposes.\n\n[RFC 9562]: https://www.rfc-editor.org/rfc/rfc9562.html"
+  },
+  {
+   "kind": "file",
+   "pkg": "weak",
+   "chunk": 0,
+   "title": "weak",
+   "text": "Package weak provides ways to safely reference memory weakly,\nthat is, without preventing its reclamation."
+  }
+ ]
+}

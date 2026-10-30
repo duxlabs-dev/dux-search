@@ -1,0 +1,130 @@
+[
+ {
+  "file": "A_anaa.wav",
+  "source": "https://commons.wikimedia.org/wiki/File:A%27anaa.wav",
+  "original": "File:A'anaa.wav",
+  "license": "CC0",
+  "author": "Santalucialay",
+  "notes": "44.1 kHz mono 16-bit WAV"
+ },
+ {
+  "file": "Alarm_Clock_Directory.Audio_.mp3",
+  "source": "https://commons.wikimedia.org/wiki/File:Alarm_Clock_(Directory.Audio).mp3",
+  "original": "File:Alarm Clock (Directory.Audio).mp3",
+  "license": "CC0",
+  "author": "Yoo-toob-FX (https://directory.audio/authoritems/665-yoo-toob-fx, https://web.archive.org/web/20230721115857/https://dir",
+  "notes": "44.1 kHz stereo MP3 with LAME/Lavf gapless header"
+ },
+ {
+  "file": "Chocha_perdiz_Scolopax_rusticola_y_Mosquitero_comun_Phylloscopus_collybita_.mp3",
+  "source": "https://commons.wikimedia.org/wiki/File:Chocha_perdiz_(Scolopax_rusticola)_y_Mosquitero_com%C3%BAn_(Phylloscopus_collybita).mp3",
+  "original": "File:Chocha perdiz (Scolopax rusticola) y Mosquitero común (Phylloscopus collybita).mp3",
+  "license": "CC0",
+  "author": "ChristianSW",
+  "notes": "48 kHz stereo MP3"
+ },
+ {
+  "file": "Citation_sound_effect_-_the_English_word_citation_sung_by_a_soprano_singer.wav",
+  "source": "https://commons.wikimedia.org/wiki/File:Citation_sound_effect_-_the_English_word_citation_sung_by_a_soprano_singer.wav",
+  "original": "File:Citation sound effect - the English word citation sung by a soprano singer.wav",
+  "license": "CC0",
+  "author": "Caroline Joy &amp; Mike Morrison",
+  "notes": "44.1 kHz stereo 24-bit WAV"
+ },
+ {
+  "file": "Contact_type_8k.wav",
+  "source": "https://commons.wikimedia.org/wiki/File:Contact_type.ogg",
+  "original": "File:Contact type.ogg",
+  "license": "CC0 (derived)",
+  "author": "pavlick",
+  "notes": "derived from Contact_type.ogg: ffmpeg -t 5 -ar 8000 -ac 1 -c:a pcm_s16le (5 s, 8 kHz telephone-rate WAV)"
+ },
+ {
+  "file": "En-us-phone_number.ogg",
+  "source": "https://commons.wikimedia.org/wiki/File:En-us-phone_number.ogg",
+  "original": "File:En-us-phone number.ogg",
+  "license": "CC0",
+  "author": "Steve Shives",
+  "notes": "44.1 kHz stereo Vorbis, 0.51 s: shortest clip"
+ },
+ {
+  "file": "Fake_Metal_Bat.wav",
+  "source": "https://commons.wikimedia.org/wiki/File:Fake_Metal_Bat.wav",
+  "original": "File:Fake Metal Bat.wav",
+  "license": "CC0",
+  "author": "Shawn Eary",
+  "notes": "48 kHz stereo float32 WAV"
+ },
+ {
+  "file": "Fake_Metal_Bat_stereo_24bit.flac",
+  "source": "https://commons.wikimedia.org/wiki/File:Fake_Metal_Bat.wav",
+  "original": "File:Fake Metal Bat.wav",
+  "license": "CC0 (derived)",
+  "author": "Shawn Eary",
+  "notes": "derived from Fake_Metal_Bat.wav: ffmpeg -c:a flac -sample_fmt s32 -bits_per_raw_sample 24 (24-bit stereo FLAC with inter-channel decorrelation)"
+ },
+ {
+  "file": "French_What_is_your_phone_number.wav",
+  "source": "https://commons.wikimedia.org/wiki/File:French_What_is_your_phone_number.wav",
+  "original": "File:French What is your phone number.wav",
+  "license": "CC0",
+  "author": "Czechcamp",
+  "notes": "24 kHz mono 16-bit WAV"
+ },
+ {
+  "file": "Hold_recording_11k_u8_stereo.wav",
+  "source": "https://commons.wikimedia.org/wiki/File:Hold-recording-italy.ogg",
+  "original": "File:Hold-recording-italy.ogg",
+  "license": "CC0 (derived)",
+  "author": "Vittoriochichia",
+  "notes": "derived from Hold-recording-italy.ogg: ffmpeg -ss 3 -t 5 -ar 11025 -ac 2 -c:a pcm_u8 (8-bit unsigned stereo WAV, 5 s)"
+ },
+ {
+  "file": "Lb-jaizen1.mp3",
+  "source": "https://commons.wikimedia.org/wiki/File:Lb-jaizen1.mp3",
+  "original": "File:Lb-jaizen1.mp3",
+  "license": "CC0",
+  "author": "Lëtzebuerger Online Dictionnaire",
+  "notes": "44.1 kHz mono MP3, no gapless header"
+ },
+ {
+  "file": "Or-.flac",
+  "source": "https://commons.wikimedia.org/wiki/File:Or-%E0%AC%9A%E0%AC%89%E0%AC%A4%E0%AC%BE%E0%AC%B0%E0%AC%BF.flac",
+  "original": "File:Or-ଚଉତାରି.flac",
+  "license": "CC0",
+  "author": "Subhashish Panigrahi",
+  "notes": "44.1 kHz mono FLAC"
+ },
+ {
+  "file": "Speech_Prosody_audio_example.wav",
+  "source": "https://commons.wikimedia.org/wiki/File:Speech_Prosody_audio_example.wav",
+  "original": "File:Speech Prosody audio example.wav",
+  "license": "CC0",
+  "author": "Aviad Albert",
+  "notes": "16 kHz mono 16-bit WAV: no resampling"
+ },
+ {
+  "file": "Walk_Sign_22k.flac",
+  "source": "https://commons.wikimedia.org/wiki/File:Walk_Sign_to_Cross_Sixth.ogg",
+  "original": "File:Walk Sign to Cross Sixth.ogg",
+  "license": "Public domain (derived)",
+  "author": "Recording: Mxn\n\nOriginal:  Unknown authorUnknown author",
+  "notes": "derived from Walk_Sign_to_Cross_Sixth.ogg: ffmpeg -t 5 -ar 22050 -ac 1 -sample_fmt s16 -c:a flac (22.05 kHz FLAC)"
+ },
+ {
+  "file": "Walk_Sign_to_Cross_Sixth.ogg",
+  "source": "https://commons.wikimedia.org/wiki/File:Walk_Sign_to_Cross_Sixth.ogg",
+  "original": "File:Walk Sign to Cross Sixth.ogg",
+  "license": "Public domain",
+  "author": "Recording: Mxn\n\nOriginal:  Unknown authorUnknown author",
+  "notes": "48 kHz mono Vorbis"
+ },
+ {
+  "file": "Help_Sortable_tables_Sorting_buttons_in_a_separate_row.ogg",
+  "source": "https://commons.wikimedia.org/wiki/File:Help_Sortable_tables_Sorting_buttons_in_a_separate_row.ogg",
+  "original": "File:Help Sortable tables Sorting buttons in a separate row.ogg",
+  "license": "CC0",
+  "author": "Speaker: Isaidnoway\n\nAuthors of the article",
+  "notes": "44.1 kHz stereo Vorbis, 34 s: longer than the 11.2 s limit; the jfreymuth/oggvorbis decoder deviates from libvorbis on one sample of it (see README)"
+ }
+]

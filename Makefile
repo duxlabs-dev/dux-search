@@ -2,6 +2,10 @@
 
 BINARY_NAME=dsearch
 SOURCE_DIR=cmd/dsearch
+# The embedding helper (semantic search) is a second binary; dsearch looks for it
+# next to its own executable, so it is installed into the same directory.
+HELPER_NAME=dsearch-embed
+HELPER_SOURCE_DIR=cmd/dsearch-embed
 BUILD_DIR=bin
 PREFIX ?= /usr/local
 INSTALL_DIR=$(PREFIX)/bin
@@ -26,18 +30,23 @@ build:
 	@mkdir -p $(BUILD_DIR)
 	CGO_ENABLED=0 $(GO) build $(BUILD_LDFLAGS) -o $(BUILD_DIR)/$(BINARY_NAME) $(SOURCE_DIR)/*.go
 	@echo "Build complete: $(BUILD_DIR)/$(BINARY_NAME)"
+	@echo "Building $(HELPER_NAME)..."
+	CGO_ENABLED=0 $(GO) build -ldflags="-s -w" -o $(BUILD_DIR)/$(HELPER_NAME) ./$(HELPER_SOURCE_DIR)
+	@echo "Build complete: $(BUILD_DIR)/$(HELPER_NAME)"
 
 install:
 	@test -f $(BUILD_DIR)/$(BINARY_NAME) || (echo "ERROR: $(BUILD_DIR)/$(BINARY_NAME) not found, run 'make build' first" && exit 1)
-	@echo "Installing $(BINARY_NAME) to $(INSTALL_DIR)..."
+	@test -f $(BUILD_DIR)/$(HELPER_NAME) || (echo "ERROR: $(BUILD_DIR)/$(HELPER_NAME) not found, run 'make build' first" && exit 1)
+	@echo "Installing $(BINARY_NAME) and $(HELPER_NAME) to $(INSTALL_DIR)..."
 	@mkdir -p $(INSTALL_DIR)
 	@cp $(BUILD_DIR)/$(BINARY_NAME) $(INSTALL_DIR)/$(BINARY_NAME)
-	@chmod +x $(INSTALL_DIR)/$(BINARY_NAME)
+	@cp $(BUILD_DIR)/$(HELPER_NAME) $(INSTALL_DIR)/$(HELPER_NAME)
+	@chmod +x $(INSTALL_DIR)/$(BINARY_NAME) $(INSTALL_DIR)/$(HELPER_NAME)
 	@echo "Installation complete"
 
 uninstall:
-	@echo "Uninstalling $(BINARY_NAME) from $(INSTALL_DIR)..."
-	@rm -f $(INSTALL_DIR)/$(BINARY_NAME)
+	@echo "Uninstalling $(BINARY_NAME) and $(HELPER_NAME) from $(INSTALL_DIR)..."
+	@rm -f $(INSTALL_DIR)/$(BINARY_NAME) $(INSTALL_DIR)/$(HELPER_NAME)
 	@echo "Uninstall complete"
 
 clean:
@@ -66,7 +75,8 @@ dev:
 	@echo "Building $(BINARY_NAME) for development..."
 	@mkdir -p $(BUILD_DIR)
 	$(GO) build -o $(BUILD_DIR)/$(BINARY_NAME) $(SOURCE_DIR)/*.go
-	@echo "Development build complete: $(BUILD_DIR)/$(BINARY_NAME)"
+	$(GO) build -o $(BUILD_DIR)/$(HELPER_NAME) ./$(HELPER_SOURCE_DIR)
+	@echo "Development build complete: $(BUILD_DIR)/$(BINARY_NAME) $(BUILD_DIR)/$(HELPER_NAME)"
 
 check-go:
 	@echo "Checking Go version..."
@@ -97,9 +107,9 @@ uninstall-service:
 help:
 	@echo "Available targets:"
 	@echo "  all              - Build the binary (default)"
-	@echo "  build            - Build the binary"
-	@echo "  install          - Install binary to $(INSTALL_DIR)"
-	@echo "  uninstall        - Remove binary from $(INSTALL_DIR)"
+	@echo "  build            - Build dsearch and the embedding helper dsearch-embed"
+	@echo "  install          - Install both binaries to $(INSTALL_DIR)"
+	@echo "  uninstall        - Remove both binaries from $(INSTALL_DIR)"
 	@echo "  clean            - Clean build artifacts"
 	@echo "  test             - Run tests"
 	@echo "  fmt              - Format Go code"

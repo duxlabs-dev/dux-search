@@ -1,0 +1,274 @@
+[
+ {
+  "file": "Policistky_17_10_2012.jpg",
+  "source": "https://commons.wikimedia.org/wiki/File:!Policistky_17_10_2012.jpg",
+  "original": "File:!Policistky 17 10 2012.jpg",
+  "license": "CC0",
+  "author": "<a href=\"//commons.wikimedia.org/wiki/User:Safranek-interia.eu\" title=\"User:Safranek-interia.eu\">Safranek-interia.eu</a>",
+  "notes": "camera JPEG, 4:2:2, 2592x1944",
+  "level": "full"
+ },
+ {
+  "file": "Clun_and_the_Clun_valley_1295153.jpg",
+  "source": "https://commons.wikimedia.org/wiki/File:%22_Clun%22_and_the_Clun_valley_(1295153).jpg",
+  "original": "File:\" Clun\" and the Clun valley (1295153).jpg",
+  "license": "CC0",
+  "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Percy_Benzie_Abery\" class=\"extiw\" title=\"w:en:Percy Benzie Abery\"><span title=\"British photographer (1876–1948)\">Percy Benzie Abery</span></a></bdi>",
+  "notes": "JPEG 4:2:0, odd height 707",
+  "level": "full"
+ },
+ {
+  "file": "Maison_Nayrac_37_place_du_Marchal_Leclerc_-_09_-_Mirepoix.jpg",
+  "source": "https://commons.wikimedia.org/wiki/File:%22_Maison_Nayrac%22_37_place_du_Mar%C3%A9chal_Leclerc_-_09_-_Mirepoix.jpg",
+  "original": "File:\" Maison Nayrac\" 37 place du Maréchal Leclerc - 09 - Mirepoix.jpg",
+  "license": "CC0",
+  "author": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Koverko&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Koverko (page does not exist)\">Koverko</a>",
+  "notes": "tiny JPEG 102x160 (upscaled to the budget)",
+  "level": "full"
+ },
+ {
+  "file": "Screenshot_Earwigs_Copyvio_error.jpg",
+  "source": "https://commons.wikimedia.org/wiki/File:Screenshot_Earwigs_Copyvio_error.jpg",
+  "original": "File:Screenshot Earwigs Copyvio error.jpg",
+  "license": "CC0",
+  "author": "<a href=\"//commons.wikimedia.org/wiki/User:Joseywales1961\" title=\"User:Joseywales1961\">Joseywales1961</a>",
+  "notes": "JPEG screenshot",
+  "level": "full"
+ },
+ {
+  "file": "Open-Xchange_Screenshot_Einstellungsmen.png",
+  "source": "https://commons.wikimedia.org/wiki/File:Open-Xchange_Screenshot_Einstellungsmen%C3%BC.png",
+  "original": "File:Open-Xchange Screenshot Einstellungsmenü.png",
+  "license": "CC0",
+  "author": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Sphere231&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Sphere231 (page does not exist)\">Sphere231</a>",
+  "notes": "PNG screenshot, RGBA",
+  "level": "full"
+ },
+ {
+  "file": "OsmAnd_Wikivoyage_Integration_2019.png",
+  "source": "https://commons.wikimedia.org/wiki/File:OsmAnd_Wikivoyage_Integration_2019.png",
+  "original": "File:OsmAnd Wikivoyage Integration 2019.png",
+  "license": "CC0",
+  "author": "<a href=\"//commons.wikimedia.org/wiki/User:Mbrickn\" title=\"User:Mbrickn\">Mbrickn</a>",
+  "notes": "portrait PNG phone screenshot, RGB",
+  "level": "full"
+ },
+ {
+  "file": "CW_59_Example.png",
+  "source": "https://commons.wikimedia.org/wiki/File:CW_59_Example.png",
+  "original": "File:CW 59 Example.png",
+  "license": "CC0",
+  "author": "Dr vulpes",
+  "notes": "small wide PNG, RGBA",
+  "level": "full"
+ },
+ {
+  "file": "CodeSandbox_screenshot.webp",
+  "source": "https://commons.wikimedia.org/wiki/File:CodeSandbox_screenshot.webp",
+  "original": "File:CodeSandbox screenshot.webp",
+  "license": "CC0",
+  "author": "<a href=\"//commons.wikimedia.org/wiki/User:Wikideas1\" title=\"User:Wikideas1\">Wikideas1</a>",
+  "notes": "5120x2653 lossy WebP screenshot",
+  "level": "full"
+ },
+ {
+  "file": "hopper.gif",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/hopper.gif",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "GIF palette",
+  "level": "decode"
+ },
+ {
+  "file": "hopper.bmp",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/hopper.bmp",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "BMP 24-bit",
+  "level": "decode"
+ },
+ {
+  "file": "hopper_gray.jpg",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/hopper_gray.jpg",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "grayscale JPEG",
+  "level": "full"
+ },
+ {
+  "file": "pil_sample_cmyk.jpg",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/pil_sample_cmyk.jpg",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "CMYK (Adobe) JPEG",
+  "level": "full"
+ },
+ {
+  "file": "pil_sample_rgb.jpg",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/pil_sample_rgb.jpg",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "JPEG 4:4:4 Adobe",
+  "level": "full"
+ },
+ {
+  "file": "flower.jpg",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/flower.jpg",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "JPEG 4:2:0",
+  "level": "full"
+ },
+ {
+  "file": "flower.webp",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/flower.webp",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "lossy WebP",
+  "level": "decode"
+ },
+ {
+  "file": "hopper_orientation_2.jpg",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/hopper_orientation_2.jpg",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "EXIF orientation 2",
+  "level": "decode"
+ },
+ {
+  "file": "hopper_orientation_3.jpg",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/hopper_orientation_3.jpg",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "EXIF orientation 3",
+  "level": "decode"
+ },
+ {
+  "file": "hopper_orientation_4.jpg",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/hopper_orientation_4.jpg",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "EXIF orientation 4",
+  "level": "decode"
+ },
+ {
+  "file": "hopper_orientation_5.jpg",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/hopper_orientation_5.jpg",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "EXIF orientation 5",
+  "level": "decode"
+ },
+ {
+  "file": "hopper_orientation_6.jpg",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/hopper_orientation_6.jpg",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "EXIF orientation 6",
+  "level": "full"
+ },
+ {
+  "file": "hopper_orientation_7.jpg",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/hopper_orientation_7.jpg",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "EXIF orientation 7",
+  "level": "decode"
+ },
+ {
+  "file": "hopper_orientation_8.jpg",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/hopper_orientation_8.jpg",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "EXIF orientation 8",
+  "level": "decode"
+ },
+ {
+  "file": "hopper_orientation_6.webp",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/hopper_orientation_6.webp",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "WebP with EXIF orientation 6",
+  "level": "decode"
+ },
+ {
+  "file": "transparent.png",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/transparent.png",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "RGBA PNG with transparency",
+  "level": "full"
+ },
+ {
+  "file": "transparent.webp",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/transparent.webp",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "WebP with alpha",
+  "level": "full"
+ },
+ {
+  "file": "transparent.gif",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/transparent.gif",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "GIF with a transparent index",
+  "level": "decode"
+ },
+ {
+  "file": "pil123p.png",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/pil123p.png",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "palette PNG with tRNS",
+  "level": "full"
+ },
+ {
+  "file": "l_trns.png",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/l_trns.png",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "grey PNG with tRNS",
+  "level": "full"
+ },
+ {
+  "file": "tiff_16bit_RGB_target.png",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/tiff_16bit_RGB_target.png",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "16-bit RGB PNG",
+  "level": "full"
+ },
+ {
+  "file": "iss634.gif",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/iss634.gif",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "animated GIF, first frame",
+  "level": "decode"
+ },
+ {
+  "file": "iss634.webp",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/iss634.webp",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "animated WebP, first frame",
+  "level": "decode"
+ },
+ {
+  "file": "test.colors.gif",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/test.colors.gif",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "GIF 807x606",
+  "level": "full"
+ },
+ {
+  "file": "orientation_rectangle.jpg",
+  "source": "https://github.com/python-pillow/Pillow/blob/main/Tests/images/orientation_rectangle.jpg",
+  "license": "MIT-CMU (Pillow test fixtures)",
+  "author": "Pillow contributors",
+  "notes": "2x1 JPEG with orientation 8",
+  "level": "full"
+ }
+]

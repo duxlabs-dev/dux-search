@@ -1,0 +1,147 @@
+{
+ "source": "degerlendirme/eylem_eslesme.py (Semantic Search for Linux)",
+ "actions": [
+  {
+   "key": "dark",
+   "text": "Dark theme. Switch the desktop color scheme between dark mode and light mode; night theme, black interface."
+  },
+  {
+   "key": "nightlight",
+   "text": "Night Light. Warm, yellowish screen colors that reduce blue light and eye strain; tired eyes, reading at night."
+  },
+  {
+   "key": "dnd",
+   "text": "Do Not Disturb. Silence and hide notifications and alerts."
+  },
+  {
+   "key": "vol",
+   "text": "Volume. Turn the speaker sound up or down, louder or quieter, mute audio output."
+  },
+  {
+   "key": "mic",
+   "text": "Microphone mute. Mute or unmute the microphone input for calls."
+  },
+  {
+   "key": "bright",
+   "text": "Display brightness. Make the screen brighter or dimmer."
+  },
+  {
+   "key": "kbd",
+   "text": "Keyboard backlight. Turn keyboard illumination on or off."
+  },
+  {
+   "key": "wifi",
+   "text": "Wi-Fi. Turn the wireless network and internet connection on or off, join a network."
+  },
+  {
+   "key": "bt",
+   "text": "Bluetooth. Turn Bluetooth on or off, connect wireless headphones, earbuds, speakers and devices."
+  },
+  {
+   "key": "plane",
+   "text": "Airplane mode. Disable all wireless radios at once."
+  },
+  {
+   "key": "vpn",
+   "text": "VPN. Connect or disconnect the virtual private network."
+  },
+  {
+   "key": "perf",
+   "text": "Power profile. Choose performance, balanced or power saver to extend battery life."
+  },
+  {
+   "key": "lock",
+   "text": "Lock screen. Lock the session so a password is needed."
+  },
+  {
+   "key": "sleep",
+   "text": "Suspend. Put the computer to sleep."
+  },
+  {
+   "key": "shot",
+   "text": "Screenshot. Capture an image of a region or the full screen."
+  },
+  {
+   "key": "rec",
+   "text": "Screen recording. Start or stop recording a video of the screen."
+  },
+  {
+   "key": "close",
+   "text": "Close window. Close the currently focused application window."
+  },
+  {
+   "key": "float",
+   "text": "Floating window. Make the focused window float above the tiled layout."
+  },
+  {
+   "key": "timer",
+   "text": "Timer. Start a countdown timer for a number of minutes."
+  },
+  {
+   "key": "lamp",
+   "text": "Room light. Turn the smart home room lamp or flashlight on or off."
+  }
+ ],
+ "queries": [
+  {
+   "text": "karanlık",
+   "want": "dark"
+  },
+  {
+   "text": "gözlerim yoruldu",
+   "want": "nightlight"
+  },
+  {
+   "text": "kablosuz kulaklık",
+   "want": "bt"
+  },
+  {
+   "text": "fener",
+   "want": "lamp"
+  },
+  {
+   "text": "sesi kıs",
+   "want": "vol"
+  },
+  {
+   "text": "parlaklığı %40 yap",
+   "want": "bright"
+  },
+  {
+   "text": "bildirimleri sustur",
+   "want": "dnd"
+  },
+  {
+   "text": "pil tasarrufu",
+   "want": "perf"
+  },
+  {
+   "text": "ekranı kaydet",
+   "want": "rec"
+  },
+  {
+   "text": "15 dakika zamanlayıcı kur",
+   "want": "timer"
+  },
+  {
+   "text": "oda ışığını aç",
+   "want": "lamp"
+  },
+  {
+   "text": "internet kapat",
+   "want": "wifi"
+  },
+  {
+   "text": "bilgisayarı uyut",
+   "want": "sleep"
+  },
+  {
+   "text": "pencereyi kapat",
+   "want": "close"
+  },
+  {
+   "text": "mikrofonu kapat",
+   "want": "mic"
+  }
+ ]
+}

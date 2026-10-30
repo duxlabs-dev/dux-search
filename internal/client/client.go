@@ -9,6 +9,7 @@ import (
 	bleve "github.com/blevesearch/bleve/v2"
 	"github.com/blevesearch/bleve/v2/search"
 	"github.com/duxlabs-dev/dux-search/internal/config"
+	"github.com/duxlabs-dev/dux-search/internal/semantic/service"
 )
 
 const (
@@ -18,9 +19,16 @@ const (
 
 var ErrServiceNotRunning = errors.New("service not running")
 
+// SearchResult is the search response. Hits shadows the embedded lexical Hits so
+// each hit can carry semantic_score; the fields after DirectoryHits only appear
+// when the request asked for semantic results.
 type SearchResult struct {
 	*bleve.SearchResult
 	DirectoryHits search.DocumentMatchCollection `json:"directory_hits,omitempty"`
+	Hits          []service.ResultHit            `json:"hits"`
+	Collections   []service.CollectionHits       `json:"collections,omitempty"`
+	Semantic      *service.SemanticInfo          `json:"semantic,omitempty"`
+	LexicalError  string                         `json:"lexical_error,omitempty"`
 }
 
 func findRunningSocket() (string, error) {
@@ -36,6 +44,17 @@ func findRunningSocket() (string, error) {
 		}
 		time.Sleep(socketPollGap)
 	}
+}
+
+// SocketPath returns the socket of the running service without waiting for one
+// to appear; it is ErrServiceNotRunning when there is none.
+func SocketPath() (string, error) {
+	for _, name := range []string{"dsearch", "danksearch"} {
+		if socketPath, err := ipc.FindRunningSocket(name); err == nil {
+			return socketPath, nil
+		}
+	}
+	return "", ErrServiceNotRunning
 }
 
 func sendRequest(method string, params map[string]any) (json.RawMessage, error) {
@@ -92,6 +111,12 @@ type SearchOptions struct {
 	ExifLonMax      float64
 	XattrTags       string
 	Type            string
+
+	// Semantic also searches by meaning; Collections (with Semantic) are searched
+	// too, CollectionLimit hits each (0 = server default).
+	Semantic        bool
+	Collections     []string
+	CollectionLimit int
 }
 
 func Search(query string, limit int) (*SearchResult, error) {
@@ -188,6 +213,15 @@ func SearchWithOptions(opts *SearchOptions) (*SearchResult, error) {
 	}
 	if opts.Type != "" {
 		params["type"] = opts.Type
+	}
+	if opts.Semantic {
+		params["semantic"] = true
+	}
+	if len(opts.Collections) > 0 {
+		params["collections"] = opts.Collections
+	}
+	if opts.CollectionLimit > 0 {
+		params["collection_limit"] = opts.CollectionLimit
 	}
 
 	result, err := sendRequest("search", params)

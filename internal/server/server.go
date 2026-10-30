@@ -11,8 +11,10 @@ const (
 
 func NewUnix(router *Router) *ipc.Server {
 	return ipc.NewServer(ipc.Config{
-		AppName:     "dsearch",
-		APIVersion:  APIVersion,
-		MaxLineSize: maxLineSize,
+		AppName:      "dsearch",
+		APIVersion:   APIVersion,
+		Capabilities: Capabilities,
+		MaxLineSize:  maxLineSize,
+		Bus:          router.Bus(),
 	}, router.Handle)
 }

@@ -55,7 +55,11 @@
             src = ./.;
             vendorHash = "sha256-MkRBJPsHHgH2z/hTt8Z6SM/+KNQ8PuipBALW8qbJldE=";
 
-            subPackages = [ "cmd/dsearch" ];
+            # dsearch-embed is the model helper that dsearch starts next to itself
+            subPackages = [
+              "cmd/dsearch"
+              "cmd/dsearch-embed"
+            ];
 
             ldflags = [
               "-s"

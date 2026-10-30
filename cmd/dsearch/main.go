@@ -165,12 +165,18 @@ var versionCmd = &cobra.Command{
 		if versionJSON {
 			enc := json.NewEncoder(os.Stdout)
 			enc.SetIndent("", "  ")
-			enc.Encode(map[string]any{
+			info := map[string]any{
 				"version":      Version,
 				"build_time":   buildTime,
 				"commit":       commit,
 				"index_schema": indexer.SchemaVersion,
-			})
+				"capabilities": server.Capabilities,
+			}
+			// socket is where a running service listens; it is left out when none is.
+			if socket, err := client.SocketPath(); err == nil {
+				info["socket"] = socket
+			}
+			enc.Encode(info)
 			return
 		}
 		log.Infof("dsearch version %s", Version)
@@ -303,6 +309,10 @@ func runServe(cmd *cobra.Command, args []string) error {
 	}
 	defer closeIndexOrGiveUp(idx, indexCloseTimeout)
 
+	// Before the first (re)index so no file event is missed by the embedding queue.
+	sem := startSemantic(cfg, idx)
+	defer sem.close()
+
 	count, err := idx.GetDocCount()
 	if err != nil {
 		return err
@@ -352,10 +362,10 @@ func runServe(cmd *cobra.Command, args []string) error {
 	})}
 
 	if httpRequested(cfg) {
-		runners = append(runners, server.NewHTTP(cfg.ListenAddr, idx, w))
+		runners = append(runners, server.NewHTTP(cfg.ListenAddr, idx, w, server.WithSemantic(sem.svc)))
 	}
 
-	unixServer := server.NewUnix(server.NewRouter(idx, w, cfg))
+	unixServer := server.NewUnix(server.NewRouter(idx, w, cfg, server.WithSemantic(sem.svc)))
 	if err := unixServer.Listen(); err != nil {
 		return err
 	}
@@ -434,6 +444,9 @@ func runSearch(cmd *cobra.Command, args []string) error {
 		ExifLonMax:      searchExifLonMax,
 		XattrTags:       searchXattrTags,
 		Type:            searchType,
+		Semantic:        searchSemantic || len(searchCollections) > 0,
+		Collections:     searchCollections,
+		CollectionLimit: searchCollectionLimit,
 	}
 
 	result, err := client.SearchWithOptions(clientOpts)
@@ -447,6 +460,10 @@ func runSearch(cmd *cobra.Command, args []string) error {
 
 		log.Infof("found %d results in %s", result.Total, result.Took)
 		for i, hit := range result.Hits {
+			if hit.SemanticScore != nil {
+				log.Infof("%d. %s (score: %.4f, semantic: %.4f)", i+1, hit.ID, hit.Score, *hit.SemanticScore)
+				continue
+			}
 			log.Infof("%d. %s (score: %.4f)", i+1, hit.ID, hit.Score)
 		}
 		if len(result.DirectoryHits) > 0 {
@@ -455,9 +472,14 @@ func runSearch(cmd *cobra.Command, args []string) error {
 				log.Infof("%d. %s (score: %.4f)", i+1, hit.ID, hit.Score)
 			}
 		}
+		printSemanticResult(result)
 		return nil
 	case !errors.Is(err, client.ErrServiceNotRunning):
 		return err
+	}
+
+	if clientOpts.Semantic {
+		log.Warnf("semantic search needs the running service (dsearch serve); showing lexical results only")
 	}
 
 	idx, err := openLocalIndexer(buildConfig(), 3*time.Second)
