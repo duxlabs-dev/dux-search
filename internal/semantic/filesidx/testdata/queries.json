@@ -1,0 +1,13 @@
+[
+  {"collection": "files.text",  "query": "Türk gençliğinin cumhuriyeti koruma görevi", "want": ["gencligehitabe.txt", "hitabe_windows1254.txt", "hitabe_utf16.txt"]},
+  {"collection": "files.text",  "query": "the duty of the youth to defend the republic and independence", "want": ["gencligehitabe.txt", "hitabe_windows1254.txt", "hitabe_utf16.txt"]},
+  {"collection": "files.text",  "query": "Mr. Bennet and his wife talk about a rich bachelor moving into the neighbourhood", "want": ["pride_and_prejudice.txt"]},
+  {"collection": "files.text",  "query": "sort a slice of integers in Go", "want": ["sort.go"]},
+  {"collection": "files.text",  "query": "efficiently build a string by appending bytes", "want": ["builder.go"]},
+  {"collection": "files.image", "query": "photo of the planet Earth seen from space", "want": ["earth.jpg"]},
+  {"collection": "files.image", "query": "a cat with blue eyes", "want": ["cat.jpg"]},
+  {"collection": "files.image", "query": "footprint in lunar soil", "want": ["bootprint.jpg"]},
+  {"collection": "files.image", "query": "hata ekran görüntüsü", "want": ["error_screenshot.png"]},
+  {"collection": "files.audio", "query": "a man speaking about walking on the moon", "want": ["small_step.ogg"]},
+  {"collection": "files.audio", "query": "calm piano music", "want": ["chopin_nocturne_8s.flac"]}
+]

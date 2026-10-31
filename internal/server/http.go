@@ -11,11 +11,16 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 )
 
-func NewHTTP(addr string, indexer api.IndexerInterface, watcher api.WatcherInterface) *httpapi.Server {
-	return httpapi.NewServer(addr, newHTTPHandler(indexer, watcher))
+func NewHTTP(addr string, indexer api.IndexerInterface, watcher api.WatcherInterface, opts ...RouterOption) *httpapi.Server {
+	return httpapi.NewServer(addr, newHTTPHandler(indexer, watcher, opts...))
 }
 
-func newHTTPHandler(indexer api.IndexerInterface, watcher api.WatcherInterface) http.Handler {
+func newHTTPHandler(indexer api.IndexerInterface, watcher api.WatcherInterface, opts ...RouterOption) http.Handler {
+	var sem Router // only used to collect the semantic option
+	for _, opt := range opts {
+		opt(&sem)
+	}
+
 	r := chi.NewRouter()
 
 	r.Get("/health", func(w http.ResponseWriter, r *http.Request) {
@@ -37,8 +42,9 @@ func newHTTPHandler(indexer api.IndexerInterface, watcher api.WatcherInterface) 
 		r.Get("/docs", httpapi.DocsHandler("Dux Search API Reference"))
 
 		srv := &api.Server{
-			Indexer: indexer,
-			Watcher: watcher,
+			Indexer:  indexer,
+			Watcher:  watcher,
+			Semantic: sem.semantic,
 		}
 
 		api.RegisterHandlers(srv, humaAPI)
