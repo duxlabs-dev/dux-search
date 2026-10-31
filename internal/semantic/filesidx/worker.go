@@ -158,7 +158,7 @@ func (x *Indexer) process(ctx context.Context, st *stateDB, q pendingQueued) out
 	}
 	j.info = info
 	j.kind = x.kindOf(j.path)
-	if j.kind == "" || !x.kinds[j.kind] || !x.cfg.Allow(j.path) {
+	if !x.embeddable(j.path) {
 		return j.remove(ctx)
 	}
 	if j.hasOl && j.old.current(info, j.kind) {

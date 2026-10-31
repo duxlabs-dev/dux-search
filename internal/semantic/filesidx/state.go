@@ -144,18 +144,24 @@ func seqKey(seq uint64) []byte {
 }
 
 // enqueueBatch queues many events in one transaction. A path that is already
-// queued keeps its position and takes the newer operation.
+// queued keeps its position and takes the newer operation. A deletion of a
+// path that is neither queued nor recorded has nothing to remove and is
+// dropped.
 func (s *stateDB) enqueueBatch(ops map[string]Op) (added int, err error) {
 	if len(ops) == 0 {
 		return 0, nil
 	}
 	err = s.db.Update(func(tx *bolt.Tx) error {
 		added = 0
-		q, idx := tx.Bucket(bQueue), tx.Bucket(bIdx)
+		q, idx, files := tx.Bucket(bQueue), tx.Bucket(bIdx), tx.Bucket(bFiles)
 		for path, op := range ops {
 			var seq uint64
 			item := queueItem{Path: path, Op: op}
-			if cur := idx.Get([]byte(path)); cur != nil {
+			cur := idx.Get([]byte(path))
+			if cur == nil && op == OpDelete && files.Get([]byte(path)) == nil {
+				continue
+			}
+			if cur != nil {
 				seq = binary.BigEndian.Uint64(cur)
 				var old queueItem
 				if raw := q.Get(seqKey(seq)); raw != nil && json.Unmarshal(raw, &old) == nil {

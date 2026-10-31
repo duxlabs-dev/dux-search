@@ -473,7 +473,7 @@ func TestEnqueueBurstIsFastAndDeduplicated(t *testing.T) {
 		r.x.Enqueue(filepath.Join(r.root, "burst", strconv.Itoa(i)+".txt"), OpIndex)
 	}
 	for i := 0; i < n; i++ { // the same paths again: still one entry each
-		r.x.Enqueue(filepath.Join(r.root, "burst", strconv.Itoa(i)+".txt"), OpDelete)
+		r.x.Enqueue(filepath.Join(r.root, "burst", strconv.Itoa(i)+".txt"), OpIndex)
 	}
 	r.x.Enqueue("relative/path.txt", OpIndex) // ignored
 	r.x.Enqueue(filepath.Join(r.root, "x.txt"), Op(99))
@@ -588,4 +588,74 @@ func mustRecord(t *testing.T, st *stateDB, path string) (record, bool) {
 		t.Fatal(err)
 	}
 	return rec, ok
+}
+
+func TestOnlyEmbeddableFilesAreQueued(t *testing.T) {
+	r := newRig(t, func(c *Config) {
+		c.Allow = func(p string) bool { return !strings.Contains(p, "/excluded/") }
+	})
+	r.power.on.Store(true) // hold the worker so the queue can be counted
+	r.start()
+
+	// A checkout of a large source tree: mostly files that cannot be embedded.
+	var want []string
+	for i := 0; i < 2000; i++ {
+		d := filepath.Join("tree", strconv.Itoa(i%40))
+		for _, name := range []string{"mod.ko", "lib.o", "Android.bp", "blob.bin", "Makefile"} {
+			r.x.Enqueue(r.write(filepath.Join(d, strconv.Itoa(i)+name), []byte("x")), OpIndex)
+		}
+	}
+	for _, f := range []string{"sort.go", "gencligehitabe.txt"} {
+		want = append(want, r.copyFixture(filepath.Join("files", f), filepath.Join("tree", f)))
+		r.copyFixture(filepath.Join("files", f), filepath.Join("excluded", f))
+		r.x.Enqueue(filepath.Join(r.root, "excluded", f), OpIndex)
+	}
+	want = append(want, r.copyFixture("media/cat.jpg", "tree/cat.jpg"))
+	for _, p := range want {
+		r.x.Enqueue(p, OpIndex)
+	}
+	for i := 0; i < 2000; i++ { // deletions of files that were never embedded
+		r.x.Enqueue(filepath.Join(r.root, "gone", strconv.Itoa(i)+".txt"), OpDelete)
+	}
+
+	r.waitFor("events written to the queue", func() bool { return r.x.Progress().Pending == len(want) })
+	time.Sleep(300 * time.Millisecond) // a few more writer ticks
+	if n, err := r.x.st.pendingCount(); err != nil || n != len(want) {
+		t.Fatalf("queue holds %d items (err %v), want the %d embeddable files", n, err, len(want))
+	}
+
+	r.power.on.Store(false)
+	p := r.settle()
+	if p.Done != int64(len(want)) || p.Indexed != len(want) || p.Failed != 0 {
+		t.Fatalf("%+v, want %d files processed", p, len(want))
+	}
+	for _, id := range allIDs(r.store) {
+		if strings.Contains(id, "/excluded/") {
+			t.Fatalf("excluded file has vector %s", id)
+		}
+	}
+}
+
+func TestIndexEventForNewlyExcludedFileRemovesVectors(t *testing.T) {
+	r := newRig(t, nil)
+	files := r.corpus()
+	r.start()
+	r.enqueueAll(files)
+	r.settle()
+	r.stop()
+
+	// The file is excluded now; the next change event for it must still
+	// remove what was embedded before, without a full Reconcile.
+	r.cfg.Allow = func(p string) bool { return !strings.Contains(p, "pride") }
+	r.start()
+	r.x.Enqueue(files["pride_and_prejudice.txt"], OpIndex)
+	p := r.settle()
+	for _, id := range r.store.ids(CollectionText) {
+		if strings.Contains(id, "pride") {
+			t.Fatalf("excluded document still has vector %s", id)
+		}
+	}
+	if p.Indexed != len(files)-1 {
+		t.Errorf("records: %d, want %d", p.Indexed, len(files)-1)
+	}
 }

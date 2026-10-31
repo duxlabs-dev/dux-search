@@ -5,7 +5,10 @@
 // under the file path.
 //
 // File events arrive through Enqueue (or Reconcile, which compares a full file
-// list with what was embedded). They are persisted in a bbolt queue, so work
+// list with what was embedded). Only files that can be embedded, and files
+// that already have vectors or a record, enter the queue: a large source tree
+// or a download of unsupported files leaves it untouched. Events are
+// persisted in a bbolt queue, so work
 // survives a restart, and are processed on one low priority thread. The
 // indexer pauses while the machine runs on battery or the user is at the
 // keyboard, and waits while the embedding model is not installed.
@@ -216,6 +219,9 @@ func New(cfg Config, emb semantic.Embedder, store semantic.VectorStore) *Indexer
 
 // Enqueue records a file event. It returns quickly: events are batched into
 // the persistent queue by a writer goroutine. The last event for a path wins.
+// A file that cannot be embedded (unsupported type, disabled kind, excluded
+// path) is recorded as a deletion, which only enters the queue when the file
+// has vectors or a record to remove.
 // After a crash the last few hundred milliseconds of events can be missing;
 // call Reconcile at startup to catch up.
 func (x *Indexer) Enqueue(path string, op Op) {
@@ -223,6 +229,9 @@ func (x *Indexer) Enqueue(path string, op Op) {
 		return
 	}
 	path = filepath.Clean(path)
+	if op == OpIndex && !x.embeddable(path) {
+		op = OpDelete
+	}
 	x.mu.Lock()
 	// Backpressure: wait for the writer, but never block the caller for long
 	// when the state file cannot be written (Reconcile recovers dropped events).
@@ -533,11 +542,10 @@ func (x *Indexer) needsWork(st *stateDB, path string) (bool, error) {
 	if err != nil || !info.Mode().IsRegular() {
 		return has, nil
 	}
-	kind := x.kindOf(path)
-	if kind == "" || !x.kinds[kind] || !x.cfg.Allow(path) {
+	if !x.embeddable(path) {
 		return has && rec.Kind != "", nil
 	}
-	return !has || !rec.current(info, kind), nil
+	return !has || !rec.current(info, x.kindOf(path)), nil
 }
 
 // current says that nothing has to be done for the file as it is on disk.
@@ -548,6 +556,13 @@ func (r record) current(info os.FileInfo, kind string) bool {
 
 var imageExts = map[string]bool{".jpg": true, ".jpeg": true, ".png": true, ".gif": true, ".webp": true, ".bmp": true}
 var audioExts = map[string]bool{".wav": true, ".flac": true, ".mp3": true, ".ogg": true, ".oga": true}
+
+// embeddable says from the path alone whether the file is one to embed: a
+// kind that is enabled, outside dsearch's exclusions.
+func (x *Indexer) embeddable(path string) bool {
+	kind := x.kindOf(path)
+	return kind != "" && x.kinds[kind] && x.cfg.Allow(path)
+}
 
 // kindOf classifies a path by its extension.
 func (x *Indexer) kindOf(path string) string {
