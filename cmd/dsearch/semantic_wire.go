@@ -79,6 +79,7 @@ func startSemantic(cfg *config.Config, idx *indexer.Indexer) *semanticRuntime {
 		ModelDir:   cfg.Semantic.ModelDir,
 		ORTLibrary: cfg.Semantic.OnnxRuntimeLib,
 		Threads:    cfg.Semantic.Threads,
+		Device:     cfg.Semantic.Device,
 		IdleUnload: cfg.Semantic.IdleUnload(),
 	})
 	if err != nil {

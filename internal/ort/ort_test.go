@@ -166,3 +166,15 @@ func TestTextModel(t *testing.T) {
 		t.Fatal("unknown output must fail with the runtime's message")
 	}
 }
+
+func TestProvidersIncludeCPU(t *testing.T) {
+	rt := loadOrSkip(t)
+	ps, err := rt.Providers()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !rt.HasProvider("CPUExecutionProvider") {
+		t.Fatalf("providers %v lack the CPU", ps)
+	}
+	t.Logf("providers: %v", ps)
+}

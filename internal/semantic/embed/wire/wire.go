@@ -79,6 +79,7 @@ type Response struct {
 	N       int      `json:"n,omitempty"`
 	Dim     int      `json:"dim,omitempty"`
 	Loaded  []string `json:"loaded,omitempty"`
+	Device  string   `json:"device,omitempty"`  // with Loaded: "cpu" or "cuda"
 	Helper  string   `json:"helper,omitempty"`  // hello: protocol and build
 	Runtime string   `json:"runtime,omitempty"` // hello: onnxruntime version
 	Proto   int      `json:"proto,omitempty"`

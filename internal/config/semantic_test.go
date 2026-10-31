@@ -26,6 +26,7 @@ func TestSemanticDefaults(t *testing.T) {
 	assert.Equal(t, filepath.Join(data, "dsearch", "models", "embeddinggemma-2"), cfg.Semantic.ModelDir)
 	assert.Empty(t, cfg.Semantic.OnnxRuntimeLib)
 	assert.Zero(t, cfg.Semantic.Threads)
+	assert.Equal(t, "auto", cfg.Semantic.Device)
 	assert.Equal(t, 10, cfg.Semantic.IdleUnloadMinutes)
 	assert.Equal(t, 10*time.Minute, cfg.Semantic.IdleUnload())
 	assert.True(t, cfg.Semantic.IndexText && cfg.Semantic.IndexImages && cfg.Semantic.IndexAudio)
@@ -62,6 +63,7 @@ enabled = true
 model_dir = "~/gemma"
 onnxruntime_lib = "$MODELS_ROOT/lib/libonnxruntime.so"
 threads = 2
+device = "cuda"
 idle_unload_minutes = 30
 index_images = false
 max_chunks_per_file = 3
@@ -74,6 +76,7 @@ pause_on_battery = false
 	assert.Equal(t, filepath.Join(home, "gemma"), s.ModelDir, "~ is expanded")
 	assert.Equal(t, "/srv/models/lib/libonnxruntime.so", s.OnnxRuntimeLib, "$VARS are expanded")
 	assert.Equal(t, 2, s.Threads)
+	assert.Equal(t, "cuda", s.Device)
 	assert.Equal(t, 30*time.Minute, s.IdleUnload())
 	assert.True(t, s.IndexText, "unset keys keep their default")
 	assert.False(t, s.IndexImages)
@@ -96,6 +99,7 @@ func TestSemanticValidation(t *testing.T) {
 		"empty model dir":    {`model_dir = ""`, "semantic.model_dir"},
 		"relative model dir": {`model_dir = "models/gemma"`, "semantic.model_dir"},
 		"relative ort":       {`onnxruntime_lib = "libonnxruntime.so"`, "semantic.onnxruntime_lib"},
+		"unknown device":     {`device = "gpu"`, "semantic.device"},
 	} {
 		t.Run(name, func(t *testing.T) {
 			_, err := Load(writeConfig(t, "[semantic]\n"+tc.body+"\n"))

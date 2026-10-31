@@ -29,6 +29,7 @@ func main() {
 	flag.StringVar(&cfg.ModelDir, "model-dir", "", "model directory (onnx/, tokenizer.model, config.json)")
 	flag.StringVar(&cfg.ORTLibrary, "ort-lib", "", "path to libonnxruntime.so (default: standard locations)")
 	flag.IntVar(&cfg.Threads, "threads", 0, "intra-op threads (0 = min(4, CPUs))")
+	flag.StringVar(&cfg.Device, "device", engine.DeviceAuto, "auto, cpu or cuda")
 	flag.BoolVar(&showVersion, "version", false, "print the version and exit")
 	flag.Parse()
 	if showVersion {
@@ -150,7 +151,7 @@ func handle(eng *engine.Engine, initErr error, j job) (resp wire.Response, blob 
 		resp.OK, resp.Proto = true, wire.Protocol
 		resp.Helper, resp.Runtime = version, eng.RuntimeVersion()
 	case wire.OpStatus:
-		resp.OK, resp.Loaded = true, towerNames(eng)
+		resp.OK, resp.Loaded, resp.Device = true, towerNames(eng), eng.Device()
 	case wire.OpLoad, wire.OpUnload:
 		mods, err := parseTowers(j.req.Towers)
 		if err == nil && j.req.Op == wire.OpLoad {
@@ -161,7 +162,7 @@ func handle(eng *engine.Engine, initErr error, j job) (resp wire.Response, blob 
 		if err != nil {
 			return fail(j.req.ID, code(err), err), nil
 		}
-		resp.OK, resp.Loaded = true, towerNames(eng)
+		resp.OK, resp.Loaded, resp.Device = true, towerNames(eng), eng.Device()
 	case wire.OpText, wire.OpImage, wire.OpAudio:
 		vecs, err := embed(eng, j)
 		if err != nil {
@@ -172,7 +173,7 @@ func handle(eng *engine.Engine, initErr error, j job) (resp wire.Response, blob 
 		for _, v := range vecs {
 			blob = wire.AppendFloat32(blob, v)
 		}
-		resp.Loaded = towerNames(eng)
+		resp.Loaded, resp.Device = towerNames(eng), eng.Device()
 	default:
 		return fail(j.req.ID, wire.CodeBadRequest, fmt.Errorf("unknown op %q", j.req.Op)), nil
 	}

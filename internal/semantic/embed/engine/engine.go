@@ -54,11 +54,23 @@ func Invalid(format string, a ...any) error {
 	return &kindError{ErrInvalidInput, fmt.Sprintf(format, a...)}
 }
 
+// Devices the towers run on.
+const (
+	DeviceAuto = "auto" // the GPU when the runtime and the driver can use it, else the CPU
+	DeviceCPU  = "cpu"
+	DeviceCUDA = "cuda" // an NVIDIA GPU through the CUDA execution provider; no fallback
+)
+
 // Config selects the model and runtime.
 type Config struct {
 	ModelDir   string // contains onnx/, tokenizer.model, config.json
 	ORTLibrary string // "" = standard locations
 	Threads    int    // intra-op threads; 0 = min(4, NumCPU)
+	Device     string // DeviceAuto, DeviceCPU or DeviceCUDA; "" = DeviceAuto
+	// GPUMemLimit caps the video memory of each tower's arena in bytes; 0 =
+	// no limit. A run that needs more fails (and is repeated on the CPU with
+	// DeviceAuto).
+	GPUMemLimit uint64
 }
 
 // tower file names (int8 export).
@@ -79,6 +91,11 @@ type Engine struct {
 	tokens   specialTokens
 	dim      int
 	sessions map[semantic.Modality]*ort.Session
+	onGPU    map[semantic.Modality]bool
+	gpuErr   error // why DeviceAuto fell back to the CPU; the GPU is not tried again
+	// cpuSpare holds CPU sessions of GPU towers, opened when a run failed on
+	// the GPU (DeviceAuto only).
+	cpuSpare map[semantic.Modality]*ort.Session
 }
 
 // specialTokens are the ids that wrap image and audio placeholders, read from
@@ -93,6 +110,13 @@ func New(cfg Config) (*Engine, error) {
 	if cfg.Threads <= 0 {
 		cfg.Threads = min(4, runtime.NumCPU())
 	}
+	switch cfg.Device {
+	case "":
+		cfg.Device = DeviceAuto
+	case DeviceAuto, DeviceCPU, DeviceCUDA:
+	default:
+		return nil, Invalid("unknown device %q (want %s, %s or %s)", cfg.Device, DeviceAuto, DeviceCPU, DeviceCUDA)
+	}
 	if _, err := os.Stat(filepath.Join(cfg.ModelDir, "config.json")); err != nil {
 		return nil, unavailable("model directory %s: %v", cfg.ModelDir, err)
 	}
@@ -100,11 +124,38 @@ func New(cfg Config) (*Engine, error) {
 	if err != nil {
 		return nil, unavailable("%v", err)
 	}
-	return &Engine{cfg: cfg, rt: rt, sessions: map[semantic.Modality]*ort.Session{}}, nil
+	return &Engine{cfg: cfg, rt: rt, sessions: map[semantic.Modality]*ort.Session{}, onGPU: map[semantic.Modality]bool{}, cpuSpare: map[semantic.Modality]*ort.Session{}}, nil
 }
 
 // RuntimeVersion returns the ONNX Runtime version in use.
 func (e *Engine) RuntimeVersion() string { return e.rt.Version() }
+
+// Device names where the loaded towers run: DeviceCUDA when any of them is on
+// the GPU, DeviceCPU otherwise, "" when none is loaded.
+func (e *Engine) Device() string {
+	e.mu.Lock()
+	defer e.mu.Unlock()
+	if len(e.sessions) == 0 {
+		return ""
+	}
+	for m := range e.sessions {
+		if e.onGPU[m] {
+			return DeviceCUDA
+		}
+	}
+	return DeviceCPU
+}
+
+// wantGPU says whether the next tower is put on the GPU.
+func (e *Engine) wantGPU() bool {
+	switch e.cfg.Device {
+	case DeviceCUDA:
+		return true
+	case DeviceCPU:
+		return false
+	}
+	return e.gpuErr == nil && e.rt.HasProvider(ort.ProviderCUDA)
+}
 
 // Close releases all sessions and the runtime environment.
 func (e *Engine) Close() {
@@ -113,6 +164,10 @@ func (e *Engine) Close() {
 	for m, s := range e.sessions {
 		s.Close()
 		delete(e.sessions, m)
+	}
+	for m, s := range e.cpuSpare {
+		s.Close()
+		delete(e.cpuSpare, m)
 	}
 	e.rt.Close()
 }
@@ -156,6 +211,11 @@ func (e *Engine) Unload(mods ...semantic.Modality) {
 		if s := e.sessions[m]; s != nil {
 			s.Close()
 			delete(e.sessions, m)
+			delete(e.onGPU, m)
+		}
+		if s := e.cpuSpare[m]; s != nil {
+			s.Close()
+			delete(e.cpuSpare, m)
 		}
 	}
 }
@@ -183,30 +243,73 @@ func (e *Engine) loadLocked(m semantic.Modality) error {
 	if err := e.initTextSideLocked(); err != nil {
 		return err
 	}
+	gpu := e.wantGPU()
+	s, err := e.openLocked(m, file, gpu)
+	if err != nil && gpu && e.cfg.Device == DeviceAuto {
+		// A runtime built with CUDA on a machine whose GPU or driver it
+		// cannot use: run on the CPU instead.
+		e.gpuErr = err
+		fmt.Fprintf(os.Stderr, "dsearch-embed: GPU not usable, running on the CPU: %v\n", err)
+		gpu = false
+		s, err = e.openLocked(m, file, false)
+	}
+	if err != nil {
+		return err
+	}
+	e.sessions[m] = s
+	e.onGPU[m] = gpu
+	return nil
+}
+
+// openLocked creates a session of one tower on the GPU or the CPU.
+func (e *Engine) openLocked(m semantic.Modality, file string, gpu bool) (*ort.Session, error) {
 	path := filepath.Join(e.cfg.ModelDir, "onnx", file)
 	if _, err := os.Stat(path); err != nil {
-		return unavailable("%s tower: %v", m, err)
+		return nil, unavailable("%s tower: %v", m, err)
 	}
-	s, err := e.rt.NewSession(path, ort.Options{
+	opts := ort.Options{
 		IntraOpThreads: e.cfg.Threads,
 		// Intermediate buffers are freed after each run: the helper is idle
 		// most of the time and its resident size matters more than the last
 		// few percent of speed.
 		DisableCPUMemArena: true,
-	})
+	}
+	if gpu {
+		opts.CUDA = &ort.CUDAOptions{MemLimit: e.cfg.GPUMemLimit}
+	}
+	s, err := e.rt.NewSession(path, opts)
 	if err != nil {
-		return unavailable("%s tower: %v", m, err)
+		return nil, unavailable("%s tower: %v", m, err)
 	}
 	if got, want := s.InputNames(), wantInputs[m]; !equalStrings(got, want) {
 		s.Close()
-		return unavailable("%s tower has inputs %v, expected %v", m, got, want)
+		return nil, unavailable("%s tower has inputs %v, expected %v", m, got, want)
 	}
 	if out := s.OutputNames(); !contains(out, wantOutput[m]) {
 		s.Close()
-		return unavailable("%s tower has outputs %v, missing %s", m, out, wantOutput[m])
+		return nil, unavailable("%s tower has outputs %v, missing %s", m, out, wantOutput[m])
 	}
-	e.sessions[m] = s
-	return nil
+	return s, nil
+}
+
+// runLocked runs a loaded tower. With DeviceAuto a run that fails on the GPU,
+// for example because another program holds its memory, is repeated on the
+// CPU, so indexing slows down instead of failing.
+func (e *Engine) runLocked(m semantic.Modality, inputs []ort.Input, outputs []string) ([]*ort.Tensor, error) {
+	res, err := e.sessions[m].Run(inputs, outputs)
+	if err == nil || !e.onGPU[m] || e.cfg.Device != DeviceAuto {
+		return res, err
+	}
+	cpu := e.cpuSpare[m]
+	if cpu == nil {
+		var cerr error
+		if cpu, cerr = e.openLocked(m, towerFile[m], false); cerr != nil {
+			return nil, errors.Join(err, cerr)
+		}
+		e.cpuSpare[m] = cpu
+	}
+	fmt.Fprintf(os.Stderr, "dsearch-embed: %s run failed on the GPU, repeated on the CPU: %v\n", m, err)
+	return cpu.Run(inputs, outputs)
 }
 
 // initTextSideLocked reads the tokenizer and config.json once.
@@ -361,7 +464,7 @@ func (e *Engine) runVision(im semantic.ImageInput) ([]float32, error) {
 		return nil, err
 	}
 	defer pos.Close()
-	out, err := e.sessions[semantic.ModalityImage].Run(
+	out, err := e.runLocked(semantic.ModalityImage,
 		[]ort.Input{{Name: "pixel_values", Tensor: px}, {Name: "pixel_position_ids", Tensor: pos}},
 		[]string{"image_features"})
 	if err != nil {
@@ -393,7 +496,7 @@ func (e *Engine) runAudio(c semantic.AudioInput) ([]float32, int, error) {
 		return nil, 0, err
 	}
 	defer mask.Close()
-	out, err := e.sessions[semantic.ModalityAudio].Run(
+	out, err := e.runLocked(semantic.ModalityAudio,
 		[]ort.Input{{Name: "input_features", Tensor: mel}, {Name: "input_features_mask", Tensor: mask}},
 		[]string{"audio_features"})
 	if err != nil {
@@ -482,7 +585,7 @@ func (e *Engine) runTextBatch(batch []int, seqs [][]int32, image, audio [][]floa
 		return nil, err
 	}
 	defer audT.Close()
-	res, err := e.sessions[semantic.ModalityText].Run([]ort.Input{
+	res, err := e.runLocked(semantic.ModalityText, []ort.Input{
 		{Name: "input_ids", Tensor: idT}, {Name: "attention_mask", Tensor: maskT},
 		{Name: "image_features", Tensor: imgT}, {Name: "video_features", Tensor: vidT}, {Name: "audio_features", Tensor: audT},
 	}, []string{"sentence_embedding"})

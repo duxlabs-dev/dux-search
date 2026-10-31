@@ -364,3 +364,120 @@ func TestMixedMediaBatchKeepsOrder(t *testing.T) {
 		t.Error("a truncated clip should embed differently from the full clip")
 	}
 }
+
+func TestUnknownDeviceIsRejected(t *testing.T) {
+	_, err := New(Config{ModelDir: embedtest.ModelDir(t), ORTLibrary: embedtest.ORTLibrary(), Device: "tpu"})
+	if !errors.Is(err, ErrInvalidInput) {
+		t.Fatalf("want ErrInvalidInput, got %v", err)
+	}
+}
+
+func TestCPUDeviceStaysOnCPU(t *testing.T) {
+	dir := embedtest.ModelDir(t)
+	e, err := New(Config{ModelDir: dir, ORTLibrary: embedtest.ORTLibrary(), Device: DeviceCPU})
+	if err != nil {
+		t.Skipf("runtime not available: %v", err)
+	}
+	defer e.Close()
+	if d := e.Device(); d != "" {
+		t.Fatalf("device %q before anything is loaded", d)
+	}
+	if _, err := e.EmbedTexts([]string{"a"}); err != nil {
+		t.Fatal(err)
+	}
+	if d := e.Device(); d != DeviceCPU {
+		t.Fatalf("device %q, want cpu", d)
+	}
+}
+
+// TestGPUMatchesCPU embeds the reference texts on the GPU and on the CPU: both
+// must stay as close to Python as the CPU test demands, and to each other.
+// Without a runtime built with CUDA, asking for the GPU must fail clearly.
+func TestGPUMatchesCPU(t *testing.T) {
+	dir := embedtest.ModelDir(t)
+	gpu, err := New(Config{ModelDir: dir, ORTLibrary: embedtest.ORTLibrary(), Device: DeviceCUDA})
+	if err != nil {
+		t.Skipf("runtime not available: %v", err)
+	}
+	defer gpu.Close()
+	ref := loadTextRef(t)
+	texts := make([]string, len(ref.Items))
+	for i, it := range ref.Items {
+		texts[i] = it.Text
+	}
+	if !gpu.rt.HasProvider("CUDAExecutionProvider") {
+		if _, err := gpu.EmbedTexts(texts[:1]); !errors.Is(err, ErrUnavailable) {
+			t.Fatalf("CUDA requested from a CPU-only runtime: want ErrUnavailable, got %v", err)
+		}
+		t.Skip("onnxruntime built without CUDA")
+	}
+	onGPU, err := gpu.EmbedTexts(texts)
+	if err != nil {
+		t.Skipf("no usable GPU: %v", err)
+	}
+	if d := gpu.Device(); d != DeviceCUDA {
+		t.Fatalf("device %q, want cuda", d)
+	}
+	cpu, err := New(Config{ModelDir: dir, ORTLibrary: embedtest.ORTLibrary(), Device: DeviceCPU})
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer cpu.Close()
+	onCPU, err := cpu.EmbedTexts(texts)
+	if err != nil {
+		t.Fatal(err)
+	}
+	minPy, minCPU := 1.0, 1.0
+	for i := range texts {
+		minPy = math.Min(minPy, embedtest.Cosine(onGPU[i], ref.Items[i].Vec))
+		minCPU = math.Min(minCPU, embedtest.Cosine(onGPU[i], onCPU[i]))
+	}
+	t.Logf("GPU vs Python: min cosine %.6f; GPU vs CPU: %.6f", minPy, minCPU)
+	if minPy < 0.999 || minCPU < 0.999 {
+		t.Fatalf("GPU vectors drift: %.6f to Python, %.6f to CPU", minPy, minCPU)
+	}
+}
+
+// TestGPURunFailureFallsBackToCPU limits the GPU arena below what a full
+// context needs: with DeviceAuto the run is repeated on the CPU and gives the
+// same vector, while the tower itself stays on the GPU for later runs.
+func TestGPURunFailureFallsBackToCPU(t *testing.T) {
+	if testing.Short() {
+		t.Skip("a full 8K-token run on the CPU takes about half a minute")
+	}
+	dir := embedtest.ModelDir(t)
+	e, err := New(Config{ModelDir: dir, ORTLibrary: embedtest.ORTLibrary(), GPUMemLimit: 1536 << 20})
+	if err != nil {
+		t.Skipf("runtime not available: %v", err)
+	}
+	defer e.Close()
+	if !e.rt.HasProvider("CUDAExecutionProvider") {
+		t.Skip("onnxruntime built without CUDA")
+	}
+	if _, err := e.EmbedTexts([]string{"a"}); err != nil || e.Device() != DeviceCUDA {
+		t.Skipf("no usable GPU (device %q): %v", e.Device(), err)
+	}
+	long := "task: search result | query: "
+	for i := 0; i < 4000; i++ {
+		long += "gözlerim yoruldu ve ekran çok parlak. "
+	}
+	got, err := e.EmbedTexts([]string{long})
+	if err != nil {
+		t.Fatalf("run beyond the GPU limit was not repeated on the CPU: %v", err)
+	}
+	if e.Device() != DeviceCUDA {
+		t.Errorf("device %q after the fallback, the tower must stay on the GPU", e.Device())
+	}
+	cpu, err := New(Config{ModelDir: dir, ORTLibrary: embedtest.ORTLibrary(), Device: DeviceCPU})
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer cpu.Close()
+	want, err := cpu.EmbedTexts([]string{long})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if c := embedtest.Cosine(got[0], want[0]); c < 0.9999 {
+		t.Fatalf("fallback vector differs from the CPU one: cosine %.6f", c)
+	}
+}

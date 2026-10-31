@@ -91,6 +91,12 @@ onnxruntime_lib = ""
 # Inference threads; 0 = automatic (at most 4).
 threads = 0
 
+# Where the model runs: "auto" uses an NVIDIA GPU when ONNX Runtime was built
+# with CUDA and the GPU and driver work, and the CPU otherwise; "cpu" never
+# touches the GPU; "cuda" requires it. A run that does not fit into the GPU's
+# free memory is repeated on the CPU in "auto" mode.
+device = "auto"
+
 # The model is unloaded from memory after this many idle minutes and reloaded
 # on the next search.
 idle_unload_minutes = 10

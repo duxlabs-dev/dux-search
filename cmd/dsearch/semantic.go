@@ -227,7 +227,11 @@ func runSemanticStatus(cmd *cobra.Command, args []string) error {
 		case !st.Embedder.Available:
 			fmt.Printf("  Embedder:    unavailable (%s)\n", st.Embedder.Reason)
 		case st.Embedder.Running:
-			fmt.Printf("  Embedder:    running, loaded: %s\n", joinModalities(st.Embedder.Loaded))
+			fmt.Printf("  Embedder:    running, loaded: %s", joinModalities(st.Embedder.Loaded))
+			if st.Embedder.Device != "" {
+				fmt.Printf(" (%s)", st.Embedder.Device)
+			}
+			fmt.Println()
 		default:
 			fmt.Println("  Embedder:    ready (model not loaded)")
 		}

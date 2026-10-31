@@ -20,6 +20,10 @@ type SemanticConfig struct {
 	OnnxRuntimeLib string `toml:"onnxruntime_lib"`
 	// Threads for model inference; 0 = min(4, CPU count).
 	Threads int `toml:"threads"`
+	// Device runs the model on "cpu", on an NVIDIA GPU ("cuda", which needs
+	// an ONNX Runtime built with the CUDA execution provider), or on the GPU
+	// when one is usable and the CPU otherwise ("auto", the default).
+	Device string `toml:"device"`
 	// IdleUnloadMinutes is how long the model helper stays in memory without use.
 	IdleUnloadMinutes int `toml:"idle_unload_minutes"`
 	// IndexText, IndexImages and IndexAudio choose which file kinds are embedded
@@ -45,6 +49,7 @@ func DefaultSemantic() SemanticConfig {
 	return SemanticConfig{
 		Enabled:           false,
 		ModelDir:          defaultModelDir(),
+		Device:            "auto",
 		IdleUnloadMinutes: 10,
 		IndexText:         true,
 		IndexImages:       true,
@@ -76,6 +81,11 @@ func (s SemanticConfig) Validate() error {
 		errs = append(errs, errors.New("semantic.model_dir must not be empty"))
 	} else if !filepath.IsAbs(s.ModelDir) {
 		errs = append(errs, fmt.Errorf("semantic.model_dir = %q: must be an absolute path (~ and $VARS are expanded)", s.ModelDir))
+	}
+	switch s.Device {
+	case "auto", "cpu", "cuda":
+	default:
+		errs = append(errs, fmt.Errorf("semantic.device = %q: must be auto, cpu or cuda", s.Device))
 	}
 	if s.OnnxRuntimeLib != "" && !filepath.IsAbs(s.OnnxRuntimeLib) {
 		errs = append(errs, fmt.Errorf("semantic.onnxruntime_lib = %q: must be an absolute path or empty", s.OnnxRuntimeLib))

@@ -61,6 +61,7 @@ type EmbedderStatus struct {
 	Reason    string     `json:"reason,omitempty"`
 	Running   bool       `json:"running"`
 	Loaded    []Modality `json:"loaded"`
+	Device    string     `json:"device,omitempty"` // where the loaded towers run: "cpu" or "cuda"
 }
 
 // Truncate keeps the leading dim values and re-normalizes (Matryoshka).

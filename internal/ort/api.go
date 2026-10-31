@@ -21,6 +21,7 @@ const (
 	idxSessionGetOutputCount          = 31
 	idxSessionGetInputName            = 36
 	idxSessionGetOutputName           = 37
+	idxCreateRunOptions               = 39
 	idxCreateTensorAsOrtValue         = 48
 	idxGetTensorMutableData           = 51
 	idxGetTensorElementType           = 60
@@ -35,10 +36,22 @@ const (
 	idxReleaseStatus                  = 93
 	idxReleaseSession                 = 95
 	idxReleaseValue                   = 96
-	idxReleaseSessionOptions          = 100
+	idxReleaseRunOptions              = 97
 	idxReleaseTensorTypeAndShape      = 99
+	idxReleaseSessionOptions          = 100
+	idxGetAvailableProviders          = 125
+	idxReleaseAvailableProviders      = 126
 	idxAddSessionConfigEntry          = 130
+	idxAddRunConfigEntry              = 165
+	idxAppendCUDAProviderV2           = 204 // SessionOptionsAppendExecutionProvider_CUDA_V2
+	idxCreateCUDAProviderOptions      = 205
+	idxUpdateCUDAProviderOptions      = 206
+	idxReleaseCUDAProviderOptions     = 208
 )
+
+// ProviderCUDA is the name GetAvailableProviders reports for a runtime built
+// with the CUDA execution provider.
+const ProviderCUDA = "CUDAExecutionProvider"
 
 // APIVersion is the ORT C API version this package is written against.
 const APIVersion = 22

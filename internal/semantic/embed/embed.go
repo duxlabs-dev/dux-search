@@ -26,6 +26,7 @@ type Config struct {
 	ORTLibrary string        // path to libonnxruntime.so; "" = search standard paths
 	HelperPath string        // dsearch-embed binary; "" = next to os.Executable()
 	Threads    int           // 0 = min(4, NumCPU)
+	Device     string        // "auto", "cpu" or "cuda" (see engine.Device*); "" = auto
 	IdleUnload time.Duration // helper exits after this idle time; 0 = 10 minutes, negative = never
 	// MediaIdle is how long the image and audio towers stay loaded after their
 	// last use; they are large and only needed while files are being indexed.
@@ -89,6 +90,7 @@ type client struct {
 	h         *helper
 	starting  chan struct{} // non-nil while a helper is being started
 	loaded    []semantic.Modality
+	device    string // where the helper runs the loaded towers, from its last reply
 	inflight  int
 	idle      *time.Timer
 	lastUse   map[semantic.Modality]time.Time
@@ -178,11 +180,11 @@ func exeOrUnknown() string {
 func (c *client) Status() semantic.EmbedderStatus {
 	c.mu.Lock()
 	defer c.mu.Unlock()
-	st := semantic.EmbedderStatus{Available: true, Loaded: append([]semantic.Modality{}, c.loaded...)}
+	st := semantic.EmbedderStatus{Available: true, Loaded: append([]semantic.Modality{}, c.loaded...), Device: c.device}
 	if c.h != nil && c.h.alive() {
 		st.Running = true
 	} else {
-		st.Loaded = []semantic.Modality{}
+		st.Loaded, st.Device = []semantic.Modality{}, ""
 	}
 	if err := c.precheck(); err != nil {
 		st.Available, st.Reason = false, err.Error()
@@ -198,6 +200,9 @@ func (c *client) Status() semantic.EmbedderStatus {
 
 func (c *client) args() []string {
 	a := []string{"--model-dir", c.cfg.ModelDir, "--threads", strconv.Itoa(c.cfg.Threads)}
+	if c.cfg.Device != "" {
+		a = append(a, "--device", c.cfg.Device)
+	}
 	if c.cfg.ORTLibrary != "" {
 		a = append(a, "--ort-lib", c.cfg.ORTLibrary)
 	}
@@ -298,7 +303,7 @@ func (c *client) onExit(h *helper) {
 	defer c.mu.Unlock()
 	if c.h == h {
 		c.h = nil
-		c.loaded = nil
+		c.loaded, c.device = nil, ""
 	}
 }
 
@@ -340,7 +345,7 @@ func (c *client) idleExpired(h *helper) {
 		c.mu.Unlock()
 		return
 	}
-	c.h, c.loaded = nil, nil
+	c.h, c.loaded, c.device = nil, nil, ""
 	c.mu.Unlock()
 	h.stop(stopGrace)
 }
@@ -375,7 +380,7 @@ func (c *client) mediaExpired(h *helper, m semantic.Modality, stamp time.Time) {
 	cancel()
 	c.mu.Lock()
 	if err == nil && resp.OK && c.h == h {
-		c.loaded = toModalities(resp.Loaded)
+		c.loaded, c.device = toModalities(resp.Loaded), resp.Device
 	}
 	c.inflight--
 	c.armIdleLocked()
@@ -387,7 +392,7 @@ func (c *client) Close() error {
 	c.mu.Lock()
 	c.closed = true
 	h := c.h
-	c.h, c.loaded = nil, nil
+	c.h, c.loaded, c.device = nil, nil, ""
 	if c.idle != nil {
 		c.idle.Stop()
 	}
@@ -440,7 +445,7 @@ func (c *client) call(ctx context.Context, req wire.Request, blob []byte, used s
 		case err == nil && resp.OK:
 			c.mu.Lock()
 			if c.h == h && resp.Loaded != nil {
-				c.loaded = toModalities(resp.Loaded)
+				c.loaded, c.device = toModalities(resp.Loaded), resp.Device
 			}
 			c.mu.Unlock()
 			return resp, rblob, nil

@@ -153,6 +153,7 @@ It is **off by default**. With `enabled = false` dsearch behaves exactly as it d
 
 - A system **ONNX Runtime 1.22 or newer** (`libonnxruntime.so`): `onnxruntime` on Arch and Fedora, `pkgs.onnxruntime` on Nix. dsearch loads it at run time; nothing is linked, so release binaries stay CGO-free. Set `onnxruntime_lib` in the config if it lives outside the standard library paths.
 - The model files, downloaded once (`dsearch model download`): text tower about 300 MB, image tower about 190 MB, audio tower about 340 MB. Only the text tower is needed to search; the others are for indexing images and audio.
+- Optional, an NVIDIA GPU: with an ONNX Runtime built with CUDA (for example Microsoft's `onnxruntime-linux-x64-gpu_cuda13` release, unpacked to `/opt/onnxruntime` and set as `onnxruntime_lib`) and the matching CUDA and cuDNN libraries, `device = "auto"` (the default) runs the model on the GPU. Indexing files is then about 8 times faster on an RTX 5070 than on 4 CPU threads, and the vectors are the same. The helper holds about 1.5 GB of video memory while the model is loaded and up to about 3 GB while it indexes; it releases it with the model. `dsearch semantic status` shows where the model runs.
 - About 0.5 GB of memory while the model is loaded. The model runs in a separate helper process (`dsearch-embed`, installed next to `dsearch`), is loaded on first use and exits after `idle_unload_minutes` without use (10 by default); if it crashes, dsearch keeps running and starts it again on the next query.
 
 ### Setup

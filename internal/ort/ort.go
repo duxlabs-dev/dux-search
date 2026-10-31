@@ -9,7 +9,9 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+	"slices"
 	"sort"
+	"strconv"
 	"strings"
 	"sync"
 	"unsafe"
@@ -65,6 +67,15 @@ type api struct {
 	dims             func(info uintptr, out *int64, n uintptr) uintptr
 	elemCount        func(info uintptr, out *uintptr) uintptr
 	run              func(sess, runOpts uintptr, inNames **byte, ins *uintptr, nIn uintptr, outNames **byte, nOut uintptr, outs *uintptr) uintptr
+	providers        func(out *uintptr, n *int32) uintptr
+	releaseProviders func(list uintptr, n int32) uintptr
+	createCUDAOpts   func(out *uintptr) uintptr
+	updateCUDAOpts   func(opts uintptr, keys, values **byte, n uintptr) uintptr
+	releaseCUDAOpts  func(opts uintptr)
+	appendCUDA       func(sessOpts, cudaOpts uintptr) uintptr
+	createRunOpts    func(out *uintptr) uintptr
+	releaseRunOpts   func(opts uintptr)
+	addRunConfig     func(opts uintptr, key, value string) uintptr
 }
 
 // Runtime is a loaded libonnxruntime with one shared environment.
@@ -204,6 +215,15 @@ func (r *Runtime) bind() error {
 	reg(&a.dims, idxGetDimensions)
 	reg(&a.elemCount, idxGetTensorShapeElementCount)
 	reg(&a.run, idxRun)
+	reg(&a.providers, idxGetAvailableProviders)
+	reg(&a.releaseProviders, idxReleaseAvailableProviders)
+	reg(&a.createCUDAOpts, idxCreateCUDAProviderOptions)
+	reg(&a.updateCUDAOpts, idxUpdateCUDAProviderOptions)
+	reg(&a.releaseCUDAOpts, idxReleaseCUDAProviderOptions)
+	reg(&a.appendCUDA, idxAppendCUDAProviderV2)
+	reg(&a.createRunOpts, idxCreateRunOptions)
+	reg(&a.releaseRunOpts, idxReleaseRunOptions)
+	reg(&a.addRunConfig, idxAddRunConfigEntry)
 
 	if err := r.check(a.createEnv(logError, "dsearch", &r.env)); err != nil {
 		return err
@@ -216,6 +236,29 @@ func (r *Runtime) Version() string { return r.version }
 
 // Path returns the library file that was loaded.
 func (r *Runtime) Path() string { return r.path }
+
+// Providers lists the execution providers the library was built with, in
+// the runtime's order of preference; "CPUExecutionProvider" is always there.
+// A listed provider can still fail to start, for example without a GPU or
+// driver: NewSession reports that.
+func (r *Runtime) Providers() ([]string, error) {
+	var list uintptr
+	var n int32
+	if err := r.check(r.a.providers(&list, &n)); err != nil {
+		return nil, err
+	}
+	out := make([]string, n)
+	for i := range out {
+		out[i] = cString(*(*uintptr)(unsafe.Add(ptr(list), i*int(unsafe.Sizeof(uintptr(0))))))
+	}
+	return out, r.check(r.a.releaseProviders(list, n))
+}
+
+// HasProvider says whether the library was built with the named provider.
+func (r *Runtime) HasProvider(name string) bool {
+	ps, err := r.Providers()
+	return err == nil && slices.Contains(ps, name)
+}
 
 // check converts an OrtStatus into an error and releases it.
 func (r *Runtime) check(status uintptr) error {
@@ -249,12 +292,23 @@ type Options struct {
 	DisableCPUMemArena bool
 	// Config holds raw session config entries ("session.xxx" keys).
 	Config map[string]string
+	// CUDA runs the graph on an NVIDIA GPU through the CUDA execution
+	// provider; operators it does not implement stay on the CPU. Nil runs
+	// everything on the CPU.
+	CUDA *CUDAOptions
+}
+
+// CUDAOptions configure the CUDA execution provider.
+type CUDAOptions struct {
+	DeviceID int    // GPU index as CUDA numbers them
+	MemLimit uint64 // bytes the provider's arena may hold; 0 = no limit
 }
 
 // Session is a loaded model. Run is safe for concurrent use.
 type Session struct {
 	rt      *Runtime
 	h       uintptr
+	runOpts uintptr // 0 = defaults
 	inputs  []string
 	outputs []string
 }
@@ -295,8 +349,26 @@ func (r *Runtime) NewSession(path string, o Options) (*Session, error) {
 			return nil, fmt.Errorf("config %s: %w", k, err)
 		}
 	}
+	if o.CUDA != nil {
+		if err := r.appendCUDA(opts, *o.CUDA); err != nil {
+			return nil, fmt.Errorf("CUDA execution provider: %w", err)
+		}
+	}
 	s := &Session{rt: r}
+	if o.CUDA != nil {
+		// The GPU arena keeps what the largest batch needed; shrink it after
+		// every run so an idle helper does not hold video memory other
+		// programs need.
+		if err := r.check(r.a.createRunOpts(&s.runOpts)); err != nil {
+			return nil, err
+		}
+		if err := r.check(r.a.addRunConfig(s.runOpts, "memory.enable_memory_arena_shrinkage", "gpu:"+strconv.Itoa(o.CUDA.DeviceID))); err != nil {
+			s.Close()
+			return nil, err
+		}
+	}
 	if err := r.check(r.a.createSession(r.env, path, opts, &s.h)); err != nil {
+		s.Close()
 		return nil, fmt.Errorf("load %s: %w", filepath.Base(path), err)
 	}
 	var err error
@@ -308,6 +380,32 @@ func (r *Runtime) NewSession(path string, o Options) (*Session, error) {
 		return nil, err
 	}
 	return s, nil
+}
+
+// appendCUDA adds the CUDA execution provider to session options. A runtime
+// built without it fails here; one without a usable GPU fails when the
+// session is created.
+func (r *Runtime) appendCUDA(opts uintptr, o CUDAOptions) error {
+	var cuda uintptr
+	if err := r.check(r.a.createCUDAOpts(&cuda)); err != nil {
+		return err
+	}
+	defer r.a.releaseCUDAOpts(cuda)
+	// The arena grows by what a run asks for instead of doubling, so a long
+	// document does not reserve twice the memory it needs.
+	keys := []*byte{cStringBytes("device_id"), cStringBytes("arena_extend_strategy")}
+	values := []*byte{cStringBytes(strconv.Itoa(o.DeviceID)), cStringBytes("kSameAsRequested")}
+	if o.MemLimit > 0 {
+		keys = append(keys, cStringBytes("gpu_mem_limit"))
+		values = append(values, cStringBytes(strconv.FormatUint(o.MemLimit, 10)))
+	}
+	err := r.check(r.a.updateCUDAOpts(cuda, &keys[0], &values[0], uintptr(len(keys))))
+	runtime.KeepAlive(keys)
+	runtime.KeepAlive(values)
+	if err != nil {
+		return err
+	}
+	return r.check(r.a.appendCUDA(opts, cuda))
 }
 
 func (r *Runtime) names(sess uintptr, count func(uintptr, *uintptr) uintptr, name func(uintptr, uintptr, uintptr, *uintptr) uintptr) ([]string, error) {
@@ -338,6 +436,10 @@ func (s *Session) Close() {
 	if s.h != 0 {
 		s.rt.a.releaseSession(s.h)
 		s.h = 0
+	}
+	if s.runOpts != 0 {
+		s.rt.a.releaseRunOpts(s.runOpts)
+		s.runOpts = 0
 	}
 }
 
@@ -375,7 +477,7 @@ func (s *Session) Run(inputs []Input, outputs []string) ([]*Tensor, error) {
 	if len(outputs) > 0 {
 		outN, outV = &outNames[0], &outVals[0]
 	}
-	status := s.rt.a.run(s.h, 0, inN, inV, uintptr(len(inputs)), outN, uintptr(len(outputs)), outV)
+	status := s.rt.a.run(s.h, s.runOpts, inN, inV, uintptr(len(inputs)), outN, uintptr(len(outputs)), outV)
 	runtime.KeepAlive(inNames)
 	runtime.KeepAlive(outNames)
 	runtime.KeepAlive(inputs)
