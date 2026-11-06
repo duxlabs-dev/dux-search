@@ -50,14 +50,19 @@ const (
 var openIndexers sync.Map
 
 func init() {
-	scorch.RegistryAsyncErrorCallbacks[asyncErrorHandler] = func(err error, path string) {
-		log.Errorf("index background error at %s: %v", path, err)
-		v, ok := openIndexers.Load(path)
+	scorch.RegistryAsyncErrorCallbacks[asyncErrorHandler] = func(err error, storePath string) {
+		v, ok := openIndexers.Load(storePath)
 		if !ok {
+			log.Errorf("index background error at %s: %v", storePath, err)
 			return
 		}
 		v.(*Indexer).failFatally(err)
 	}
+}
+
+// bleve reports its scorch store subdirectory, not the index root
+func scorchStorePath(indexPath string) string {
+	return indexPath + string(os.PathSeparator) + "store"
 }
 
 type Document struct {
@@ -204,7 +209,7 @@ func New(cfg *config.Config) (*Indexer, error) {
 		meta:   meta,
 		fatal:  make(chan error, 1),
 	}
-	openIndexers.Store(cfg.IndexPath, i)
+	openIndexers.Store(scorchStorePath(cfg.IndexPath), i)
 
 	count, err := idx.DocCount()
 	if err == nil && count > 0 {
@@ -223,6 +228,7 @@ func (i *Indexer) Fatal() <-chan error {
 
 func (i *Indexer) failFatally(err error) {
 	i.fatalOnce.Do(func() {
+		log.Errorf("index background error at %s: %v", i.config.IndexPath, err)
 		if putErr := i.meta.PutMeta(rebuildReasonKey, err.Error()); putErr != nil {
 			log.Errorf("failed to mark index for rebuild: %v", putErr)
 		}
@@ -1271,11 +1277,12 @@ func (i *Indexer) SaveSchemaVersion() error {
 }
 
 func (i *Indexer) Close() error {
-	openIndexers.Delete(i.config.IndexPath)
 	i.mu.Lock()
 	defer i.mu.Unlock()
+	err := i.index.Close()
 	i.meta.Close()
-	return i.index.Close()
+	openIndexers.Delete(scorchStorePath(i.config.IndexPath))
+	return err
 }
 
 func removeIndexDir(path string) error {
