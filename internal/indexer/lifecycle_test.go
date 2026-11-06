@@ -188,8 +188,8 @@ func (s *LifecycleSuite) TestBackgroundFailureSchedulesRebuild() {
 	s.Require().NoError(idx.ReindexAll())
 	s.False(idx.NeedsReindex())
 
-	scorch.RegistryAsyncErrorCallbacks[asyncErrorHandler](errors.New("merger panic"), s.cfg.IndexPath)
-	scorch.RegistryAsyncErrorCallbacks[asyncErrorHandler](errors.New("second"), s.cfg.IndexPath)
+	scorch.RegistryAsyncErrorCallbacks[asyncErrorHandler](errors.New("merger panic"), scorchStorePath(s.cfg.IndexPath))
+	scorch.RegistryAsyncErrorCallbacks[asyncErrorHandler](errors.New("second"), scorchStorePath(s.cfg.IndexPath))
 
 	select {
 	case err := <-idx.Fatal():
@@ -211,10 +211,27 @@ func (s *LifecycleSuite) TestClosedIndexerIgnoresBackgroundErrors() {
 	s.Require().NoError(err)
 	s.Require().NoError(idx.Close())
 
-	scorch.RegistryAsyncErrorCallbacks[asyncErrorHandler](errors.New("late"), s.cfg.IndexPath)
+	scorch.RegistryAsyncErrorCallbacks[asyncErrorHandler](errors.New("late"), scorchStorePath(s.cfg.IndexPath))
 	select {
 	case <-idx.Fatal():
 		s.Fail("closed indexer should not receive errors")
 	default:
 	}
+}
+
+func (s *LifecycleSuite) TestVanishedStoreDirReportsFatalOnce() {
+	idx := s.newIndexer()
+	s.write("a.txt", "a")
+	s.Require().NoError(idx.ReindexAll())
+
+	s.Require().NoError(os.RemoveAll(scorchStorePath(s.cfg.IndexPath)))
+	_ = idx.Index(s.write("b.txt", "b"))
+
+	select {
+	case err := <-idx.Fatal():
+		s.ErrorContains(err, "no such file or directory")
+	case <-time.After(5 * time.Second):
+		s.Fail("bleve background error did not reach the indexer")
+	}
+	s.True(idx.NeedsReindex())
 }
