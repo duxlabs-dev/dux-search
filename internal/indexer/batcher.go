@@ -78,6 +78,11 @@ func (b *batcher) run() {
 				log.Warnf("failed to update metastore for %d docs: %v", len(entries), err)
 			}
 			b.idx.indexComplete.Store(true)
+			for _, job := range pending {
+				if job.doc.DocType == "file" {
+					b.idx.notifyChange(job.path, false)
+				}
+			}
 		}
 		batch = idx.NewBatch()
 		pending = pending[:0]

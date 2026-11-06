@@ -104,6 +104,8 @@ type Indexer struct {
 
 	fatal     chan error
 	fatalOnce sync.Once
+
+	changeListener atomic.Pointer[func(path string, deleted bool)]
 }
 
 type phaseState struct {
@@ -213,6 +215,34 @@ func New(cfg *config.Config) (*Indexer, error) {
 	}
 
 	return i, nil
+}
+
+// SetChangeListener registers fn to hear about every file that enters, changes
+// in or leaves the index: deleted is false after a file was indexed (new or
+// modified, including full reindexes and incremental syncs) and true after
+// its entry was removed. A removed directory is reported through its own path
+// and through every indexed path below it, so deleted may name a directory.
+// fn runs on the indexing goroutine and must not block. Passing nil removes
+// the listener.
+func (i *Indexer) SetChangeListener(fn func(path string, deleted bool)) {
+	if fn == nil {
+		i.changeListener.Store(nil)
+		return
+	}
+	i.changeListener.Store(&fn)
+}
+
+func (i *Indexer) notifyChange(path string, deleted bool) {
+	fn := i.changeListener.Load()
+	if fn == nil {
+		return
+	}
+	defer func() {
+		if r := recover(); r != nil {
+			log.Errorf("change listener panicked on %s: %v", path, r)
+		}
+	}()
+	(*fn)(path, deleted)
 }
 
 // bleve's background merger and persister swallow panics and just exit, after
@@ -421,6 +451,9 @@ func (i *Indexer) Index(path string) error {
 		log.Debugf("failed to update metastore for %s: %v", path, err)
 	}
 	i.indexComplete.Store(true)
+	if !info.IsDir() {
+		i.notifyChange(path, false)
+	}
 	log.Debugf("indexed %s", path)
 	return nil
 }
@@ -607,6 +640,9 @@ func (i *Indexer) deletePaths(paths []string) error {
 		}
 		if err := i.meta.DeleteBatch(chunk); err != nil {
 			log.Debugf("failed to delete %d entries from metastore: %v", len(chunk), err)
+		}
+		for _, p := range chunk {
+			i.notifyChange(p, true)
 		}
 	}
 	return nil
@@ -1027,6 +1063,8 @@ func (i *Indexer) ReindexAll() error {
 
 	start := time.Now()
 
+	previous := i.snapshotPaths()
+
 	if err := i.meta.Clear(); err != nil {
 		return errdefs.NewCustomError(errdefs.ErrTypeIndexingFailed, "failed to clear metastore", err)
 	}
@@ -1038,6 +1076,7 @@ func (i *Indexer) ReindexAll() error {
 	bat := newBatcher(i, defaultBatchSize, defaultBatchBytes, defaultBatchInterval)
 	stats := i.walkIndexPaths(bat, func(string, os.FileInfo) bool { return true })
 	bat.close()
+	i.notifyVanished(previous)
 
 	duration := time.Since(start)
 	i.indexComplete.Store(true)
@@ -1048,6 +1087,39 @@ func (i *Indexer) ReindexAll() error {
 
 	log.Infof("reindex complete: %d files, %d bytes, took %s", stats.files, stats.bytes, duration)
 	return nil
+}
+
+// snapshotPaths lists the indexed paths so a full rebuild can tell which of
+// them are gone afterwards; it is empty (and free) without a change listener.
+func (i *Indexer) snapshotPaths() map[string]struct{} {
+	if i.changeListener.Load() == nil {
+		return nil
+	}
+	paths := map[string]struct{}{}
+	if err := i.meta.ForEach(func(path string, _ metastore.FileMeta) error {
+		paths[path] = struct{}{}
+		return nil
+	}); err != nil {
+		log.Debugf("failed to snapshot indexed paths: %v", err)
+	}
+	return paths
+}
+
+// notifyVanished reports the paths of a snapshot that the rebuild did not find again.
+func (i *Indexer) notifyVanished(previous map[string]struct{}) {
+	if len(previous) == 0 {
+		return
+	}
+	if err := i.meta.ForEach(func(path string, _ metastore.FileMeta) error {
+		delete(previous, path)
+		return nil
+	}); err != nil {
+		log.Debugf("failed to list rebuilt paths: %v", err)
+		return
+	}
+	for path := range previous {
+		i.notifyChange(path, true)
+	}
 }
 
 func (i *Indexer) replaceIndex() error {
@@ -1353,4 +1425,14 @@ func containsDir(ancestor, path string) bool {
 		return false
 	}
 	return rel != ".." && !strings.HasPrefix(rel, ".."+string(filepath.Separator))
+}
+
+// Paths returns every indexed file path.
+func (i *Indexer) Paths() ([]string, error) {
+	var paths []string
+	err := i.meta.ForEach(func(path string, _ metastore.FileMeta) error {
+		paths = append(paths, path)
+		return nil
+	})
+	return paths, err
 }

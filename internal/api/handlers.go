@@ -2,12 +2,14 @@ package api
 
 import (
 	"context"
+	"strings"
 
 	"github.com/AvengeMedia/dankgo/log"
 	bleve "github.com/blevesearch/bleve/v2"
 	"github.com/danielgtaylor/huma/v2"
 	"github.com/duxlabs-dev/dux-search/internal/config"
 	"github.com/duxlabs-dev/dux-search/internal/indexer"
+	"github.com/duxlabs-dev/dux-search/internal/semantic/service"
 )
 
 type IndexerInterface interface {
@@ -28,6 +30,15 @@ type WatcherInterface interface {
 type Server struct {
 	Indexer IndexerInterface
 	Watcher WatcherInterface
+	// Semantic is optional; nil behaves like a disabled service.
+	Semantic *service.Service
+}
+
+func (s *Server) semantic() *service.Service {
+	if s.Semantic == nil {
+		s.Semantic, _ = service.New(service.Options{}) // disabled: cannot fail
+	}
+	return s.Semantic
 }
 
 func (s *Server) busy() bool {
@@ -65,10 +76,15 @@ type SearchInput struct {
 	ExifLonMax      float64  `query:"exif_lon_max" doc:"Maximum GPS longitude" example:"-73.0"`
 	XattrTags       string   `query:"xattr_tags" doc:"Tags" example:"+must,should,-must-not"`
 	Type            string   `query:"type" enum:"file,dir,all," doc:"Filter by type" example:"dir"`
+	Semantic        bool     `query:"semantic" doc:"Also search by meaning (embeddings) and merge file hits with Reciprocal Rank Fusion; needs [semantic] enabled and a model, otherwise the lexical result is returned with semantic.available=false"`
+	Collections     []string `query:"collections,explode" doc:"Collections to search by meaning, repeated or comma separated (requires semantic=true)" example:"shell.actions"`
+	CollectionLimit int      `query:"collection_limit" minimum:"0" maximum:"1000" doc:"Hits per collection (default 8)"`
 }
 
+// SearchOutput is the lexical result; with semantic=true it also carries
+// semantic_score on hits, the collection results and a semantic status object.
 type SearchOutput struct {
-	Body *indexer.SearchResult
+	Body *service.HybridResult
 }
 
 type ReindexOutput struct {
@@ -134,12 +150,27 @@ func RegisterHandlers(srv *Server, api huma.API) {
 			Type:            input.Type,
 		}
 
+		collections := splitList(input.Collections)
+		if input.Semantic {
+			res, err := srv.semantic().HybridSearch(ctx, srv.Indexer, opts, service.HybridRequest{
+				Collections:     collections,
+				CollectionLimit: input.CollectionLimit,
+			})
+			if err != nil {
+				return nil, huma.Error400BadRequest("search failed", err)
+			}
+			return &SearchOutput{Body: res}, nil
+		}
+		if len(collections) > 0 {
+			return nil, huma.Error400BadRequest("collections requires semantic=true")
+		}
+
 		if input.Type == "all" {
 			result, err := srv.Indexer.SearchAll(opts)
 			if err != nil {
 				return nil, huma.Error400BadRequest("search failed", err)
 			}
-			return &SearchOutput{Body: result}, nil
+			return &SearchOutput{Body: service.Plain(result)}, nil
 		}
 
 		result, err := srv.Indexer.SearchWithOptions(opts)
@@ -147,7 +178,7 @@ func RegisterHandlers(srv *Server, api huma.API) {
 			return nil, huma.Error400BadRequest("search failed", err)
 		}
 
-		return &SearchOutput{Body: &indexer.SearchResult{SearchResult: result}}, nil
+		return &SearchOutput{Body: service.Plain(&indexer.SearchResult{SearchResult: result})}, nil
 	})
 
 	huma.Register(api, huma.Operation{
@@ -285,4 +316,19 @@ func RegisterHandlers(srv *Server, api huma.API) {
 			},
 		}, nil
 	})
+
+	registerSemanticHandlers(srv, api)
+}
+
+// splitList accepts both ?collections=a&collections=b and ?collections=a,b.
+func splitList(values []string) []string {
+	var out []string
+	for _, v := range values {
+		for _, part := range strings.Split(v, ",") {
+			if part = strings.TrimSpace(part); part != "" {
+				out = append(out, part)
+			}
+		}
+	}
+	return out
 }

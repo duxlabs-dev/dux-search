@@ -106,12 +106,35 @@ jobs:
 
           gzip -c "${BINARY_NAME}" > "${BINARY_NAME}.gz"
           tar -czf "${BINARY_NAME}.tar.gz" "${BINARY_NAME}"
-      
+
+      # The embedding helper is a second, separate binary (the model runtime is
+      # loaded from the system libonnxruntime at run time, so it stays CGO-free
+      # like dsearch). It is released for Linux only, the platform of that library.
+      - name: Build embedding helper
+        if: matrix.goos == 'linux'
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+          CGO_ENABLED: 0
+        run: |
+          HELPER_NAME="dsearch-embed-${{ matrix.goos }}-${{ matrix.goarch }}"
+
+          go build -ldflags "-s -w" -o "${HELPER_NAME}" ./cmd/dsearch-embed
+
+          gzip -c "${HELPER_NAME}" > "${HELPER_NAME}.gz"
+          tar -czf "${HELPER_NAME}.tar.gz" "${HELPER_NAME}"
+
       - name: Generate checksums
         run: |
           BINARY_NAME="dsearch-${{ matrix.goos }}-${{ matrix.goarch }}"
           sha256sum "${BINARY_NAME}.gz" > "${BINARY_NAME}.gz.sha256"
           sha256sum "${BINARY_NAME}.tar.gz" > "${BINARY_NAME}.tar.gz.sha256"
+
+          HELPER_NAME="dsearch-embed-${{ matrix.goos }}-${{ matrix.goarch }}"
+          if [ -f "${HELPER_NAME}.gz" ]; then
+            sha256sum "${HELPER_NAME}.gz" > "${HELPER_NAME}.gz.sha256"
+            sha256sum "${HELPER_NAME}.tar.gz" > "${HELPER_NAME}.tar.gz.sha256"
+          fi
           
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
@@ -122,6 +145,11 @@ jobs:
             dsearch-${{ matrix.goos }}-${{ matrix.goarch }}.gz.sha256
             dsearch-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz
             dsearch-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz.sha256
+            dsearch-embed-${{ matrix.goos }}-${{ matrix.goarch }}.gz
+            dsearch-embed-${{ matrix.goos }}-${{ matrix.goarch }}.gz.sha256
+            dsearch-embed-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz
+            dsearch-embed-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz.sha256
+          if-no-files-found: error
 
   create_release:
     name: Create GitHub Release

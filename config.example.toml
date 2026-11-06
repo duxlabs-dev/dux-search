@@ -70,3 +70,41 @@ exclude_hidden = false  # Show sub-directories like .config inside the repo
 extract_exif = false
 merge_default_exclude_dirs = true
 exclude_dirs = ["secrets"]
+
+# Semantic search: find files, actions and settings by meaning, in any language
+# (e.g. "tired eyes" finds Night Light). Off by default; with enabled = false dsearch
+# behaves exactly as without it: no helper process, no vector database, no network.
+#
+# Needs the model (`dsearch model download`, about 300 MB for the text tower) and a
+# system ONNX Runtime 1.22 or newer (libonnxruntime.so). Restart dsearch after
+# changing this table.
+[semantic]
+enabled = false
+
+# Where the model files live.
+# Default: $XDG_DATA_HOME/dsearch/models/embeddinggemma-2
+# model_dir = "~/.local/share/dsearch/models/embeddinggemma-2"
+
+# Path of libonnxruntime.so; empty searches the standard library directories.
+onnxruntime_lib = ""
+
+# Inference threads; 0 = automatic (at most 4).
+threads = 0
+
+# Where the model runs: "auto" uses an NVIDIA GPU when ONNX Runtime was built
+# with CUDA and the GPU and driver work, and the CPU otherwise; "cpu" never
+# touches the GPU; "cuda" requires it. A run that does not fit into the GPU's
+# free memory is repeated on the CPU in "auto" mode.
+device = "auto"
+
+# The model is unloaded from memory after this many idle minutes and reloaded
+# on the next search.
+idle_unload_minutes = 10
+
+# Which file kinds are embedded in the background (low priority, paused while
+# you are active and, with pause_on_battery, while on battery power).
+index_text = true
+index_images = true
+index_audio = true
+max_chunks_per_file = 8
+pause_on_battery = true

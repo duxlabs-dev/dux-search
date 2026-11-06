@@ -33,6 +33,7 @@ A configurable filesystem search service powered by [bleve](https://github.com/b
 - **Virtual folders** - Search within specific directories
 - **Concurrent indexing** - Multi-worker parallel indexing for fast performance
 - **Real-time updates** - File watcher for incremental index updates
+- **Semantic search** (optional, off by default) - Find files, actions and settings by meaning, in any language, fully on your machine
 
 ## Installation
 
@@ -141,6 +142,80 @@ dsearch search --help
 ```
 
 The REST API is off by default. Start the service with `dsearch serve --http` or set `http_enabled = true` in the config, then visit [http://localhost:43654/docs](http://localhost:43654/docs) for the API documentation. The API has no authentication, so every local account can reach it once enabled.
+
+## Semantic search
+
+Semantic search finds things by what they mean instead of by the words they contain: "tired eyes" finds Night Light, "düzenli ifadeler" finds a document about regular expressions, and a text query can find screenshots, photos and recordings. It uses the [embeddinggemma-2](https://huggingface.co/google/embeddinggemma-2) model (Apache-2.0) running locally; text, images and audio are mapped into one vector space, so the same query works across all of them.
+
+It is **off by default**. With `enabled = false` dsearch behaves exactly as it did before: no helper process, no vector database, no network access, and search results are unchanged.
+
+### Requirements
+
+- A system **ONNX Runtime 1.22 or newer** (`libonnxruntime.so`): `onnxruntime` on Arch and Fedora, `pkgs.onnxruntime` on Nix. dsearch loads it at run time; nothing is linked, so release binaries stay CGO-free. Set `onnxruntime_lib` in the config if it lives outside the standard library paths.
+- The model files, downloaded once (`dsearch model download`): text tower about 300 MB, image tower about 190 MB, audio tower about 340 MB. Only the text tower is needed to search; the others are for indexing images and audio.
+- Optional, an NVIDIA GPU: with an ONNX Runtime built with CUDA (for example Microsoft's `onnxruntime-linux-x64-gpu_cuda13` release, unpacked to `/opt/onnxruntime` and set as `onnxruntime_lib`) and the matching CUDA and cuDNN libraries, `device = "auto"` (the default) runs the model on the GPU. Indexing files is then about 8 times faster on an RTX 5070 than on 4 CPU threads, and the vectors are the same. The helper holds about 1.5 GB of video memory while the model is loaded and up to about 3 GB while it indexes; it releases it with the model. `dsearch semantic status` shows where the model runs.
+- About 0.5 GB of memory while the model is loaded. The model runs in a separate helper process (`dsearch-embed`, installed next to `dsearch`), is loaded on first use and exits after `idle_unload_minutes` without use (10 by default); if it crashes, dsearch keeps running and starts it again on the next query.
+
+### Setup
+
+```bash
+dsearch model download            # text tower; --all adds image and audio
+```
+
+then in `~/.config/dsearch/config.toml`:
+
+```toml
+[semantic]
+enabled = true
+```
+
+and restart the service (`systemctl --user restart dsearch`). `dsearch semantic status` shows the embedder, the model, the collections and the background indexing progress. Until the model is installed, everything keeps working with lexical results only and `semantic status` says what is missing.
+
+See [config.example.toml](./config.example.toml) for all `[semantic]` options.
+
+### Privacy
+
+Everything runs on your machine. The only network access is `dsearch model download`, which fetches the model from Hugging Face at pinned revisions and checks every file against a pinned SHA-256 sum. Queries, file names and file contents are never sent anywhere. The vectors are stored in `semantic.db` next to the index (`~/.cache/dsearch/` by default). Background embedding of your files runs at low priority and pauses while you are active and, by default, on battery power; turn it off per kind with `index_text`, `index_images` and `index_audio`. `dsearch model remove` deletes the model files again.
+
+### Searching
+
+```bash
+# Merge meaning-based results into the file hits (Reciprocal Rank Fusion)
+dsearch search "regular expressions" --semantic
+
+# Also search caller-owned collections (see below)
+dsearch search "tired eyes" --semantic --collections shell.actions --collection-limit 5
+```
+
+File hits found by meaning carry the same fields as any other hit, plus `semantic_score` (cosine similarity after subtracting the mean vector of the file's collection, which keeps files that resemble everything from matching every query); hits are filtered by the usual options (`--ext`, `--folder`, `--min-size`, ...) either way. A file counts as found by meaning only when its score stands at least 3 standard deviations above the other files of its kind (text, image or audio) for that query; collections with fewer than 20 files add none. The meaning matches of all kinds form one ranking by that distance, and it is merged with the lexical results by [Reciprocal Rank Fusion](https://dl.acm.org/doi/10.1145/1571941.1572114) (`1/(60+rank)` per list), which needs no score normalization between BM25-style and cosine scores; when fusion ran, `score` is the fused score and the hits are ordered by it. Explicit sort orders (`--sort mtime`, ...) are never rearranged. With `--json` the response gains `collections` and a `semantic` object (`available`, `reason`, `fused`, `added`, `took_ms`); if the model is missing or too slow the lexical results are returned and `semantic.reason` says why.
+
+### Collections
+
+A collection is a set of items (`id`, `title`, `text`, `keywords`) that a client such as a launcher keeps in dsearch to search by meaning, for example its actions, settings or applications. A client replaces the whole set; items whose content did not change are not embedded again, and when the model is not installed yet the items are stored and embedded as soon as it is.
+
+```bash
+dsearch collections set shell.actions --json actions.json
+dsearch collections delete shell.actions
+dsearch semantic warm            # load the model ahead of use
+```
+
+Over the unix socket (JSON lines, `$XDG_RUNTIME_DIR/dsearch-<pid>.sock`; `dsearch version --json` prints the path and `capabilities`):
+
+```jsonc
+// -> collections.set
+{"id":1,"method":"collections.set","params":{"collection":"shell.actions","items":[
+  {"id":"nightlight","title":"Night Light","text":"Warm screen colors that reduce blue light; tired eyes, reading at night","keywords":["eye strain"]}]}}
+// <-
+{"id":1,"result":{"collection":"shell.actions","total":1,"embedded":1,"removed":0,"pending":0}}
+
+// -> search with semantic results
+{"id":2,"method":"search","params":{"query":"gözlerim yoruldu","semantic":true,"collections":["shell.actions"],"collection_limit":3,"type":"file"}}
+// <- the usual search result, with semantic_score on file hits, plus
+{"collections":[{"collection":"shell.actions","hits":[{"id":"nightlight","score":0.66}]}],
+ "semantic":{"available":true,"fused":true,"added":0,"took_ms":38.2}}
+```
+
+Other methods: `collections.delete {collection}`, `semantic.status`, `semantic.warm {modalities?}`, `model.status`, `model.download {towers}`, `model.remove {towers}`. Progress of a download is published as `model.progress` events (`{"tower","bytes","total","state"}`, ending with `state: "finished"` or `"failed"`) to connections that sent `{"method":"subscribe","params":{"topics":["model.progress"]}}`. The HTTP API (when enabled) has the same operations: `GET /search?semantic=true&collections=...`, `PUT|DELETE /collections/{name}`, `GET /semantic/status`, `POST /semantic/warm`, `GET /model/status`, `POST /model/download`, `POST /model/remove`; like the rest of that API they are unauthenticated.
 
 ## Configuration
 
