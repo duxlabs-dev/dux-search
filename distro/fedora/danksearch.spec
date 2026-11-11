@@ -18,6 +18,8 @@ BuildRequires:  coreutils
 BuildRequires:  systemd-rpm-macros
 
 Requires:       glibc
+# Semantic search loads the system ONNX Runtime (1.22 or newer) at run time.
+Recommends:     onnxruntime >= 1.22
 
 %description
 Dux Search is a file system search utility designed for the Dux Labs modern
@@ -51,6 +53,14 @@ wget -O %{_builddir}/dsearch.gz "https://github.com/duxlabs-dev/dux-search/relea
 gunzip -c %{_builddir}/dsearch.gz > %{_builddir}/dsearch
 chmod +x %{_builddir}/dsearch
 
+# The embedding helper must sit next to dsearch (semantic search)
+wget -O %{_builddir}/dsearch-embed.gz "https://github.com/duxlabs-dev/dux-search/releases/latest/download/dsearch-embed-linux-${DSEARCH_ARCH}.gz" || {
+  echo "Failed to download dsearch-embed for architecture %{_arch}"
+  exit 1
+}
+gunzip -c %{_builddir}/dsearch-embed.gz > %{_builddir}/dsearch-embed
+chmod +x %{_builddir}/dsearch-embed
+
 # Create systemd user service file inline for RPM installation
 cat > %{_builddir}/dsearch.service << 'EOF'
 [Unit]
@@ -79,12 +89,14 @@ EOF
 %install
 # Install dsearch binary
 install -Dm755 %{_builddir}/dsearch %{buildroot}%{_bindir}/dsearch
+install -Dm755 %{_builddir}/dsearch-embed %{buildroot}%{_bindir}/dsearch-embed
 
 # Install systemd user service
 install -Dm644 %{_builddir}/dsearch.service %{buildroot}%{_userunitdir}/dsearch.service
 
 %files
 %{_bindir}/dsearch
+%{_bindir}/dsearch-embed
 %{_userunitdir}/dsearch.service
 
 %post
@@ -99,6 +111,9 @@ cat << 'EOF'
 To configure, enable the systemd user unit service:
 
     systemctl --user enable --now dsearch
+
+Semantic search is optional and off by default; see the README for the
+[semantic] config table and `dsearch model download`.
 
 For more documentation visit:
 

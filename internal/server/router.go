@@ -10,6 +10,7 @@ import (
 	bleve "github.com/blevesearch/bleve/v2"
 	"github.com/duxlabs-dev/dux-search/internal/config"
 	"github.com/duxlabs-dev/dux-search/internal/indexer"
+	"github.com/duxlabs-dev/dux-search/internal/semantic/service"
 )
 
 type IndexerInterface interface {
@@ -29,18 +30,42 @@ type WatcherInterface interface {
 }
 
 type Router struct {
-	indexer IndexerInterface
-	watcher WatcherInterface
-	config  *config.Config
+	indexer  IndexerInterface
+	watcher  WatcherInterface
+	config   *config.Config
+	semantic *service.Service
+	bus      *ipc.EventBus
 }
 
-func NewRouter(indexer IndexerInterface, watcher WatcherInterface, cfg *config.Config) *Router {
-	return &Router{
+// RouterOption customizes NewRouter.
+type RouterOption func(*Router)
+
+// WithSemantic attaches the semantic service. Without it the router behaves as
+// if semantic search were disabled.
+func WithSemantic(svc *service.Service) RouterOption {
+	return func(r *Router) { r.semantic = svc }
+}
+
+func NewRouter(indexer IndexerInterface, watcher WatcherInterface, cfg *config.Config, opts ...RouterOption) *Router {
+	r := &Router{
 		indexer: indexer,
 		watcher: watcher,
 		config:  cfg,
+		bus:     ipc.NewEventBus(),
 	}
+	for _, opt := range opts {
+		opt(r)
+	}
+	if r.semantic == nil {
+		r.semantic, _ = service.New(service.Options{}) // disabled: cannot fail
+	}
+	r.semantic.OnModelProgress(func(p service.ModelProgress) { r.bus.Publish(TopicModelProgress, p) })
+	return r
 }
+
+// Bus is the event bus subscribers listen on (see TopicModelProgress); NewUnix
+// hands it to the socket server.
+func (r *Router) Bus() *ipc.EventBus { return r.bus }
 
 type IndexPathInfo struct {
 	Path          string   `json:"path"`
@@ -58,12 +83,12 @@ type Info struct {
 	IndexPaths            []IndexPathInfo `json:"index_paths"`
 }
 
-func (r *Router) Handle(_ context.Context, w *ipc.ConnWriter, req ipc.Request, _ *ipc.Subscriber) {
+func (r *Router) Handle(ctx context.Context, w *ipc.ConnWriter, req ipc.Request, _ *ipc.Subscriber) {
 	log.Debugf("DMS API Request: method=%s id=%d", req.Method, req.ID)
 
 	switch req.Method {
 	case "search":
-		r.handleSearch(w, req)
+		r.handleSearch(ctx, w, req)
 	case "reindex":
 		r.handleReindex(w, req)
 	case "sync":
@@ -80,12 +105,26 @@ func (r *Router) Handle(_ context.Context, w *ipc.ConnWriter, req ipc.Request, _
 		r.handleWatchStop(w, req)
 	case "watch.status":
 		r.handleWatchStatus(w, req)
+	case "collections.set":
+		r.handleCollectionsSet(ctx, w, req)
+	case "collections.delete":
+		r.handleCollectionsDelete(w, req)
+	case "semantic.status":
+		r.handleSemanticStatus(w, req)
+	case "semantic.warm":
+		r.handleSemanticWarm(ctx, w, req)
+	case "model.status":
+		r.handleModelStatus(w, req)
+	case "model.download":
+		r.handleModelDownload(w, req)
+	case "model.remove":
+		r.handleModelRemove(w, req)
 	default:
 		ipc.RespondError(w, req.ID, fmt.Sprintf("unknown method: %s", req.Method))
 	}
 }
 
-func (r *Router) handleSearch(w *ipc.ConnWriter, req ipc.Request) {
+func (r *Router) handleSearch(ctx context.Context, w *ipc.ConnWriter, req ipc.Request) {
 	query, err := params.String(req.Params, "query")
 	if err != nil {
 		ipc.RespondError(w, req.ID, "query parameter required")
@@ -107,6 +146,14 @@ func (r *Router) handleSearch(w *ipc.ConnWriter, req ipc.Request) {
 		Folder:        params.StringOpt(req.Params, "folder", ""),
 		Type:          params.StringOpt(req.Params, "type", ""),
 		Facets:        params.StringSlice(req.Params, "facets"),
+	}
+
+	if semantic := params.BoolOpt(req.Params, "semantic", false); semantic {
+		r.handleSemanticSearch(ctx, w, req, opts)
+		return
+	} else if len(params.StringSlice(req.Params, "collections")) > 0 {
+		ipc.RespondError(w, req.ID, "collections requires semantic=true")
+		return
 	}
 
 	if opts.Type == "all" {

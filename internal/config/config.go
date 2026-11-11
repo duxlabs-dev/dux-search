@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -37,13 +38,16 @@ type Config struct {
 	IndexAllFiles  bool        `toml:"index_all_files"`
 	IndexXattrTags bool        `toml:"index_xattr_tags"`
 
+	Semantic SemanticConfig `toml:"semantic"`
+
 	RootDir       string   `toml:"root_dir,omitempty"`
 	MaxDepth      int      `toml:"max_depth,omitempty"`
 	ExcludeHidden bool     `toml:"exclude_hidden,omitempty"`
 	ExcludeDirs   []string `toml:"exclude_dirs,omitempty"`
 
-	textExtsMap   map[string]bool
-	metastorePath string
+	textExtsMap    map[string]bool
+	metastorePath  string
+	semanticDBPath string
 }
 
 func DefaultExcludeDirs() []string {
@@ -91,6 +95,7 @@ func Default() *Config {
 			".toml", ".html", ".css", ".rs", ".c",
 			".cpp", ".h", ".java", ".rb", ".php", ".sh",
 		},
+		Semantic: DefaultSemantic(),
 	}
 
 	cfg.BuildMaps()
@@ -130,6 +135,9 @@ func Load(path string) (*Config, error) {
 
 	cfg.ExpandPaths()
 	cfg.BuildMaps()
+	if err := cfg.Semantic.Validate(); err != nil {
+		return nil, fmt.Errorf("%s: %w", path, err)
+	}
 	return cfg, nil
 }
 
@@ -173,15 +181,18 @@ func expandPath(path string) string {
 func (c *Config) ExpandPaths() {
 	c.IndexPath = expandPath(c.IndexPath)
 	c.RootDir = expandPath(c.RootDir)
+	c.Semantic.ModelDir = expandPath(c.Semantic.ModelDir)
+	c.Semantic.OnnxRuntimeLib = expandPath(c.Semantic.OnnxRuntimeLib)
 	for i := range c.IndexPaths {
 		c.IndexPaths[i].Path = expandPath(c.IndexPaths[i].Path)
 	}
 }
 
 func (c *Config) BuildMaps() {
-	c.metastorePath = ""
+	c.metastorePath, c.semanticDBPath = "", ""
 	if c.IndexPath != "" {
 		c.metastorePath = filepath.Join(filepath.Dir(c.IndexPath), "meta.db")
+		c.semanticDBPath = filepath.Join(filepath.Dir(c.IndexPath), "semantic.db")
 	}
 
 	for i := range c.IndexPaths {
@@ -365,8 +376,13 @@ func (c *Config) isOwnIndexData(path string) bool {
 	if c.metastorePath == "" {
 		return false
 	}
-	return isWithin(path, c.IndexPath) || strings.HasPrefix(path, c.metastorePath)
+	return isWithin(path, c.IndexPath) || strings.HasPrefix(path, c.metastorePath) ||
+		strings.HasPrefix(path, c.semanticDBPath) ||
+		(c.Semantic.ModelDir != "" && isWithin(path, c.Semantic.ModelDir))
 }
+
+// SemanticDBPath is the vector database, next to the lexical index.
+func (c *Config) SemanticDBPath() string { return c.semanticDBPath }
 
 func (c *Config) ShouldIndexFile(path string) bool {
 	idxPath := c.findIndexPath(path)
